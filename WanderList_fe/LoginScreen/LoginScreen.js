@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Button, StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {AppRegistry, Button, StyleSheet, View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,7 +9,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     marginLeft: 20,
     marginRight: 20,
-    flex: 1,
     flexDirection: 'column'
   },
   titlePane: {
@@ -41,6 +41,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 12,
   },
+  loginLogo: {
+    width: 154,
+    height: 45,
+  },
 })
 
 
@@ -59,8 +63,27 @@ class LoginScreen extends Component {
                     WanderLists
                     </Text>
                 </View>
+                <View style={{flexDirection: 'row', marginBottom: 10}}>
+                    <TouchableOpacity>
+                    <Image
+                        style = {styles.loginLogo}
+                        source={require('../Images/login_twitter_sm.png')}
+                    />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{marginLeft: 'auto'}}>
+                    <Image
+                        style = {styles.loginLogo}
+                        source={require('../Images/login_fb_sm.png')}
+                    />
+                    </TouchableOpacity>
+                </View>
                 <TextInput style={styles.textInput} placeholder="Username or email" onChangeText={text => this.setState({usernameVal: text})}/>
                 <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} onChangeText={text => this.setState({passwordVal: text})}/>
+                <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
+                    <CheckBox/>
+                    <Text> Remember Me </Text>
+                    <Text style={{marginLeft: 'auto'}}> Forgot Password </Text>
+                </View>
                 <TouchableOpacity
                     style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.button)}
                     disabled = {(this.state.usernameVal == "" || this.state.passwordVal == "")}
