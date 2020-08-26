@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 
 const styles = StyleSheet.create({
     textField: {
@@ -16,11 +16,20 @@ class ListItem extends Component {
         super(props);
     }
 
+    changeScreen() {
+        this.props.navigation.navigate("specificListView",
+        {
+            listTitle: this.props.title
+        });
+    }
+
     render() {
         return (
-            <View style={styles.listItem}>
+            <TouchableOpacity
+            style={styles.listItem}
+            onPress={() => this.changeScreen()}>
                 <Text style={styles.textField}>{this.props.title}</Text>
-            </View>
+            </TouchableOpacity>
         );
     }
 }

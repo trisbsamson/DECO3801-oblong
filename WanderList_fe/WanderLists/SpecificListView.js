@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Dimensions} from 'react-native';
 import ListItem from './ListItem';
+import MapComponent from './MapComponent'
+
 
 const styles = StyleSheet.create({
   container: {
@@ -41,18 +43,22 @@ const renderItem = ({ item }) => (
 class SpecificListView extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            listTitle: props.route.params.listTitle,
+            listData: [
+                {title: 'First Activity', key: 'a'},
+                {title: 'Second Activity', key: 'b'},
+                {title: 'Also an Activity', key: 'c'},],
+        }
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Image
-                    style = {styles.map}
-                    source={require('../Images/map_placeholder.png')}
-                />
+                <MapComponent/>
                 <View>
-                    <Text style={styles.listTitle}> Your Lists </Text>
-                    <FlatList data={listData} renderItem={renderItem}/>
+                    <Text style={styles.listTitle}> {this.state.listTitle} </Text>
+                    <FlatList data={this.state.listData} renderItem={renderItem}/>
                 </View>
                 <TouchableOpacity
                     title="Back to home"
