@@ -13,10 +13,16 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10
 },
-  textField: {
+  title: {
       marginBottom: 20,
-      fontSize: 20,
+      fontSize: 30,
+      textAlign: 'left',
   },
+  subtitle: {
+        marginBottom: 20,
+        fontSize: 20,
+        textAlign: 'left',
+    },
 })
 
 class HomeScreen extends Component {
@@ -27,8 +33,11 @@ class HomeScreen extends Component {
     render() {
         return (
                 <View style={styles.container}>
-                    <Text style={styles.textField}>
-                        Home Page
+                    <Text style={styles.title}>
+                        Hi User
+                    </Text>
+                    <Text style={styles.subtitle}>
+                        Where would you like to travel?
                     </Text>
                     <TouchableOpacity
                         style={styles.button}
