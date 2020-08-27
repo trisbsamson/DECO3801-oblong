@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {View, TouchableOpacity, Text, StyleSheet, TextInput, Button} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet, TextInput, Button, ImageBackground} from 'react-native';
+const image = { uri: "https://www.eait.uq.edu.au/filething/get-styled/landscape_image_600x400/47399/20190804-open-day-web-87.jpg?itok=ymQSMZ6U" };
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +15,9 @@ const styles = StyleSheet.create({
   },
   bodyContainer: {
     flex: 1,
-    backgroundColor: '#000000'
+    backgroundColor: 'grey',
+    padding: 20,
+    alignSelf: 'stretch',
   },
   bottomContainer: {
     flex: 1,
@@ -36,6 +39,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'left',
     },
+  image: {
+    width: 600,
+    padding: 20
+  },
+  textInput: {
+    backgroundColor: 'white',
+  }
 })
 
 class HomeScreen extends Component {
@@ -47,18 +57,22 @@ class HomeScreen extends Component {
         return (
                 <View style={styles.container}>
                       <View stlye = {styles.topContainer}>
-                          <Text style={styles.title}>
-                              Hi User
-                          </Text>
-                          <Text style={styles.subtitle}>
-                              Where would you like to travel?
-                          </Text>
-                          <TextInput style={styles.textInput} placeholder="Seach" onChangeText={text => this.setState({seachVal: text})}/>
+
+                          <ImageBackground source={image} style={styles.image}>
+                              <Text style={styles.title}>Hi User</Text>
+                              <Text style={styles.subtitle}>
+                                  Where would you like to travel?
+                              </Text>
+                              <TextInput style={styles.textInput} placeholder="Seach" onChangeText={text => this.setState({seachVal: text})}/>
+                          </ImageBackground>
                       </View>
+
                       <View style = {styles.bodyContainer}>
                         <Text style={styles.subtitle}> Popular </Text>
-
-
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <View style={{flex: 0.5,width: 1, height: 50, margin: 10, backgroundColor: 'powderblue'}} />
+                            <View style={{flex: 0.5,width: 1, height: 50, marginLeft: 10,marginBottom: 10, marginTop:10, backgroundColor: 'skyblue'}} />
+                        </View>
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() =>
