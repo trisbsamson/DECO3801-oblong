@@ -32,11 +32,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const listData = [
-    {title: 'First List'},
-    {title: 'Second List'},
-    {title: 'Also an Activity'},
-];
 const renderItem = ({ item }) => (
     <ListItem title={item.title} />
 );
@@ -44,12 +39,20 @@ class SpecificListView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listTitle: props.route.params.listTitle,
+            loading: true,
+            listTitle: "",
             listData: [
                 {title: 'First Activity', key: 'a'},
                 {title: 'Second Activity', key: 'b'},
                 {title: 'Also an Activity', key: 'c'},],
         }
+    }
+
+    componentDidMount() {
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/4/get_business_name/", {
+            method: 'GET'
+        })
+        .then(response => console.log(response));
     }
 
     render() {
