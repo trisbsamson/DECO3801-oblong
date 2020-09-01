@@ -88,7 +88,7 @@ class LoginScreen extends Component {
                     style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.button)}
                     disabled = {(this.state.usernameVal == "" || this.state.passwordVal == "")}
                     onPress={() =>
-                    this.props.navigation.navigate('Home', {name: 'User'})
+                    this.props.navigation.navigate('AppContents', {name: 'User'})
                     }
                 >
                     <Text style={{color: "#fff"}}>Log In</Text>

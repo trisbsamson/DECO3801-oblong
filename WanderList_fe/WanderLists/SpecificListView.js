@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Dimensions} from 'react-native';
-import ListItem from './ListItem';
+import ActivityListItem from './ActivityListItem';
 import MapComponent from './MapComponent'
 
 
@@ -28,32 +28,37 @@ const styles = StyleSheet.create({
   },
   listTitle: {
       padding: 10,
-      fontSize: 18
+      fontSize: 18,
+      fontWeight: "700"
   }
 });
 
 const renderItem = ({ item }) => (
-    <ListItem title={item.title} />
+    <ActivityListItem title={item.title} />
 );
 class SpecificListView extends Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
-            listTitle: "",
+            listTitle: props.route.params.listTitle,
             listData: [
                 {title: 'First Activity', key: 'a'},
                 {title: 'Second Activity', key: 'b'},
                 {title: 'Also an Activity', key: 'c'},],
         }
     }
-
-    componentDidMount() {
-        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/4/get_business_name/", {
-            method: 'GET'
-        })
-        .then(response => console.log(response));
+    printresp(response) {
+        console.log(response);
     }
+    componentDidMount() {
+        // do the fetch here once api works
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlist_activities/1")
+        .then(response => response.json())
+        .then(object => {this.printresp(object)});
+    }
+
+
 
     render() {
         return (
@@ -63,15 +68,6 @@ class SpecificListView extends Component {
                     <Text style={styles.listTitle}> {this.state.listTitle} </Text>
                     <FlatList data={this.state.listData} renderItem={renderItem}/>
                 </View>
-                <TouchableOpacity
-                    title="Back to home"
-                    style={styles.button}
-                    onPress={() =>
-                    this.props.navigation.navigate('Home', {name: 'User'})
-                    }
-                >
-                    <Text> Back Home </Text>
-                </TouchableOpacity>
             </View>
         );
     }

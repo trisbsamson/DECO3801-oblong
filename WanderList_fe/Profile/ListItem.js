@@ -6,12 +6,11 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     listItem: {
-        paddingLeft: 12,
+        paddingLeft: 20,
         paddingRight: 12,
         padding: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: 20
     },
     redeemButton: {
         backgroundColor: '#196DFF',
