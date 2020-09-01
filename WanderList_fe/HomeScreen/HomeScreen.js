@@ -179,6 +179,7 @@ class HomeScreen extends Component {
                           </TouchableOpacity>
                       </View>
                       */}
+
               </View>
         )
     }

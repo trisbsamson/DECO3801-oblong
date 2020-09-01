@@ -12,26 +12,26 @@ import HomeScreen from './HomeScreen/HomeScreen';
 import NearbyActivities from './NearbyActivities/NearbyActivities';
 import WanderLists from './WanderLists/WanderLists';
 import Profile from './Profile/Profile'
-import AppContents from './AppContents'
-import { createStackNavigator } from '@react-navigation/stack';
+import QRScanner from './QRScanner/QRScanner'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-class App extends Component {
+class AppContents extends Component {
     constructor(props) {
         super(props);
     }
     render() {
         return (
-            <NavigationContainer>
-                <Stack.Navigator headerMode="none">
-                    <Stack.Screen name="Login" component={LoginScreen} />
-                    <Stack.Screen name="AppContents" component={AppContents} />
-                </Stack.Navigator>
-            </NavigationContainer>
+                <Drawer.Navigator initialRouteName="Home">
+                    <Drawer.Screen name="Home" component={HomeScreen} />
+                    <Drawer.Screen name="Nearby Activities" component={NearbyActivities} />
+                    <Drawer.Screen name="WanderLists" component={WanderLists} />
+                    <Drawer.Screen name="Profile" component={Profile} />
+                    <Drawer.Screen name="QR Scanner" component={QRScanner} />
+                </Drawer.Navigator>
         )
     }
 }
 
-export default App;
+export default AppContents;
