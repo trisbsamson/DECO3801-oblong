@@ -33,7 +33,7 @@ class HomeScreen extends Component {
                     <TouchableOpacity
                         style={styles.button}
                         onPress={() =>
-                        this.props.navigation.navigate('NearbyActivities')
+                        this.props.navigation.navigate('Nearby Activities')
                         }
                     >
                         <Text> Nearby Activities </Text>
@@ -53,6 +53,14 @@ class HomeScreen extends Component {
                         }
                     >
                     <Text> Profile </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() =>
+                        this.props.navigation.navigate('QR Scanner')
+                        }
+                    >
+                    <Text> QR Scanner Test </Text>
                     </TouchableOpacity>
               </View>
         )
