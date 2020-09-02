@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Modal, TextInput} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import ListItem from './ListItem';
 import SpecificListView from './SpecificListView'
@@ -26,6 +26,25 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 'auto',
   },
+  addButton: {
+    alignItems: 'center',
+    backgroundColor: '#196DFF',
+    borderRadius: 3,
+    padding: 10,
+    marginTop: 'auto',
+    marginLeft: 'auto',
+    width: 80
+  },
+  cancelButton: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 3,
+    padding: 10,
+    marginTop: 'auto',
+    width: 80
+  },
   textField: {
       marginBottom: 20,
       fontSize: 20,
@@ -45,6 +64,28 @@ const styles = StyleSheet.create({
       backgroundColor: '#ccc',
       padding: 10,
       paddingBottom: 0
+  },
+  addListModalContainer: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      flex: 1
+  },
+  addListModal: {
+      backgroundColor: '#fff',
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 3,
+      padding: 10,
+      height: 150,
+      width: 200
+  },
+  modalTextField: {
+      borderColor: 'gray',
+      borderWidth: 1,
+      borderRadius: 4,
+      marginBottom: 10,
+      padding: 10,
+      marginTop: 10
   }
 });
 
@@ -59,7 +100,8 @@ class ListsView extends Component {
                 {title: 'First List', subtitle: "blah blah subtitle", key: 'a'},
                 {title: 'Second List', subtitle: "blah blah subtitle", key: 'b'},
                 {title: 'Best List', subtitle: "blah blah subtitle", key: 'c'},
-            ]
+            ],
+            listNameModalVisible: false,
         }
     }
 
@@ -75,28 +117,60 @@ class ListsView extends Component {
         this.setState({listData: listData});
     }
 
-    componentDidMount() {
+    queryLists() {
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlists/1")
         .then(response => response.json())
         .then(obj => this.loadLists(obj));
     }
 
-
+    componentDidMount() {
+        this.queryLists()
+    }
 
     addList(){
-        this.setState({listData: this.state.listData.concat({title: 'New List', key: 'newKey'})});
+        
+    }
+
+    hideModal() {
+        this.setListNameModalVisible(false);
+    }
+
+    setListNameModalVisible = (visible) => {
+        this.setState({listNameModalVisible: visible});
     }
 
     render() {
+        const {listNameModalVisible} = this.state;
         return (
                 <View style={styles.container}>
+                    <Modal
+                        transparent={true}
+                        visible={listNameModalVisible}>
+                        <View style={styles.addListModalContainer}>
+                            <View style={styles.addListModal}>
+                                <Text> New list name </Text>
+                                <TextInput style={styles.modalTextField}/>
+                                <View style={{flex: 1, flexDirection: 'row'}}>
+                                    <TouchableOpacity
+                                        style={styles.cancelButton}
+                                        onPress={() => this.hideModal()}>
+                                        <Text> Cancel </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.addButton}
+                                        onPress={() => this.addList()}>
+                                        <Text style={{color: '#fff'}}> Create </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
                     <View>
                         <Text style={styles.listTitle}> Your Lists </Text>
                         <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
                         <TouchableOpacity
                             style={styles.addListButton}
-                            onPress={() =>this.addList()}>
-                            <Text style={{color: '#fff'}}>Add List</Text>
+                            onPress={() =>this.setListNameModalVisible(true)}>
+                            <Text style={{color: '#fff'}}>New List</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
