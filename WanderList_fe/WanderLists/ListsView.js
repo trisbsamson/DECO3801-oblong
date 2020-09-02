@@ -3,6 +3,7 @@ import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Modal, TextIn
 import { NavigationContainer } from '@react-navigation/native';
 import ListItem from './ListItem';
 import SpecificListView from './SpecificListView'
+import AddListModal from './AddListModal'
 
 
 const styles = StyleSheet.create({
@@ -90,26 +91,20 @@ const styles = StyleSheet.create({
 });
 
 const renderItem = ({ item}, navigation) => (
-    <ListItem title={item.title} subtitle={item.subtitle} navigation={navigation}/>
+    <ListItem title={item.title} id={item.key} subtitle={item.subtitle} navigation={navigation}/>
 );
 class ListsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listData: [
-                {title: 'First List', subtitle: "blah blah subtitle", key: 'a'},
-                {title: 'Second List', subtitle: "blah blah subtitle", key: 'b'},
-                {title: 'Best List', subtitle: "blah blah subtitle", key: 'c'},
-            ],
+            listData: [],
             listNameModalVisible: false,
         }
     }
 
     loadLists(obj) {
-        console.log(obj);
-
+        //console.log(obj);
         var listData = [];
-
         var i;
         for(i = 0; i < obj.length; i++) {
             listData.push({title: obj[i]['name'], subtitle: "subtitle goes here", key: obj[i]['id'].toString()})
@@ -128,7 +123,7 @@ class ListsView extends Component {
     }
 
     addList(){
-        
+
     }
 
     hideModal() {
@@ -143,28 +138,8 @@ class ListsView extends Component {
         const {listNameModalVisible} = this.state;
         return (
                 <View style={styles.container}>
-                    <Modal
-                        transparent={true}
-                        visible={listNameModalVisible}>
-                        <View style={styles.addListModalContainer}>
-                            <View style={styles.addListModal}>
-                                <Text> New list name </Text>
-                                <TextInput style={styles.modalTextField}/>
-                                <View style={{flex: 1, flexDirection: 'row'}}>
-                                    <TouchableOpacity
-                                        style={styles.cancelButton}
-                                        onPress={() => this.hideModal()}>
-                                        <Text> Cancel </Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={styles.addButton}
-                                        onPress={() => this.addList()}>
-                                        <Text style={{color: '#fff'}}> Create </Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        </View>
-                    </Modal>
                     <View>
+                        <AddListModal queryLists={this.queryLists.bind(this)} listNameModalVisible={this.state.listNameModalVisible} hideModalFunc={this.hideModal.bind(this)}/>
                         <Text style={styles.listTitle}> Your Lists </Text>
                         <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
                         <TouchableOpacity
