@@ -58,6 +58,25 @@ class Profile extends Component {
         };
     }
 
+    loadRewards(obj) {
+        var listData = [];
+        var i;
+        for(i = 0; i < obj.length; i++) {
+            listData.push({title: obj[i]['name'], key: obj[i]['reward_id'].toString(), redeemCode: "12345", redeemed: obj[i]['redeemed']});
+        }
+        this.setState({listData: listData});
+    }
+
+    getRewards() {
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_user_rewards/1")
+        .then(response => response.json())
+        .then(obj => this.loadRewards(obj));
+    }
+
+    componentDidMount() {
+        this.getRewards();
+    }
+
     render() {
         return (
             <View style={styles.container}>

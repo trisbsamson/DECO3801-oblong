@@ -42,28 +42,40 @@ class SpecificListView extends Component {
         this.state = {
             loading: true,
             listTitle: props.route.params.listTitle,
-            listData: [
-                {title: 'First Activity', key: 'a'},
-                {title: 'Second Activity', key: 'b'},
-                {title: 'Also an Activity', key: 'c'},],
+            listData: [],
+            listID: props.route.params.listID
         }
     }
+
+    loadLists(obj) {
+        //console.log(obj);
+        var listData = [];
+        var i;
+        for(i = 0; i < obj.length; i++) {
+            listData.push({title: obj[i]['title'],
+                            subtitle: "subtitle goes here",
+                            key: obj[i]['activity_id'].toString(),
+                            lat: parseFloat(obj[i]['latitude']),
+                            long: parseFloat(obj[i]['longitude'])});
+        }
+        this.setState({listData: listData});
+    }
+
     printresp(response) {
         console.log(response);
     }
+
     componentDidMount() {
         // do the fetch here once api works
-        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlist_activities/1")
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlist_activities/" + this.state.listID.toString())
         .then(response => response.json())
-        .then(object => {this.printresp(object)});
+        .then(object => {this.loadLists(object)});
     }
-
-
 
     render() {
         return (
             <View style={styles.container}>
-                <MapComponent/>
+                <MapComponent listData={this.state.listData}/>
                 <View>
                     <Text style={styles.listTitle}> {this.state.listTitle} </Text>
                     <FlatList data={this.state.listData} renderItem={renderItem}/>

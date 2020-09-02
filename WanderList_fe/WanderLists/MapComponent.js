@@ -36,11 +36,12 @@ class MapComponent extends Component {
             rotateEnabled={false}
             initialRegion={this.state.region}
           >
-            <Marker
-              title="This is a title"
-              description="This is a description"
-              coordinate={this.state.region}
-            />
+            {this.props.listData.map((item, i) => {
+                return (<Marker
+                        title={item['title']}
+                        description={item['subtitle']}
+                        coordinate={{latitude: item['lat'], longitude: item['long']}}/>)
+            })}
           </MapView>
       </View>
     );
