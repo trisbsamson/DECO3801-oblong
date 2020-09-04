@@ -71,4 +71,4 @@ class WanderLists extends Component {
     }
 }
 
-export default Wanderlists;
+export default WanderLists;
