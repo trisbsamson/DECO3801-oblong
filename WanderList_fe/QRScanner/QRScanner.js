@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Linking
+  Linking,
+  View
 } from 'react-native';
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -14,11 +15,15 @@ import { RNCamera } from 'react-native-camera';
 class QRScanner extends Component {
     constructor(props) {
         super(props);
-        this.state = {topText: "Try Scan a QR code!"};
+        this.state = {topText: "Scan Activity QR Code"};
     }
   onSuccess = e => {
     this.setState({topText: "QR Scanned: " + e.data});
   };
+
+  back() {
+      this.props.navigation.goBack();
+  }
 
   render() {
     return (
@@ -31,10 +36,13 @@ class QRScanner extends Component {
           </Text>
         }
         bottomContent={
-          <TouchableOpacity style={styles.buttonTouchable}>
-            <Text style={styles.buttonText}>OK. Got it!</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.goBackButton}
+                onPress={() =>this.back()}>
+                <Text style={{color: '#000'}}>Back</Text>
+            </TouchableOpacity>
         }
+        bottomViewStyle={styles.bottomContainer}
       />
     );
   }
@@ -53,11 +61,28 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 21,
-    color: 'rgb(0,122,255)'
+    marginTop: 30
   },
   buttonTouchable: {
-    padding: 16
-  }
+    padding: 16,
+    alignItems: 'center'
+    },
+    goBackButton: {
+        alignItems: 'center',
+        padding: 12,
+        width: 120,
+        backgroundColor: '#fff',
+        borderColor: '#000',
+        borderWidth: 1,
+        borderRadius: 3,
+        marginTop: 'auto',
+        marginBottom: 10,
+        marginLeft: 10,
+    },
+    bottomContainer: {
+        flexDirection: 'column',
+        alignItems: 'flex-start'
+    }
 });
 
 export default QRScanner;

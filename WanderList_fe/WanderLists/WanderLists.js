@@ -3,7 +3,9 @@ import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList} from 'react-n
 import { NavigationContainer } from '@react-navigation/native';
 import ListItem from './ListItem';
 import SpecificListView from './SpecificListView'
-import ListsView from './ListsView'
+import ListsView from './ListsView';
+import ActivityScreen from '../ActivityScreen/ActivityScreen';
+import QRScanner from '../QRScanner/QRScanner';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const ListStack = createStackNavigator();
@@ -35,9 +37,6 @@ const styles = StyleSheet.create({
       height: 300,
       marginBottom: 20,
   },
-  listItem: {
-
-  },
   listTitle: {
       padding: 10,
       fontSize: 18
@@ -65,6 +64,8 @@ class WanderLists extends Component {
                 <ListStack.Navigator headerMode="none">
                     <ListStack.Screen name="listView" component={ListsView}/>
                     <ListStack.Screen name="specificListView" component={SpecificListView}/>
+                    <ListStack.Screen name="activityView" component={ActivityScreen}/>
+                    <ListStack.Screen name="qrScanner" component={QRScanner}/>
                 </ListStack.Navigator>
         );
     }

@@ -47,14 +47,7 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listData: [
-                {title: "UQ Lakes Boat Ride", key: "a", redeemCode: "204195"},
-                {title: "Free Burger @ Burger Urge", key: "b", redeemCode: "105124"},
-                {title: "$10 Jug at Redroom", key: "c", redeemCode: "420385"},
-                {title: "Half-price Tickets at Schonell Theatre", key: "d", redeemCode: "350382"},
-                {title: "Free Burger @ Burger Urge", key: "e", redeemCode: "230495"},
-                {title: "A third activity", key: "f", redeemCode: "583739"}
-            ]
+            listData: []
         };
     }
 
