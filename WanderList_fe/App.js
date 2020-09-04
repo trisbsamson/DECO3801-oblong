@@ -7,30 +7,28 @@ import HomeScreen from './HomeScreen/HomeScreen';
 import NearbyActivities from './NearbyActivities/NearbyActivities';
 import WanderLists from './WanderLists/WanderLists';
 import Profile from './Profile/Profile';
-import LocationScreen from './LocationScreen/LocationScreen';
+import AppContents from './AppContents'
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator headerMode="none">
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="NearbyActivities" component={NearbyActivities} />
-          <Stack.Screen name="WanderLists" component={WanderLists} />
-          <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="LocationScreen" component={LocationScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
+
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <NavigationContainer>
+                <Stack.Navigator headerMode="none">
+                    <Stack.Screen name="Login" component={LoginScreen} />
+                    <Stack.Screen name="AppContents" component={AppContents} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        )
+    }
 }
 
 export default App;
