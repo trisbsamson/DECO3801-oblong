@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -81,10 +81,9 @@ const styles = StyleSheet.create({
 })
 
 class HomeScreen extends Component {
-    constructor(props) {
-        super(props);
-    }
-
+  constructor(props) {
+    super(props);
+  }
     render() {
         return (
                 <View style={styles.container}>
@@ -184,6 +183,5 @@ class HomeScreen extends Component {
         )
     }
 }
-
 
 export default HomeScreen;

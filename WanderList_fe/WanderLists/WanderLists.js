@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     marginTop: 'auto',
   },
   textField: {
-      marginBottom: 20,
-      fontSize: 20,
+    marginBottom: 20,
+    fontSize: 20,
   },
   map: {
       width: 390,
@@ -71,4 +71,4 @@ class WanderLists extends Component {
     }
 }
 
-export default WanderLists;
+export default Wanderlists;

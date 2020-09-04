@@ -29,7 +29,7 @@ class NearbyActivities extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.textField}>
-                    Nearby Activities
+                    Nearby Activities awhaawpjfa
                 </Text>
                 <TouchableOpacity
                     title="Return Home"
