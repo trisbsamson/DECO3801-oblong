@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const renderItem = ({ item }) => (
-    <ActivityListItem title={item.title} />
+const renderItem = ({ item }, navigation) => (
+    <ActivityListItem title={item.title} activityID={item.id} navigation={navigation}/>
 );
 class SpecificListView extends Component {
     constructor(props) {
@@ -55,6 +55,7 @@ class SpecificListView extends Component {
             listData.push({title: obj[i]['title'],
                             subtitle: "subtitle goes here",
                             key: obj[i]['activity_id'].toString(),
+                            id: obj[i]['activity_id'],
                             lat: parseFloat(obj[i]['latitude']),
                             long: parseFloat(obj[i]['longitude'])});
         }
@@ -78,7 +79,7 @@ class SpecificListView extends Component {
                 <MapComponent listData={this.state.listData}/>
                 <View>
                     <Text style={styles.listTitle}> {this.state.listTitle} </Text>
-                    <FlatList data={this.state.listData} renderItem={renderItem}/>
+                    <FlatList data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
                 </View>
             </View>
         );

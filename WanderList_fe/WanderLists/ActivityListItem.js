@@ -31,14 +31,14 @@ class ActivityListItem extends Component {
     }
 
     changeScreen() {
-        /*this.props.navigation.navigate("specificListView",
+        this.props.navigation.navigate("activityView",
         {
-            listTitle: this.props.title
-        });*/
+            activityID: this.props.activityID
+        });
     }
 
     activateActivity() {
-
+        this.props.navigation.navigate("qrScanner");
     }
 
     render() {

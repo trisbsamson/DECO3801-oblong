@@ -28,7 +28,6 @@ class AppContents extends Component {
                     <Drawer.Screen name="Nearby Activities" component={NearbyActivities} />
                     <Drawer.Screen name="WanderLists" component={WanderLists} />
                     <Drawer.Screen name="Profile" component={Profile} />
-                    <Drawer.Screen name="QR Scanner" component={QRScanner} />
                 </Drawer.Navigator>
         )
     }
