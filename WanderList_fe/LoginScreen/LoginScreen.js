@@ -52,7 +52,8 @@ class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {usernameVal: "",
-                      passwordVal: ""}
+                      passwordVal: "",
+                      rememberMeCheck: false}
     }
 
     render() {
@@ -80,7 +81,10 @@ class LoginScreen extends Component {
                 <TextInput style={styles.textInput} placeholder="Username or email" onChangeText={text => this.setState({usernameVal: text})}/>
                 <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} onChangeText={text => this.setState({passwordVal: text})}/>
                 <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
-                    <CheckBox/>
+                    <CheckBox
+                        value={this.state.rememberMeCheck}
+                        onChange={() => this.setState({ rememberMeCheck: !this.state.rememberMeCheck})} 
+                    />
                     <Text> Remember Me </Text>
                     <Text style={{marginLeft: 'auto'}}> Forgot Password </Text>
                 </View>
