@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     fontSize:15,
     borderRadius: 25,
+    paddingLeft: 20
   },
   populars:{
     flex: 0.5,
@@ -93,7 +94,7 @@ class HomeScreen extends Component {
                               <Text style={styles.subtitle}>
                                   Where would you like to travel?
                               </Text>
-                              <TextInput style={styles.textInput} placeholder="Seach" onChangeText={text => this.setState({seachVal: text})}/>
+                              <TextInput style={styles.textInput} placeholder="Search" onChangeText={text => this.setState({seachVal: text})}/>
                           </ImageBackground>
                       </View>
 
