@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
   addListModalContainer: {
       alignItems: 'center',
       justifyContent: 'center',
-      flex: 1
+      flex: 1,
+      backgroundColor: 'rgba(0,0,0,0.5)'
   },
   addListModal: {
       backgroundColor: '#fff',

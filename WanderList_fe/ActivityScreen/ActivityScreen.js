@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Dimensions} from 'react-native';
+import AddToBucketListModal, {AddToBucketList} from './AddToBucketListModal';
 
 const { width, height } = Dimensions.get('window');
 
@@ -18,12 +19,12 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 20
   },
-  gotoWebsiteButton: {
+  addToWL: {
       alignItems: 'center',
       padding: 10,
       marginBottom: 10,
       padding: 12,
-      width: 120,
+      width: 150,
       marginLeft: 20,
       backgroundColor: '#fff',
       borderColor: '#000',
@@ -74,7 +75,8 @@ class ActivityScreen extends Component {
                 description: "",
                 points: 0,
                 website: ""
-            }
+            },
+            listNameModalVisible: false,
         }
     }
 
@@ -97,6 +99,14 @@ class ActivityScreen extends Component {
         this.props.navigation.navigate("qrScanner");
     }
 
+    hideModal() {
+        this.setListNameModalVisible(false);
+    }
+
+    setListNameModalVisible = (visible) => {
+        this.setState({listNameModalVisible: visible});
+    }
+
     componentDidMount() {
         // need to update this to fetch only the activity with our activity id
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_activity")
@@ -107,6 +117,7 @@ class ActivityScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <AddToBucketListModal listNameModalVisible={this.state.listNameModalVisible} hideModalFunc={this.hideModal.bind(this)}/>
                 <View style={styles.titlePanel}>
                     <Text style={styles.activityTitle}>{this.state.activityDetails.name}</Text>
                     <View style={styles.subtitle}>
@@ -122,9 +133,9 @@ class ActivityScreen extends Component {
                 </View>
                 <View style={styles.buttonPane}>
                     <TouchableOpacity
-                        style={styles.gotoWebsiteButton}
+                        style={styles.addToWL}
                         onPress={() =>this.setListNameModalVisible(true)}>
-                        <Text style={{color: '#000'}}>Go To Website</Text>
+                        <Text style={{color: '#000'}}>Add to WanderList</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.addListButton}
