@@ -12,6 +12,7 @@ import {
 import ListsView from './ListsView';
 import SpecificListView from './SpecificListView';
 import {createStackNavigator} from '@react-navigation/stack';
+import ActivityScreen from '../ActivityScreen/ActivityScreen';
 import Header from './Header';
 
 const ListStack = createStackNavigator();
@@ -77,6 +78,7 @@ class LocationScreen extends Component {
     return (
         <ListStack.Navigator headerMode="none">
           <ListStack.Screen name="listView" component={ListsView} />
+          <ListStack.Screen name="activityView" component={ActivityScreen}/>
         </ListStack.Navigator>
     );
   }
