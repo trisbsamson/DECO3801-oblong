@@ -65,11 +65,7 @@ class ListsView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listData: [
-        {title: 'First List', subtitle: 'blah blah subtitle', key: 'a'},
-        {title: 'Second List', subtitle: 'blah blah subtitle', key: 'b'},
-        {title: 'Best List', subtitle: 'blah blah subtitle', key: 'c'},
-      ],
+      
     };
   }
 
