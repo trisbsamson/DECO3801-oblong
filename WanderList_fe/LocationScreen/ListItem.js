@@ -31,7 +31,8 @@ class ListItem extends Component {
   }
 
   changeScreen() {
-    this.props.navigation.navigate('specificListView', {
+    console.log(this.props)
+    this.props.navigation.navigate('activityView', {
       listTitle: this.props.title,
     });
   }

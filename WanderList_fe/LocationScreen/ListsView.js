@@ -71,7 +71,7 @@ class ListsView extends Component {
 
   loadLists(obj) {
     console.log(obj);
-
+    
     var listData = [];
 
     var i;
@@ -82,11 +82,12 @@ class ListsView extends Component {
         key: obj[i]['id'].toString(),
       });
     }
-    console.log(listData);
+    
     this.setState({listData: listData});
   }
 
   componentDidMount() {
+    
     fetch('https://deco3801-oblong.uqcloud.net/wanderlist/get_activity')
       .then((response) => response.json())
       .then((obj) => this.loadLists(obj));
@@ -127,7 +128,7 @@ class ListsView extends Component {
         <FlatList
           style={styles.list}
           data={this.state.listData}
-          renderItem={(item) => renderItem(item)}
+          renderItem={(item) => renderItem(item, this.props.navigation)}
         />
 
         <TouchableOpacity

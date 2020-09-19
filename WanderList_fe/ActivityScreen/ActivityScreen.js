@@ -79,27 +79,26 @@ class ActivityScreen extends Component {
     }
 
     loadActivityData(obj) {
+        
         var activityDetails = {};
-        var i;
-        for(i = 0; i < obj.length; i++) {
-            if(obj[i]['id'] == this.props.route.params.activityID) {
-                activityDetails['name'] = obj[i]['title'];
-                activityDetails['description'] = obj[i]['description'];
-                activityDetails['points'] = obj[i]['points'];
-                activityDetails['website'] = obj[i]['website'];
-                console.log(activityDetails);
-                this.setState({loading: false, activityDetails: activityDetails});
-            }
-        }
+        activityDetails['name'] = obj[0]['title'];
+        activityDetails['description'] = obj[0]['description'];
+        activityDetails['points'] = obj[0]['points'];
+        activityDetails['website'] = obj[0]['website'];
+        console.log(activityDetails);
+        this.setState({loading: false, activityDetails: activityDetails});
+         
     }
 
     openQRScanner() {
         this.props.navigation.navigate("qrScanner");
     }
 
+    //loads in the activity data from the backend
     componentDidMount() {
-        // need to update this to fetch only the activity with our activity id
-        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_activity")
+        //previous route gives and activity id, retrieve from server
+        let url = "https://deco3801-oblong.uqcloud.net/wanderlist/get_activity/" + this.props.route.params.activityID
+        fetch(url)
         .then(response => response.json())
         .then(object => {this.loadActivityData(object)});
     }

@@ -77,10 +77,6 @@ class LocationScreen extends Component {
     return (
         <ListStack.Navigator headerMode="none">
           <ListStack.Screen name="listView" component={ListsView} />
-          <ListStack.Screen
-            name="SpecificListView"
-            component={SpecificListView}
-          />
         </ListStack.Navigator>
     );
   }
