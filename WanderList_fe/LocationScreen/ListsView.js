@@ -58,6 +58,7 @@ const renderItem = ({item}, navigation) => (
   <ListItem
     title={item.title}
     subtitle={item.subtitle}
+    activityID={item.activityID}
     navigation={navigation}
   />
 );
@@ -78,6 +79,7 @@ class ListsView extends Component {
     for (i = 0; i < obj.length; i++) {
       listData.push({
         title: obj[i]['title'],
+        activityID: obj[i]['id'],
         subtitle: 'Description',
         key: obj[i]['id'].toString(),
       });
