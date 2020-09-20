@@ -56,17 +56,15 @@ class AddListModal extends Component {
             var queryString = "https://deco3801-oblong.uqcloud.net/wanderlist/post_list/" + this.state.textInputVal + "/1";
             fetch(queryString, {
                 credentials: 'include',
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }})
             .then(response => console.log("Response: " + response.status))
             .then(this.props.queryLists())
             .catch((error) => { console.error(error); });
-            //console.log(queryString);
             this.props.hideModalFunc();
         }
-        //console.log(this.state.textInputVal)
     }
 
     render() {

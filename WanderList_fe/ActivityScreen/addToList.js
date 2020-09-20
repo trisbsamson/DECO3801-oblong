@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Modal, TextInput} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import ListItem from './ListItem';
-import SpecificListView from './SpecificListView'
-import AddListModal from './AddListModal'
+import ListItem from '../WanderLists/ListItem';
+import SpecificListView from '../WanderLists/SpecificListView'
+import AddListModal from '../WanderLists/AddListModal'
 
 
 const styles = StyleSheet.create({
@@ -91,14 +91,36 @@ const styles = StyleSheet.create({
 });
 
 const renderItem = ({ item}, navigation) => (
-    <ListItem title={item.title} id={item.key} subtitle={item.subtitle} navigation={navigation}/>
+   // <ListItem title={item.title} id={item.key} subtitle={item.subtitle} navigation={navigation}/>
+
+    <TouchableOpacity
+        style={styles.addListButton}
+        onPress={() => addToList(item.key, item.activityID)}>
+        <Text style={{color: '#fff'}}>{item.title}</Text>
+    </TouchableOpacity>
 );
+
+function addToList(bucketListID, activityID){
+
+
+    let url = "https://deco3801-oblong.uqcloud.net/wanderlist/add_activity_to_list/" + bucketListID + "/" + activityID
+    fetch(url, {
+        credentials: 'include',
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }})
+    .then(response => console.log("Response: " + response.status))
+    
+    
+}
 class ListsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
             listData: [],
             listNameModalVisible: false,
+            activityID: 0,
         }
     }
 
@@ -107,7 +129,7 @@ class ListsView extends Component {
         var listData = [];
         var i;
         for(i = 0; i < obj.length; i++) {
-            listData.push({title: obj[i]['name'], subtitle: "subtitle goes here", key: obj[i]['id'].toString()})
+            listData.push({title: obj[i]['name'], subtitle: "subtitle goes here", key: obj[i]['id'], activityID: this.state.activityID})
         }
         this.setState({listData: listData});
     }
@@ -120,13 +142,24 @@ class ListsView extends Component {
 
     componentDidMount() {
         this.queryLists()
+        console.log(this.props.route.params.activityID)
+        this.setState({activityID: this.props.route.params.activityID})
     }
 
     
-
     hideModal() {
         this.setListNameModalVisible(false);
     }
+
+    
+    renderLists(item){
+        <TouchableOpacity
+            style={styles.addListButton}
+            onPress={() =>this.setListNameModalVisible(true)}>
+            <Text style={{color: '#fff'}}>New List</Text>
+        </TouchableOpacity>
+    }
+    
 
     setListNameModalVisible = (visible) => {
         this.setState({listNameModalVisible: visible});
@@ -137,9 +170,8 @@ class ListsView extends Component {
         return (
                 <View style={styles.container}>
                     <View>
-                        <AddListModal queryLists={this.queryLists.bind(this)} listNameModalVisible={this.state.listNameModalVisible} hideModalFunc={this.hideModal.bind(this)}/>
                         <Text style={styles.listTitle}> Your Lists </Text>
-                        <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
+                        <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item)}/>
                         <TouchableOpacity
                             style={styles.addListButton}
                             onPress={() =>this.setListNameModalVisible(true)}>
