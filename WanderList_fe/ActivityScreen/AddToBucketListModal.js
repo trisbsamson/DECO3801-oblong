@@ -65,6 +65,7 @@ class AddToBucketListModal extends Component {
         for(i = 0; i < obj.length; i++) {
             listData.push({title: obj[i]['name'], subtitle: "subtitle goes here", key: obj[i]['id'].toString()})
         }
+        
         this.setState({listData: listData});
     }
 

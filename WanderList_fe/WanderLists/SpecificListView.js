@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Dimensions} from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
 import ActivityListItem from './ActivityListItem';
-import MapComponent from './MapComponent'
+import Icon from 'react-native-vector-icons/Feather';
+import MapComponent from './MapComponent';
 
 
 const styles = StyleSheet.create({
@@ -30,11 +32,29 @@ const styles = StyleSheet.create({
       padding: 10,
       fontSize: 18,
       fontWeight: "700"
+  },
+  completeStatusText: {
+      fontSize: 16,
+      marginTop: 10,
+      padding: 10,
+      fontStyle: "italic"
+  },
+  topPanel: {
+      flexDirection: 'row',
+      alignItems: 'center'
+  },
+  tagsDropdownButton: {
+      padding: 5,
+      width: 150,
+      marginLeft: 'auto',
+      marginRight: 10,
+      flexDirection: 'row',
+      alignItems: 'center'
   }
 });
 
 const renderItem = ({ item }, navigation) => (
-    <ActivityListItem title={item.title} activityID={item.id} navigation={navigation}/>
+    <ActivityListItem title={item.title} activityID={item.id} navigation={navigation} completed={item.completed}/>
 );
 class SpecificListView extends Component {
     constructor(props) {
@@ -43,23 +63,42 @@ class SpecificListView extends Component {
             loading: true,
             listTitle: props.route.params.listTitle,
             listData: [],
-            listID: props.route.params.listID
+            incompleteListData: [],
+            completedListData: [],
+            listID: props.route.params.listID,
+            filters: []
         }
     }
 
     loadLists(obj) {
-        //console.log(obj);
-        var listData = [];
+        var incompleteListData = [];
+        var completedListData = [];
         var i;
         for(i = 0; i < obj.length; i++) {
-            listData.push({title: obj[i]['title'],
-                            subtitle: "subtitle goes here",
-                            key: obj[i]['activity_id'].toString(),
-                            id: obj[i]['activity_id'],
-                            lat: parseFloat(obj[i]['latitude']),
-                            long: parseFloat(obj[i]['longitude'])});
+            if(!obj[i]['completed']) {
+                incompleteListData.push({
+                    title: obj[i]['title'],
+                    subtitle: "subtitle goes here",
+                    key: obj[i]['activity_id'].toString(),
+                    id: obj[i]['activity_id'],
+                    lat: parseFloat(obj[i]['latitude']),
+                    long: parseFloat(obj[i]['longitude']),
+                    completed: false
+                });
+            } else {
+                completedListData.push({
+                    title: obj[i]['title'],
+                    subtitle: "subtitle goes here",
+                    key: obj[i]['activity_id'].toString(),
+                    id: obj[i]['activity_id'],
+                    lat: parseFloat(obj[i]['latitude']),
+                    long: parseFloat(obj[i]['longitude']),
+                    completed: true
+                });
+            }
         }
-        this.setState({listData: listData});
+        this.setState({incompleteListData: incompleteListData,
+                        completedListData: completedListData});
     }
 
     printresp(response) {
@@ -76,10 +115,37 @@ class SpecificListView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <MapComponent listData={this.state.listData}/>
+                <MapComponent incompleteListData={this.state.incompleteListData} completedListData={this.state.completedListData}/>
                 <View>
-                    <Text style={styles.listTitle}> {this.state.listTitle} </Text>
-                    <FlatList data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
+                    <View style={styles.topPanel}>
+                        <Text style={styles.listTitle}> {this.state.listTitle} </Text>
+                        <DropDownPicker
+                            items={[
+                                {label: 'Sports', value: 'sport'},
+                                {label: 'Food', value: 'food'},
+                                {label: 'Art', value: 'art'},
+                            ]}
+                        
+                            multiple={true}
+                            multipleText="Filter"
+                            min={0}
+                            max={10}
+                        
+                            defaultValue={this.state.filters}
+                            placeholder="Filter"
+                            containerStyle={styles.tagsDropdownButton}
+                            itemStyle={{
+                                justifyContent: 'flex-start'
+                            }}
+                            onChangeItem={item => this.setState({
+                                filters: item // an array of the selected items
+                            })}
+                        />
+                    </View>
+                    
+                    <FlatList data={this.state.incompleteListData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
+                    <Text style={styles.completeStatusText}> Completed</Text>
+                    <FlatList data={this.state.completedListData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
                 </View>
             </View>
         );

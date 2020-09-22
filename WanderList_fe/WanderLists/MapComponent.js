@@ -36,11 +36,20 @@ class MapComponent extends Component {
             rotateEnabled={false}
             initialRegion={this.state.region}
           >
-            {this.props.listData.map((item, i) => {
+            {this.props.incompleteListData.map((item, i) => {
                 return (<Marker
+                        key={item['id']}
                         title={item['title']}
                         description={item['subtitle']}
                         coordinate={{latitude: item['lat'], longitude: item['long']}}/>)
+            })}
+            {this.props.completedListData.map((item, i) => {
+                return (<Marker
+                        key={item['id']}
+                        title={item['title']}
+                        description={item['subtitle']}
+                        coordinate={{latitude: item['lat'], longitude: item['long']}}
+                        pinColor={'navy'}/>)
             })}
           </MapView>
       </View>
