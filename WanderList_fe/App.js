@@ -8,6 +8,7 @@ import NearbyActivities from './NearbyActivities/NearbyActivities';
 import WanderLists from './WanderLists/WanderLists';
 import Profile from './Profile/Profile';
 import AppContents from './AppContents'
+import SignupScreen from './SignupScreen/SignupScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -25,6 +26,7 @@ class App extends Component {
                 <Stack.Navigator headerMode="none">
                     <Stack.Screen name="Login" component={LoginScreen} />
                     <Stack.Screen name="AppContents" component={AppContents} />
+                    <Stack.Screen name="SignupScreen" component={SignupScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         )
