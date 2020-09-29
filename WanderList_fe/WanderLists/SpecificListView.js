@@ -65,16 +65,36 @@ class SpecificListView extends Component {
             listData: [],
             incompleteListData: [],
             completedListData: [],
+            filteredIncompleteListData: [],
+            filteredCompletedListData: [],
             listID: props.route.params.listID,
-            filters: []
+            filters: [],
+            tagFilters: []
         }
     }
 
     loadLists(obj) {
+        // two separate lists for incomplete and complete activities
         var incompleteListData = [];
         var completedListData = [];
+
+        // list used to generate filters dropdown
+        var uniqueTags = [];
+        
         var i;
         for(i = 0; i < obj.length; i++) {
+            // load and process tags for this activity
+            var tags = [];
+            var tagsString = obj[i]['tags'].split(",");
+            var j;
+            for(j = 0; j < tagsString.length; j++) {
+                var tag = tagsString[j].trim();
+                tags.push(tag);
+                if(!uniqueTags.includes(tag)) {
+                    uniqueTags.push(tag);
+                }
+            }
+            // add activity to correspoinding list
             if(!obj[i]['completed']) {
                 incompleteListData.push({
                     title: obj[i]['title'],
@@ -83,7 +103,8 @@ class SpecificListView extends Component {
                     id: obj[i]['activity_id'],
                     lat: parseFloat(obj[i]['latitude']),
                     long: parseFloat(obj[i]['longitude']),
-                    completed: false
+                    completed: false,
+                    tags: tags
                 });
             } else {
                 completedListData.push({
@@ -93,12 +114,64 @@ class SpecificListView extends Component {
                     id: obj[i]['activity_id'],
                     lat: parseFloat(obj[i]['latitude']),
                     long: parseFloat(obj[i]['longitude']),
-                    completed: true
+                    completed: true,
+                    tags: tags
                 });
             }
         }
+        var tagFilters = [];
+        // construct list of tag objects to go in dropdown
+        for(i = 0; i < uniqueTags.length; i++) {
+            tagFilters.push({label: uniqueTags[i], value: uniqueTags[i]});
+        }
+
         this.setState({incompleteListData: incompleteListData,
-                        completedListData: completedListData});
+                        completedListData: completedListData,
+                        tagFilters: tagFilters},
+                        () => this.filterActivities());
+    }
+
+    filterActivities() {
+        if(this.state.filters.length == 0) {
+            this.setState({
+                filteredIncompleteListData: this.state.incompleteListData,
+                filteredCompletedListData: this.state.completedListData
+            });
+        } else {
+            var i;
+            var f_incListData = [];
+            var f_compListData = [];
+            for(i = 0; i < this.state.incompleteListData.length; i++) {
+                var j;
+                var toInclude = false;
+                for(j = 0; j < this.state.filters.length; j++) {
+                    if(this.state.incompleteListData[i].tags.includes(this.state.filters[j])) {
+                        toInclude = true;
+                    }
+                }
+                if(toInclude) {
+                    f_incListData.push(this.state.incompleteListData[i]);
+                }
+            }
+
+            for(i = 0; i < this.state.completedListData.length; i++) {
+                var j;
+                var toInclude = false;
+                for(j = 0; j < this.state.filters.length; j++) {
+                    if(this.state.completedListData[i].tags.includes(this.state.filters[j])) {
+                        toInclude = true;
+                    }
+                }
+                if(toInclude) {
+                    f_compListData.push(this.state.completedListData[i]);
+                }
+            }
+            
+            this.setState({
+                filteredIncompleteListData: f_incListData,
+                filteredCompletedListData: f_compListData});
+        }
+        
     }
 
     printresp(response) {
@@ -115,16 +188,12 @@ class SpecificListView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <MapComponent incompleteListData={this.state.incompleteListData} completedListData={this.state.completedListData}/>
+                <MapComponent incompleteListData={this.state.filteredIncompleteListData} completedListData={this.state.filteredCompletedListData}/>
                 <View>
                     <View style={styles.topPanel}>
                         <Text style={styles.listTitle}> {this.state.listTitle} </Text>
                         <DropDownPicker
-                            items={[
-                                {label: 'Sports', value: 'sport'},
-                                {label: 'Food', value: 'food'},
-                                {label: 'Art', value: 'art'},
-                            ]}
+                            items={this.state.tagFilters}
                         
                             multiple={true}
                             multipleText="Filter"
@@ -137,15 +206,15 @@ class SpecificListView extends Component {
                             itemStyle={{
                                 justifyContent: 'flex-start'
                             }}
-                            onChangeItem={item => this.setState({
+                            onChangeItem={item => (this.setState({
                                 filters: item // an array of the selected items
-                            })}
+                            }, () => this.filterActivities()))}
                         />
                     </View>
                     
-                    <FlatList data={this.state.incompleteListData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
+                    <FlatList data={this.state.filteredIncompleteListData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
                     <Text style={styles.completeStatusText}> Completed</Text>
-                    <FlatList data={this.state.completedListData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
+                    <FlatList data={this.state.filteredCompletedListData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
                 </View>
             </View>
         );
