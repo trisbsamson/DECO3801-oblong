@@ -61,12 +61,12 @@ const styles = StyleSheet.create({
 })
 
 
-class LoginScreen extends Component {
+class SignupScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {usernameVal: "",
-                      passwordVal: "",
-                      rememberMeCheck: false}
+                      emailVal: "",
+                      passwordVal: ""}
     }
 
     render() {
@@ -74,7 +74,7 @@ class LoginScreen extends Component {
             <View style={styles.container}>
                 <View style={styles.titlePane}>
                     <Text style={styles.textField}>
-                    WanderLists
+                    Sign Up!
                     </Text>
                 </View>
                 <View style={{flexDirection: 'row', marginBottom: 10}}>
@@ -91,16 +91,10 @@ class LoginScreen extends Component {
                     />
                     </TouchableOpacity>
                 </View>
-                <TextInput style={styles.textInput} placeholder="Username or email" onChangeText={text => this.setState({usernameVal: text})}/>
+                <TextInput style={styles.textInput} placeholder="Username" onChangeText={text => this.setState({usernameVal: text})}/>
+                <TextInput style={styles.textInput} placeholder="Email" onChangeText={text => this.setState({emailVal: text})}/>
                 <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} onChangeText={text => this.setState({passwordVal: text})}/>
-                <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
-                    <CheckBox
-                        value={this.state.rememberMeCheck}
-                        onChange={() => this.setState({ rememberMeCheck: !this.state.rememberMeCheck})}
-                    />
-                    <Text> Remember Me </Text>
-                    <Text style={{marginLeft: 'auto'}}> Forgot Password </Text>
-                </View>
+
                 <TouchableOpacity
                     style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.button)}
                     disabled = {(this.state.usernameVal == "" || this.state.passwordVal == "")}
@@ -108,17 +102,16 @@ class LoginScreen extends Component {
                     this.props.navigation.navigate('AppContents', {name: 'User'})
                     }
                 >
-                    <Text style={{color: "#fff"}}>Log In</Text>
+                    <Text style={{color: "#fff"}}>Sign Up</Text>
                 </TouchableOpacity>
                 <View style ={styles.signupTextCont}>
-                    <Text style = {styles.signupText}>Don't have an account yet? </Text>
-                    <TouchableOpacity onPress ={() =>this.props.navigation.navigate('SignupScreen')}>
-                    <Text style = {styles.signupButton}>Sign up</Text>
+                    <Text style = {styles.signupText}>Already have an account? </Text>
+                    <TouchableOpacity onPress ={() =>this.props.navigation.navigate('Login')}>
+                    <Text style = {styles.signupButton}>Login</Text>
                     </TouchableOpacity>
                 </View>
             </View>
         );
     }
 }
-
-export default LoginScreen;
+export default SignupScreen;

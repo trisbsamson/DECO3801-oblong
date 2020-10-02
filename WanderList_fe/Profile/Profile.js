@@ -36,7 +36,13 @@ const styles = StyleSheet.create({
   },
   nameSubText: {
       fontSize: 15
-  }
+  },
+    header:{
+        padding: 10,
+        flexDirection:'row',
+        flexWrap:'wrap'
+
+    },
 })
 
 const renderItem = ({ item}, navigation) => (
@@ -73,6 +79,14 @@ class Profile extends Component {
     render() {
         return (
             <View style={styles.container}>
+             <View style={styles.header}>
+                <TouchableOpacity onPress={this.props.navigation.openDrawer}>
+                  <Image
+                    source={{uri:'https://cdn.iconscout.com/icon/free/png-256/hamburger-menu-462145.png'}}
+                    style={{ width: 30, height: 30 }}
+                  />
+                </TouchableOpacity>
+             </View>
                 <View style={styles.nameBlock}>
                     <Image
                         source={require('../Images/profile_placeholder.jpg')}

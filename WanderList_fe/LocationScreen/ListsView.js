@@ -107,7 +107,7 @@ class ListsView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header title="Location" style={styles.headerContainer} />
+        <Header title="Location" style={styles.headerContainer} navigation={this.props.navigation} />
         <View style={styles.bgContainer}>
           <Image
             style={styles.headerImage}
