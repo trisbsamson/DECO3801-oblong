@@ -58,6 +58,7 @@ const renderItem = ({item}, navigation) => (
   <ListItem
     title={item.title}
     subtitle={item.subtitle}
+    activityID={item.activityID}
     navigation={navigation}
   />
 );
@@ -69,22 +70,24 @@ class ListsView extends Component {
 
   loadLists(obj) {
     console.log(obj);
-
+    
     var listData = [];
 
     var i;
     for (i = 0; i < obj.length; i++) {
       listData.push({
         title: obj[i]['title'],
+        activityID: obj[i]['id'],
         subtitle: 'Description',
         key: obj[i]['id'].toString(),
       });
     }
-    console.log(listData);
+    
     this.setState({listData: listData});
   }
 
   componentDidMount() {
+    
     fetch('https://deco3801-oblong.uqcloud.net/wanderlist/get_activity')
       .then((response) => response.json())
       .then((obj) => this.loadLists(obj));
@@ -102,7 +105,7 @@ class ListsView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header title="Location" style={styles.headerContainer} />
+        <Header title="Location" style={styles.headerContainer} navigation={this.props.navigation} />
         <View style={styles.bgContainer}>
           <Image
             style={styles.headerImage}
@@ -125,7 +128,7 @@ class ListsView extends Component {
         <FlatList
           style={styles.list}
           data={this.state.listData}
-          renderItem={(item) => renderItem(item)}
+          renderItem={(item) => renderItem(item, this.props.navigation)}
         />
       </View>
     );

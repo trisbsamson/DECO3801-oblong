@@ -12,7 +12,11 @@ import {
 import ListsView from './ListsView';
 import SpecificListView from './SpecificListView';
 import {createStackNavigator} from '@react-navigation/stack';
+import ActivityScreen from '../ActivityScreen/ActivityScreen';
+import ActivityScreenAdd from '../ActivityScreen/ActivityScreenAdd';
+import AddToList from '../ActivityScreen/addToList';
 import Header from './Header';
+import { CommonActions, useNavigation } from '@react-navigation/native'
 
 const ListStack = createStackNavigator();
 const styles = StyleSheet.create({
@@ -76,11 +80,9 @@ class LocationScreen extends Component {
   render() {
     return (
         <ListStack.Navigator headerMode="none">
-          <ListStack.Screen name="listView" component={ListsView} />
-          <ListStack.Screen
-            name="SpecificListView"
-            component={SpecificListView}
-          />
+          <ListStack.Screen name="listView" component={ListsView} navigation={this.props.navigation}/>
+          <ListStack.Screen name="activityView" component={ActivityScreenAdd}/>
+          <ListStack.Screen name="addToList" component={AddToList}/>
         </ListStack.Navigator>
     );
   }

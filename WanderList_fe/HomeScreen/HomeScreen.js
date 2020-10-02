@@ -14,6 +14,7 @@ import {
 import Category from './Category';
 const image = { uri: "https://www.eait.uq.edu.au/filething/get-styled/landscape_image_600x400/47399/20190804-open-day-web-87.jpg?itok=ymQSMZ6U" };
 const imageUQ = { uri:'https://upload.wikimedia.org/wikipedia/commons/6/67/Richards_Building_5%2C_St_Lucia_Campus%2C_UQ%2C_Brisbane_03.jpg'};
+const burgicon = { uri:'https://cdn.iconscout.com/icon/free/png-256/hamburger-menu-462145.png'};
 const { height, width } = Dimensions.get('window')
 const styles = StyleSheet.create({
   container: {
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
 },
   title: {
-      marginBottom: 10,
+      marginBottom: 5,
       fontSize: 30,
       textAlign: 'left',
       fontWeight: '700'
@@ -57,8 +58,9 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         color: '#000'
     },
-  image: {
+  topContainerBackgroundImage: {
     width: width,
+    height: 250,
     padding: 15
   },
   image1: {
@@ -71,6 +73,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     fontSize:15,
     borderRadius: 5,
+    paddingLeft: 20
   },
   populars:{
     flex: 0.5,
@@ -92,12 +95,18 @@ class HomeScreen extends Component {
         return (
                 <View style={styles.container}>
                       <View stlye = {styles.topContainer}>
-                          <ImageBackground source={image} style={styles.image}>
+                          <ImageBackground source={image} style={styles.topContainerBackgroundImage}>
+                          <TouchableOpacity onPress={this.props.navigation.openDrawer}>
+                              <Image
+                                source={{uri:'https://cdn.iconscout.com/icon/free/png-256/hamburger-menu-462145.png'}}
+                                style={{ width: 30, height: 30, marginBottom: 10 }}
+                              />
+                          </TouchableOpacity>
                               <Text style={styles.title}>Hi User</Text>
                               <Text style={styles.subtitle}>
                                   Where would you like to travel?
                               </Text>
-                              <TextInput style={styles.textInput} placeholder="Seach" onChangeText={text => this.setState({seachVal: text})}/>
+                              <TextInput style={styles.textInput} placeholder="Search" onChangeText={text => this.setState({seachVal: text})}/>
                           </ImageBackground>
                       </View>
 

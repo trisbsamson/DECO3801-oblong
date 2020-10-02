@@ -32,6 +32,7 @@ class ActivityListItem extends Component {
     }
 
     changeScreen() {
+        console.log(this.props)
         this.props.navigation.navigate("activityView",
         {
             activityID: this.props.activityID

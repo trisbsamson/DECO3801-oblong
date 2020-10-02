@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Dimensions} from 'react-native';
-import AddToBucketListModal, {AddToBucketList} from './AddToBucketListModal';
 
 const { width, height } = Dimensions.get('window');
 
@@ -19,12 +18,12 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 20
   },
-  addToWL: {
+  gotoWebsiteButton: {
       alignItems: 'center',
       padding: 10,
       marginBottom: 10,
       padding: 12,
-      width: 150,
+      width: 120,
       marginLeft: 20,
       backgroundColor: '#fff',
       borderColor: '#000',
@@ -74,15 +73,16 @@ class ActivityScreen extends Component {
                 name: "",
                 description: "",
                 points: 0,
-                website: ""
-            },
-            listNameModalVisible: false,
+                website: "",
+                id: ""
+            }
         }
     }
 
     loadActivityData(obj) {
         
         var activityDetails = {};
+        activityDetails['id'] = obj[0]['id'];
         activityDetails['name'] = obj[0]['title'];
         activityDetails['description'] = obj[0]['description'];
         activityDetails['points'] = obj[0]['points'];
@@ -92,17 +92,14 @@ class ActivityScreen extends Component {
          
     }
 
-    openQRScanner() {
-        this.props.navigation.navigate("qrScanner");
-    }
+    changeScreen() {
+        console.log(this.state.activityDetails)
+        this.props.navigation.navigate('addToList', {
+            activityID: this.state.activityDetails["id"]
+        });
 
-    hideModal() {
-        this.setListNameModalVisible(false);
-    }
-
-    setListNameModalVisible = (visible) => {
-        this.setState({listNameModalVisible: visible});
-    }
+        
+      }
 
     //loads in the activity data from the backend
     componentDidMount() {
@@ -116,7 +113,6 @@ class ActivityScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <AddToBucketListModal listNameModalVisible={this.state.listNameModalVisible} hideModalFunc={this.hideModal.bind(this)}/>
                 <View style={styles.titlePanel}>
                     <Text style={styles.activityTitle}>{this.state.activityDetails.name}</Text>
                     <View style={styles.subtitle}>
@@ -132,14 +128,14 @@ class ActivityScreen extends Component {
                 </View>
                 <View style={styles.buttonPane}>
                     <TouchableOpacity
-                        style={styles.addToWL}
+                        style={styles.gotoWebsiteButton}
                         onPress={() =>this.setListNameModalVisible(true)}>
-                        <Text style={{color: '#000'}}>Add to WanderList</Text>
+                        <Text style={{color: '#000'}}>Go To Website</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.addListButton}
-                        onPress={() =>this.openQRScanner()}>
-                        <Text style={{color: '#fff'}}>Complete</Text>
+                        onPress={() =>this.changeScreen()}>
+                        <Text style={{color: '#fff'}}>Add to LIst</Text>
                     </TouchableOpacity>
                 </View>
             </View>
