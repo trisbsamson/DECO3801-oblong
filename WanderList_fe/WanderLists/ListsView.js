@@ -56,9 +56,16 @@ const styles = StyleSheet.create({
       marginBottom: 20,
   },
   listTitle: {
-      padding: 10,
       fontSize: 18,
       fontWeight: "700",
+      paddingLeft:10,
+      paddingTop:2
+  },
+  header:{
+      padding: 10,
+      flexDirection:'row',
+      flexWrap:'wrap'
+
   },
   list: {
       marginBottom: 10,
@@ -138,7 +145,15 @@ class ListsView extends Component {
                 <View style={styles.container}>
                     <View>
                         <AddListModal queryLists={this.queryLists.bind(this)} listNameModalVisible={this.state.listNameModalVisible} hideModalFunc={this.hideModal.bind(this)}/>
-                        <Text style={styles.listTitle}> Your Lists </Text>
+                            <View style={styles.header}>
+                                <TouchableOpacity onPress={this.props.navigation.openDrawer}>
+                                  <Image
+                                    source={{uri:'https://cdn.iconscout.com/icon/free/png-256/hamburger-menu-462145.png'}}
+                                    style={{ width: 30, height: 30 }}
+                                  />
+                                </TouchableOpacity>
+                                <Text style={styles.listTitle}>Your Lists</Text>
+                            </View>
                         <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
                         <TouchableOpacity
                             style={styles.addListButton}

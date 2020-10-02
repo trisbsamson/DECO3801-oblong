@@ -96,7 +96,7 @@ class LoginScreen extends Component {
                 <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
                     <CheckBox
                         value={this.state.rememberMeCheck}
-                        onChange={() => this.setState({ rememberMeCheck: !this.state.rememberMeCheck})} 
+                        onChange={() => this.setState({ rememberMeCheck: !this.state.rememberMeCheck})}
                     />
                     <Text> Remember Me </Text>
                     <Text style={{marginLeft: 'auto'}}> Forgot Password </Text>
