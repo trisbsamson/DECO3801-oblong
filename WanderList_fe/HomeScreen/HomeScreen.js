@@ -56,9 +56,10 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         fontSize: 20,
         textAlign: 'left',
+        color: '#000'
     },
   topContainerBackgroundImage: {
-    width: 600,
+    width: width,
     height: 250,
     padding: 15
   },
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderStyle: 'solid',
     fontSize:15,
-    borderRadius: 25,
+    borderRadius: 5,
     paddingLeft: 20
   },
   populars:{
@@ -86,6 +87,9 @@ const styles = StyleSheet.create({
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
+  }
+  changeScreen() {
+      console.log("YO");
   }
     render() {
         return (
@@ -133,6 +137,7 @@ class HomeScreen extends Component {
                                   >
                                       <Category source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/6/67/Richards_Building_5%2C_St_Lucia_Campus%2C_UQ%2C_Brisbane_03.jpg'}}
                                           name = "University of Queensland"
+                                          onPress={() => this.changeScreen()}
                                        />
                                        <Category source={{uri: 'https://www.uq.edu.au/images/thumb_uq.jpg'}}
                                            name = "UQ"

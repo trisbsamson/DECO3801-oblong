@@ -3,7 +3,8 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 
 const styles = StyleSheet.create({
     textField: {
-        fontSize: 15
+        fontSize: 15,
+        margin: 5
     },
     copyButton: {
         backgroundColor: '#fff',
@@ -48,12 +49,13 @@ class ActivityListItem extends Component {
             style={styles.listItem}
             onPress={() => this.changeScreen()}>
                 <Text style={styles.textField}>{this.props.title}</Text>
-                <TouchableOpacity
+                {!this.props.completed && <TouchableOpacity
                 style={styles.copyButton}
                 onPress={() => this.activateActivity()}
                 activeOpacity={0}>
                     <Text style={styles.copyTextField}>Complete</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
+                
             </TouchableOpacity>
         );
     }

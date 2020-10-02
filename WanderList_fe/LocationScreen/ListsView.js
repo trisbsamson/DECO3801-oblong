@@ -65,9 +65,7 @@ const renderItem = ({item}, navigation) => (
 class ListsView extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      
-    };
+    this.state = {};
   }
 
   loadLists(obj) {
@@ -132,12 +130,6 @@ class ListsView extends Component {
           data={this.state.listData}
           renderItem={(item) => renderItem(item, this.props.navigation)}
         />
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate('Home')}>
-          <Text> Back Home </Text>
-        </TouchableOpacity>
       </View>
     );
   }
