@@ -4,98 +4,98 @@ import { NavigationContainer } from '@react-navigation/native';
 import ListItem from './ListItem';
 import SpecificListView from './SpecificListView'
 import AddListModal from './AddListModal'
+import styles from '../style/style.js'
 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//   },
+//   addListButton: {
+//     alignItems: 'center',
+//     backgroundColor: '#196DFF',
+//     padding: 10,
+//     borderRadius: 4,
+//     marginBottom: 10,
+//     padding: 12,
+//     width: 100,
+//     marginLeft: 'auto',
+//     marginRight: 20
+//   },
+//   button: {
+//     alignItems: 'center',
+//     backgroundColor: '#DDDDDD',
+//     padding: 10,
+//     marginTop: 'auto',
+//   },
+//   addButton: {
+//     alignItems: 'center',
+//     backgroundColor: '#196DFF',
+//     borderRadius: 3,
+//     padding: 10,
+//     marginTop: 'auto',
+//     marginLeft: 'auto',
+//     width: 80
+//   },
+//   cancelButton: {
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     borderWidth: 1,
+//     borderColor: 'gray',
+//     borderRadius: 3,
+//     padding: 10,
+//     marginTop: 'auto',
+//     width: 80
+//   },
+//   textField: {
+//       marginBottom: 20,
+//       fontSize: 20,
+//   },
+//   map: {
+//       width: 390,
+//       height: 300,
+//       marginBottom: 20,
+//   },
+//   listTitle: {
+//       fontSize: 18,
+//       fontWeight: "700",
+//       paddingLeft:10,
+//       paddingTop:2
+//   },
+//   header:{
+//       padding: 10,
+//       flexDirection:'row',
+//       flexWrap:'wrap'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  addListButton: {
-    alignItems: 'center',
-    backgroundColor: '#196DFF',
-    padding: 10,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 12,
-    width: 100,
-    marginLeft: 'auto',
-    marginRight: 20
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginTop: 'auto',
-  },
-  addButton: {
-    alignItems: 'center',
-    backgroundColor: '#196DFF',
-    borderRadius: 3,
-    padding: 10,
-    marginTop: 'auto',
-    marginLeft: 'auto',
-    width: 80
-  },
-  cancelButton: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 3,
-    padding: 10,
-    marginTop: 'auto',
-    width: 80
-  },
-  textField: {
-      marginBottom: 20,
-      fontSize: 20,
-  },
-  map: {
-      width: 390,
-      height: 300,
-      marginBottom: 20,
-  },
-  listTitle: {
-      fontSize: 18,
-      fontWeight: "700",
-      paddingLeft:10,
-      paddingTop:2
-  },
-  header:{
-      padding: 10,
-      flexDirection:'row',
-      flexWrap:'wrap'
-
-  },
-  list: {
-      marginBottom: 10,
-      backgroundColor: '#ccc',
-      padding: 10,
-      paddingBottom: 0
-  },
-  addListModalContainer: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      flex: 1
-  },
-  addListModal: {
-      backgroundColor: '#fff',
-      borderWidth: 1,
-      borderColor: 'gray',
-      borderRadius: 3,
-      padding: 10,
-      height: 150,
-      width: 200
-  },
-  modalTextField: {
-      borderColor: 'gray',
-      borderWidth: 1,
-      borderRadius: 4,
-      marginBottom: 10,
-      padding: 10,
-      marginTop: 10
-  }
-});
+//   },
+//   list: {
+//       marginBottom: 10,
+//       backgroundColor: '#ccc',
+//       padding: 10,
+//       paddingBottom: 0
+//   },
+//   addListModalContainer: {
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//       flex: 1
+//   },
+//   addListModal: {
+//       backgroundColor: '#fff',
+//       borderWidth: 1,
+//       borderColor: 'gray',
+//       borderRadius: 3,
+//       padding: 10,
+//       height: 150,
+//       width: 200
+//   },
+//   modalTextField: {
+//       borderColor: 'gray',
+//       borderWidth: 1,
+//       borderRadius: 4,
+//       marginBottom: 10,
+//       padding: 10,
+//       marginTop: 10
+//   }
+// });
 
 const renderItem = ({ item}, navigation) => (
     <ListItem title={item.title} id={item.key} subtitle={item.subtitle} navigation={navigation}/>

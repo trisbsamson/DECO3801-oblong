@@ -1,50 +1,52 @@
 import React, {Component} from 'react'
 import {Modal, Text, TextInput, View, TouchableOpacity, StyleSheet} from 'react-native'
+import styles from '../style/style.js'
 
-const styles = StyleSheet.create({
-  addButton: {
-    alignItems: 'center',
-    backgroundColor: '#196DFF',
-    borderRadius: 3,
-    padding: 10,
-    marginTop: 'auto',
-    marginLeft: 'auto',
-    width: 80
-  },
-  cancelButton: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 3,
-    padding: 10,
-    marginTop: 'auto',
-    width: 80
-  },
-  addListModalContainer: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      flex: 1,
-      backgroundColor: 'rgba(0,0,0,0.5)'
-  },
-  addListModal: {
-      backgroundColor: '#fff',
-      borderWidth: 1,
-      borderColor: 'gray',
-      borderRadius: 3,
-      padding: 10,
-      height: 150,
-      width: 200
-  },
-  modalTextField: {
-      borderColor: 'gray',
-      borderWidth: 1,
-      borderRadius: 4,
-      marginBottom: 10,
-      padding: 10,
-      marginTop: 10
-  }
-});
+
+// const styles = StyleSheet.create({
+//   addButton: {
+//     alignItems: 'center',
+//     backgroundColor: '#196DFF',
+//     borderRadius: 3,
+//     padding: 10,
+//     marginTop: 'auto',
+//     marginLeft: 'auto',
+//     width: 80
+//   },
+//   cancelButton: {
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     borderWidth: 1,
+//     borderColor: 'gray',
+//     borderRadius: 3,
+//     padding: 10,
+//     marginTop: 'auto',
+//     width: 80
+//   },
+//   addListModalContainerWanderlist: {
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//       flex: 1,
+//       backgroundColor: 'rgba(0,0,0,0.5)'
+//   },
+//   addListModalWanderlist: {
+//       backgroundColor: '#fff',
+//       borderWidth: 1,
+//       borderColor: 'gray',
+//       borderRadius: 3,
+//       padding: 10,
+//       height: 150,
+//       width: 200
+//   },
+//   modalTextField: {
+//       borderColor: 'gray',
+//       borderWidth: 1,
+//       borderRadius: 4,
+//       marginBottom: 10,
+//       padding: 10,
+//       marginTop: 10
+//   },
+// });
 
 class AddListModal extends Component {
     constructor(props) {
@@ -72,8 +74,8 @@ class AddListModal extends Component {
         return (<Modal
             transparent={true}
             visible={this.props.listNameModalVisible}>
-            <View style={styles.addListModalContainer}>
-                <View style={styles.addListModal}>
+            <View style={styles.addListModalContainerWanderlist}>
+                <View style={styles.addListModalWanderlist}>
                     <Text> New list name </Text>
                     <TextInput style={styles.modalTextField} onChangeText={text => this.setState({textInputVal: text})}/>
                     <View style={{flex: 1, flexDirection: 'row'}}>

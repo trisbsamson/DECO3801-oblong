@@ -1,64 +1,65 @@
 import React, {Component} from 'react';
 import {AppRegistry, Button, StyleSheet, View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import styles from '../style/style.js'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    marginLeft: 20,
-    marginRight: 20,
-    flexDirection: 'column'
-  },
-  titlePane: {
-    alignItems: 'center',
-  },
-  textField: {
-      marginBottom: 40,
-      fontSize: 20,
-  },
-  textInput: {
-      borderColor: 'gray',
-      borderWidth: 1,
-      borderRadius: 4,
-      marginBottom: 10,
-      padding: 10,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#196DFF',
-    padding: 10,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 12,
-  },
-  disabledButton: {
-    alignItems: 'center',
-    backgroundColor: '#84C1FF',
-    padding: 10,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 12,
-  },
-  loginLogo: {
-    width: 154,
-    height: 45,
-  },
-  signupTextCont: {
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    justifyContent:'center',
-    marginVertical: 16,
-    flexDirection: 'row'
-  },
-  signupText:{
-    color:'rgba(0,0,0,0.6)',
-  },
-  signupButton:{
-  fontWeight:'500',
-  },
-})
+// const styles = StyleSheet.create({
+//   containerSignUp: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'stretch',
+//     marginLeft: 20,
+//     marginRight: 20,
+//     flexDirection: 'column'
+//   },
+//   titlePane: {
+//     alignItems: 'center',
+//   },
+//   textField: {
+//       marginBottom: 40,
+//       fontSize: 20,
+//   },
+//   textInput: {
+//       borderColor: 'gray',
+//       borderWidth: 1,
+//       borderRadius: 4,
+//       marginBottom: 10,
+//       padding: 10,
+//   },
+//   buttonSignUp: {
+//     alignItems: 'center',
+//     backgroundColor: '#196DFF',
+//     padding: 10,
+//     borderRadius: 4,
+//     marginBottom: 10,
+//     padding: 12,
+//   },
+//   disabledButton: {
+//     alignItems: 'center',
+//     backgroundColor: '#84C1FF',
+//     padding: 10,
+//     borderRadius: 4,
+//     marginBottom: 10,
+//     padding: 12,
+//   },
+//   loginLogo: {
+//     width: 154,
+//     height: 45,
+//   },
+//   signupTextCont: {
+//     alignItems: 'center',
+//     justifyContent: 'flex-end',
+//     justifyContent:'center',
+//     marginVertical: 16,
+//     flexDirection: 'row'
+//   },
+//   signupText:{
+//     color:'rgba(0,0,0,0.6)',
+//   },
+//   signupButton:{
+//   fontWeight:'500',
+//   },
+// })
 
 
 class SignupScreen extends Component {
@@ -71,7 +72,7 @@ class SignupScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.containerSignUp}>
                 <View style={styles.titlePane}>
                     <Text style={styles.textField}>
                     Sign Up!
@@ -96,7 +97,7 @@ class SignupScreen extends Component {
                 <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} onChangeText={text => this.setState({passwordVal: text})}/>
 
                 <TouchableOpacity
-                    style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.button)}
+                    style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.buttonSignUp)}
                     disabled = {(this.state.usernameVal == "" || this.state.passwordVal == "")}
                     onPress={() =>
                     this.props.navigation.navigate('AppContents', {name: 'User'})

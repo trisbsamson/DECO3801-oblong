@@ -4,54 +4,54 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import ActivityListItem from './ActivityListItem';
 import Icon from 'react-native-vector-icons/Feather';
 import MapComponent from './MapComponent';
+import styles from '../style/style.js'
 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//   },
+//   button: {
+//     alignItems: 'center',
+//     backgroundColor: '#DDDDDD',
+//     padding: 10,
+//     marginTop: 'auto',
+//   },
+//   textField: {
+//       marginBottom: 20,
+//       fontSize: 20,
+//   },
+//   map: {
+//       width: 390,
+//       height: 300,
+//       marginBottom: 20,
+//   },
+//   listItem: {
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginTop: 'auto',
-  },
-  textField: {
-      marginBottom: 20,
-      fontSize: 20,
-  },
-  map: {
-      width: 390,
-      height: 300,
-      marginBottom: 20,
-  },
-  listItem: {
-
-  },
-  listTitle: {
-      padding: 10,
-      fontSize: 18,
-      fontWeight: "700"
-  },
-  completeStatusText: {
-      fontSize: 16,
-      marginTop: 10,
-      padding: 10,
-      fontStyle: "italic"
-  },
-  topPanel: {
-      flexDirection: 'row',
-      alignItems: 'center'
-  },
-  tagsDropdownButton: {
-      padding: 5,
-      width: 150,
-      marginLeft: 'auto',
-      marginRight: 10,
-      flexDirection: 'row',
-      alignItems: 'center'
-  }
-});
+//   },
+//   listTitle: {
+//       padding: 10,
+//       fontSize: 18,
+//       fontWeight: "700"
+//   },
+//   completeStatusText: {
+//       fontSize: 16,
+//       marginTop: 10,
+//       padding: 10,
+//       fontStyle: "italic"
+//   },
+//   topPanel: {
+//       flexDirection: 'row',
+//       alignItems: 'center'
+//   },
+//   tagsDropdownButton: {
+//       padding: 5,
+//       width: 150,
+//       marginLeft: 'auto',
+//       marginRight: 10,
+//       flexDirection: 'row',
+//       alignItems: 'center'
+//   },
+// });
 
 const renderItem = ({ item }, navigation) => (
     <ActivityListItem title={item.title} activityID={item.id} navigation={navigation} completed={item.completed}/>

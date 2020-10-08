@@ -13,46 +13,45 @@ import {NavigationContainer} from '@react-navigation/native';
 import ListItem from './ListItem';
 import SpecificListView from './SpecificListView';
 import Header from './Header';
+import styles from '../style/style.js'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginLeft: 15,
-    marginRight: 15,
-    flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
-  bgContainer: {
-    // aspectRatio: 1,
-    alignItems: 'center',
-  },
-  headerImage: {
-    height: 220,
-    marginTop: 10,
-    marginBottom: 5,
-    // width: 200,
-    // aspectRatio: 1,
-  },
-  textInput: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 10,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginBottom: 10,
-    marginTop: 10,
-  },
-  textField: {
-    marginBottom: 20,
-    fontSize: 20,
-  },
-});
+
+// const styles = StyleSheet.create({
+//   containerListView: {
+//     flex: 1,
+//     marginLeft: 15,
+//     marginRight: 15,
+//     flexDirection: 'column',
+//   },
+//   bgContainer: {
+//     alignItems: 'center',
+//   },
+//   headerImage: {
+//     height: 220,
+//     marginTop: 10,
+//     marginBottom: 5,
+
+//   },
+//   textInputListView: {
+//     backgroundColor: 'white',
+//     borderStyle: 'solid',
+//     fontSize:15,
+//     borderRadius: 5,
+//     paddingLeft: 20,
+//     marginBottom : 10
+//   },
+//   buttonListView: {
+//     alignItems: 'center',
+//     backgroundColor: '#DDDDDD',
+//     padding: 10,
+//     marginBottom: 10,
+//     marginTop: 10,
+//   },
+//   textFieldListView: {
+//     marginBottom: 20,
+//     fontSize: 20,
+//   },
+// });
 
 const renderItem = ({item}, navigation) => (
   <ListItem
@@ -117,11 +116,12 @@ class ListsView extends Component {
           style={{
             alignSelf: 'center',
             fontSize: 20,
+            marginBottom: 5
           }}>
           UQ
         </Text>
         <TextInput
-          style={styles.textInput}
+          style={styles.textInputListView}
           placeholder="Search"
           onChangeText={(text) => this.setState({usernameVal: text})}
         />

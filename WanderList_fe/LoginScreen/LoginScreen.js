@@ -1,64 +1,65 @@
 import React, {Component} from 'react';
 import {AppRegistry, Button, StyleSheet, View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import styles from '../style/style.js'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    marginLeft: 20,
-    marginRight: 20,
-    flexDirection: 'column'
-  },
-  titlePane: {
-    alignItems: 'center',
-  },
-  textField: {
-      marginBottom: 40,
-      fontSize: 20,
-  },
-  textInput: {
-      borderColor: 'gray',
-      borderWidth: 1,
-      borderRadius: 4,
-      marginBottom: 10,
-      padding: 10,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#196DFF',
-    padding: 10,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 12,
-  },
-  disabledButton: {
-    alignItems: 'center',
-    backgroundColor: '#84C1FF',
-    padding: 10,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 12,
-  },
-  loginLogo: {
-    width: 154,
-    height: 45,
-  },
-  signupTextCont: {
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    justifyContent:'center',
-    marginVertical: 16,
-    flexDirection: 'row'
-  },
-  signupText:{
-    color:'rgba(0,0,0,0.6)',
-  },
-  signupButton:{
-  fontWeight:'500',
-  },
-})
+// const styles = StyleSheet.create({
+//   loginContainer: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'stretch',
+//     marginLeft: 20,
+//     marginRight: 20,
+//     flexDirection: 'column'
+//   },
+//   logintitlePane: {
+//     alignItems: 'center',
+//   },
+//   logintextField: {
+//       marginBottom: 40,
+//       fontSize: 20,
+//   },
+//   logintextInput: {
+//       borderColor: 'gray',
+//       borderWidth: 1,
+//       borderRadius: 4,
+//       marginBottom: 10,
+//       padding: 10,
+//   },
+//   loginbutton: {
+//     alignItems: 'center',
+//     backgroundColor: '#196DFF',
+//     padding: 10,
+//     borderRadius: 4,
+//     marginBottom: 10,
+//     padding: 12,
+//   },
+//   disabledButton: {
+//     alignItems: 'center',
+//     backgroundColor: '#196DFF',
+//     padding: 10,
+//     borderRadius: 4,
+//     marginBottom: 10,
+//     padding: 12,
+//   },
+//   loginLogo: {
+//     width: 154,
+//     height: 45,
+//   },
+//   signupTextCont: {
+//     alignItems: 'center',
+//     justifyContent: 'flex-end',
+//     justifyContent:'center',
+//     marginVertical: 16,
+//     flexDirection: 'row'
+//   },
+//   signupText:{
+//     color:'rgba(0,0,0,0.6)',
+//   },
+//   signupButton:{
+//   fontWeight:'500',
+//   },
+// })
 
 
 class LoginScreen extends Component {
@@ -71,9 +72,9 @@ class LoginScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <View style={styles.titlePane}>
-                    <Text style={styles.textField}>
+            <View style={styles.loginContainer}>
+                <View style={styles.logintitlePane}>
+                    <Text style={styles.logintextField}>
                     WanderLists
                     </Text>
                 </View>
@@ -91,8 +92,8 @@ class LoginScreen extends Component {
                     />
                     </TouchableOpacity>
                 </View>
-                <TextInput style={styles.textInput} placeholder="Username or email" onChangeText={text => this.setState({usernameVal: text})}/>
-                <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} onChangeText={text => this.setState({passwordVal: text})}/>
+                <TextInput style={styles.logintextInput} placeholder="Username or email" onChangeText={text => this.setState({usernameVal: text})}/>
+                <TextInput style={styles.logintextInput} placeholder="Password" secureTextEntry={true} onChangeText={text => this.setState({passwordVal: text})}/>
                 <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
                     <CheckBox
                         value={this.state.rememberMeCheck}

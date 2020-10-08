@@ -7,41 +7,43 @@ import ListsView from './ListsView';
 import ActivityScreen from '../ActivityScreen/ActivityScreen';
 import QRScanner from '../QRScanner/QRScanner';
 import { createStackNavigator } from '@react-navigation/stack';
+import styles from '../style/style.js'
+
 
 const ListStack = createStackNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  addListButton: {
-    alignItems: 'center',
-    backgroundColor: '#196DFF',
-    padding: 10,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 12,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginTop: 'auto',
-  },
-  textField: {
-    marginBottom: 20,
-    fontSize: 20,
-  },
-  map: {
-      width: 390,
-      height: 300,
-      marginBottom: 20,
-  },
-  listTitle: {
-      padding: 10,
-      fontSize: 18
-  }
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//   },
+//   addListButton: {
+//     alignItems: 'center',
+//     backgroundColor: '#196DFF',
+//     padding: 10,
+//     borderRadius: 4,
+//     marginBottom: 10,
+//     padding: 12,
+//   },
+//   button: {
+//     alignItems: 'center',
+//     backgroundColor: '#DDDDDD',
+//     padding: 10,
+//     marginTop: 'auto',
+//   },
+//   textField: {
+//     marginBottom: 20,
+//     fontSize: 20,
+//   },
+//   map: {
+//       width: 390,
+//       height: 300,
+//       marginBottom: 20,
+//   },
+//   listTitle: {
+//       padding: 10,
+//       fontSize: 18
+//   }
+// });
 
 class WanderLists extends Component {
     constructor(props) {

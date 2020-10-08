@@ -11,6 +11,8 @@ import {
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
+import styles from '../style/style.js'
+
 
 class QRScanner extends Component {
     constructor(props) {
@@ -48,41 +50,41 @@ class QRScanner extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  centerText: {
-    flex: 1,
-    fontSize: 18,
-    padding: 32,
-    color: '#777'
-  },
-  textBold: {
-    fontWeight: '500',
-    color: '#000'
-  },
-  buttonText: {
-    fontSize: 21,
-    marginTop: 30
-  },
-  buttonTouchable: {
-    padding: 16,
-    alignItems: 'center'
-    },
-    goBackButton: {
-        alignItems: 'center',
-        padding: 12,
-        width: 120,
-        backgroundColor: '#fff',
-        borderColor: '#000',
-        borderWidth: 1,
-        borderRadius: 3,
-        marginTop: 'auto',
-        marginBottom: 10,
-        marginLeft: 10,
-    },
-    bottomContainer: {
-        flexDirection: 'column',
-        alignItems: 'flex-start'
-    }
-});
+// const styles = StyleSheet.create({
+//   centerText: {
+//     flex: 1,
+//     fontSize: 18,
+//     padding: 32,
+//     color: '#777'
+//   },
+//   textBold: {
+//     fontWeight: '500',
+//     color: '#000'
+//   },
+//   buttonText: {
+//     fontSize: 21,
+//     marginTop: 30
+//   },
+//   buttonTouchable: {
+//     padding: 16,
+//     alignItems: 'center'
+//     },
+//     goBackButton: {
+//         alignItems: 'center',
+//         padding: 12,
+//         width: 120,
+//         backgroundColor: '#fff',
+//         borderColor: '#000',
+//         borderWidth: 1,
+//         borderRadius: 3,
+//         marginTop: 'auto',
+//         marginBottom: 10,
+//         marginLeft: 10,
+//     },
+//     bottomContainer: {
+//         flexDirection: 'column',
+//         alignItems: 'flex-start'
+//     }
+// });
 
 export default QRScanner;
