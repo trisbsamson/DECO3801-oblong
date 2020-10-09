@@ -6,7 +6,7 @@ import styles from '../style/style.js'
 
 const Header = ({ title,navigation }) => {
   return (
-    <View style={styles.headerContainer}>
+    <View style={styles.header}>
     <TouchableOpacity onPress={navigation.openDrawer}>
           <Image
             source={{uri:'https://www.iconsdb.com/icons/preview/white/menu-4-xxl.png'}}

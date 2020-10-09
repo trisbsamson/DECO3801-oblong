@@ -152,7 +152,7 @@ class ListsView extends Component {
                                     style={{ width: 30, height: 30 }}
                                   />
                                 </TouchableOpacity>
-                                <Text style={styles.listTitle}>Your Lists</Text>
+                                <Text style={styles.Headertext}>Your Lists</Text>
                             </View>
                         <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
                         <TouchableOpacity

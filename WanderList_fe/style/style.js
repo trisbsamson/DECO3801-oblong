@@ -6,18 +6,21 @@ const { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
 
     // location screen - Header
-    headerContainer: {
-        height: 60,
-        padding: 15,
-        backgroundColor: "darkslateblue",
-        flexDirection:'row'
-    
-      },
+
+      header:{
+        padding: 10,
+        flexDirection:'row',
+        flexWrap:'wrap'
+    },
+      
       Headertext: {
-        color: "white",
-        fontSize: 23,
+        
         textAlign: "center",
-        flex:0.85
+        flex:0.85,
+        fontSize: 18,
+        fontWeight: "700",
+        paddingLeft:10,
+        paddingTop:2
       },
 
 
@@ -110,9 +113,9 @@ export default StyleSheet.create({
           borderWidth: 1,
           borderRadius: 3,
       },
-      textField: {
-          fontSize: 20,
-      },
+      // textField: {
+      //     fontSize: 20,
+      // },
       titlePanel: {
           marginBottom: 30,
           marginTop: 15,
@@ -377,8 +380,9 @@ export default StyleSheet.create({
       signupText:{
         color:'rgba(0,0,0,0.6)',
       },
+
       signupButton:{
-      fontWeight:'500',
+        fontWeight:'500',
       },
 
 
@@ -480,32 +484,34 @@ export default StyleSheet.create({
         },
 
         // ActivityScreen leading to activity screen from lists page to complete task
-        container: {
-            flex: 1,
-          },
-          addListButton: {
-            alignItems: 'center',
-            backgroundColor: '#196DFF',
-            padding: 10,
-            borderRadius: 4,
-            marginBottom: 10,
-            padding: 12,
-            width: 100,
-            marginLeft: 'auto',
-            marginRight: 20
-          },
-          gotoWebsiteButton: {
-              alignItems: 'center',
-              padding: 10,
-              marginBottom: 10,
-              padding: 12,
-              width: 120,
-              marginLeft: 20,
-              backgroundColor: '#fff',
-              borderColor: '#000',
-              borderWidth: 1,
-              borderRadius: 3,
-          },
+
+
+        // container: {
+        //     flex: 1,
+        //   },
+          // addListButton: {
+          //   alignItems: 'center',
+          //   backgroundColor: '#196DFF',
+          //   padding: 10,
+          //   borderRadius: 4,
+          //   marginBottom: 10,
+          //   padding: 12,
+          //   width: 100,
+          //   marginLeft: 'auto',
+          //   marginRight: 20
+          // },
+          // gotoWebsiteButton: {
+          //     alignItems: 'center',
+          //     padding: 10,
+          //     marginBottom: 10,
+          //     padding: 12,
+          //     width: 120,
+          //     marginLeft: 20,
+          //     backgroundColor: '#fff',
+          //     borderColor: '#000',
+          //     borderWidth: 1,
+          //     borderRadius: 3,
+          // },
           textField: {
               fontSize: 20,
           },
@@ -540,20 +546,22 @@ export default StyleSheet.create({
 
 
         //Pop up when press add to list button on specific location screen addToList.js
-        container: {
-            flex: 1,
-          },
-          addListButton: {
-            alignItems: 'center',
-            backgroundColor: '#196DFF',
-            padding: 10,
-            borderRadius: 4,
-            marginBottom: 10,
-            padding: 12,
-            width: 100,
-            marginLeft: 'auto',
-            marginRight: 20
-          },
+
+
+        // container: {
+        //     flex: 1,
+        //   },
+          // addListButton: {
+          //   alignItems: 'center',
+          //   backgroundColor: '#196DFF',
+          //   padding: 10,
+          //   borderRadius: 4,
+          //   marginBottom: 10,
+          //   padding: 12,
+          //   width: 100,
+          //   marginLeft: 'auto',
+          //   marginRight: 20
+          // },
           button: {
             alignItems: 'center',
             backgroundColor: '#DDDDDD',
@@ -624,21 +632,22 @@ export default StyleSheet.create({
 
 
 
-          //wanderlist    listView the actual your list page  
-          container: {
-            flex: 1,
-          },
-          addListButton: {
-            alignItems: 'center',
-            backgroundColor: '#196DFF',
-            padding: 10,
-            borderRadius: 4,
-            marginBottom: 10,
-            padding: 12,
-            width: 100,
-            marginLeft: 'auto',
-            marginRight: 20
-          },
+          //wanderlist    listView the actual your list page 
+
+          // container: {
+          //   flex: 1,
+          // },
+          // addListButton: {
+          //   alignItems: 'center',
+          //   backgroundColor: '#196DFF',
+          //   padding: 10,
+          //   borderRadius: 4,
+          //   marginBottom: 10,
+          //   padding: 12,
+          //   width: 100,
+          //   marginLeft: 'auto',
+          //   marginRight: 20
+          // },
           button: {
             alignItems: 'center',
             backgroundColor: '#DDDDDD',
@@ -679,13 +688,12 @@ export default StyleSheet.create({
               paddingLeft:10,
               paddingTop:2
           },
-          header:{
-            // backgroundColor: "darkslateblue",
-              padding: 10,
-              flexDirection:'row',
-              flexWrap:'wrap'
-        
-          },
+          // header:{
+          //   // backgroundColor: "darkslateblue",
+          //     padding: 10,
+          //     flexDirection:'row',
+          //     flexWrap:'wrap'
+          // },
           list: {
               marginBottom: 10,
               backgroundColor: '#ccc',
@@ -753,14 +761,14 @@ export default StyleSheet.create({
               height: 150,
               width: 200
           },
-          modalTextField: {
-              borderColor: 'gray',
-              borderWidth: 1,
-              borderRadius: 4,
-              marginBottom: 10,
-              padding: 10,
-              marginTop: 10
-          },
+          // modalTextField: {
+          //     borderColor: 'gray',
+          //     borderWidth: 1,
+          //     borderRadius: 4,
+          //     marginBottom: 10,
+          //     padding: 10,
+          //     marginTop: 10
+          // },
 
 
           //Wanderlist listItem.js the list in the your list page
@@ -772,12 +780,12 @@ export default StyleSheet.create({
             marginBottom: 10,
             borderRadius: 3,
         },
-        titleText: {
-            fontSize: 16
-        },
-        subTitleText: {
-            color: '#494949'
-        },
+        // titleText: {
+        //     fontSize: 16
+        // },
+        // subTitleText: {
+        //     color: '#494949'
+        // },
         menuIcon: {
             width: 20,
             height: 20
@@ -833,9 +841,9 @@ export default StyleSheet.create({
 
           //SpecificListView list passed when the one of the list is pressed
 
-          container: {
-            flex: 1,
-          },
+          // container: {
+          //   flex: 1,
+          // },
           button: {
             alignItems: 'center',
             backgroundColor: '#DDDDDD',
@@ -846,11 +854,11 @@ export default StyleSheet.create({
               marginBottom: 20,
               fontSize: 20,
           },
-          map: {
-              width: 390,
-              height: 300,
-              marginBottom: 20,
-          },
+          // map: {
+          //     width: 390,
+          //     height: 300,
+          //     marginBottom: 20,
+          // },
           listItem: {
         
           },
@@ -882,20 +890,21 @@ export default StyleSheet.create({
 
         //   ActivityPage from wanderlist page
 
-        container: {
-            flex: 1,
-          },
-          addListButton: {
-            alignItems: 'center',
-            backgroundColor: '#196DFF',
-            padding: 10,
-            borderRadius: 4,
-            marginBottom: 10,
-            padding: 12,
-            width: 100,
-            marginLeft: 'auto',
-            marginRight: 20
-          },
+          // container: {
+          //     flex: 1,
+          //   },
+          
+          // addListButton: {
+          //   alignItems: 'center',
+          //   backgroundColor: '#196DFF',
+          //   padding: 10,
+          //   borderRadius: 4,
+          //   marginBottom: 10,
+          //   padding: 12,
+          //   width: 100,
+          //   marginLeft: 'auto',
+          //   marginRight: 20
+          // },
           addToWL: {
               alignItems: 'center',
               padding: 10,
