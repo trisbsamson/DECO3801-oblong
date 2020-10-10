@@ -53,8 +53,17 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listData: []
+            listData: [],
+            userName: "",
+            userLocation: "",
+            userLevel: ""
         };
+    }
+
+    loadUserInfo(obj) {
+        this.setState({userName: obj['name'],
+                        userLocation: obj['location'],
+                        userLevel: obj['rank']});
     }
 
     loadRewards(obj) {
@@ -66,13 +75,21 @@ class Profile extends Component {
         this.setState({listData: listData});
     }
 
+    getUserDetails() {
+        // need to update this to use an actual user_id
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/user/1")
+        .then(response => response.json())
+        .then(obj => this.loadUserInfo(obj));
+    }
+
     getRewards() {
-        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_user_rewards/1")
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_user_rewards/1/0/")
         .then(response => response.json())
         .then(obj => this.loadRewards(obj));
     }
 
     componentDidMount() {
+        this.getUserDetails();
         this.getRewards();
     }
 
@@ -93,15 +110,15 @@ class Profile extends Component {
                         style={styles.profileImage}
                     />
                     <Text style={styles.nameText}>
-                        John Doe
+                        {this.state.userName}
                     </Text>
                     <Text style={styles.nameSubText}>
-                        St Lucia, QLD
+                        {this.state.userLocation}
                     </Text>
                 </View>
                 <View style={styles.rankBlock}>
                     <Text>
-                        Level 1
+                        {this.state.userLevel}
                     </Text>
                 </View>
                 <View style={{marginTop: 'auto'}}>

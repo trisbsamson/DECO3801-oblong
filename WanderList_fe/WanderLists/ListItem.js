@@ -32,6 +32,9 @@ class ListItem extends Component {
     }
 
     changeScreen() {
+        this.props.parentComp.setState({
+            movedFromRoot: true
+        });
         this.props.navigation.navigate("specificListView",
         {
             listTitle: this.props.title,

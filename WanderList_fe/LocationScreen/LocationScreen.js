@@ -80,7 +80,9 @@ class LocationScreen extends Component {
   render() {
     return (
         <ListStack.Navigator headerMode="none">
-          <ListStack.Screen name="listView" component={ListsView} navigation={this.props.navigation}/>
+          <ListStack.Screen name="listsView">
+                  {props => <ListsView {...props} parentNav={this.props.navigation} />}
+          </ListStack.Screen>
           <ListStack.Screen name="activityView" component={ActivityScreenAdd}/>
           <ListStack.Screen name="addToList" component={AddToList}/>
         </ListStack.Navigator>

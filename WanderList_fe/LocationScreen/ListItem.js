@@ -31,7 +31,7 @@ class ListItem extends Component {
   }
 
   changeScreen() {
-    console.log(this.props)
+    this.props.parentComp.setState({movedFromRoot: true});
     this.props.navigation.navigate('activityView', {
       activityID: this.props.activityID,
     });

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Modal, TextInput} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer} from '@react-navigation/native';
+import {NavigationActions} from 'react-navigation';
 import ListItem from './ListItem';
 import SpecificListView from './SpecificListView'
 import AddListModal from './AddListModal'
@@ -97,8 +98,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const renderItem = ({ item}, navigation) => (
-    <ListItem title={item.title} id={item.key} subtitle={item.subtitle} navigation={navigation}/>
+const renderItem = ({ item}, navigation, parentComp) => (
+    <ListItem title={item.title} id={item.key} subtitle={item.subtitle} navigation={navigation} parentComp={parentComp}/>
 );
 class ListsView extends Component {
     constructor(props) {
@@ -106,6 +107,7 @@ class ListsView extends Component {
         this.state = {
             listData: [],
             listNameModalVisible: false,
+            movedFromRoot: false
         }
     }
 
@@ -120,12 +122,17 @@ class ListsView extends Component {
     }
 
     queryLists() {
-        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlists/1")
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/bucketlist/")
         .then(response => response.json())
         .then(obj => this.loadLists(obj));
     }
-
     componentDidMount() {
+        const unsub = this.props.parentNav.addListener('focus', () => {
+            if(this.state.movedFromRoot) {
+                this.props.navigation.popToTop();
+                this.props.navigation.navigate("AppContents", {screen: 'WanderLists', initial: false});
+            }
+        });
         this.queryLists()
     }
 
@@ -136,6 +143,7 @@ class ListsView extends Component {
     }
 
     setListNameModalVisible = (visible) => {
+        
         this.setState({listNameModalVisible: visible});
     }
 
@@ -154,7 +162,7 @@ class ListsView extends Component {
                                 </TouchableOpacity>
                                 <Text style={styles.listTitle}>Your Lists</Text>
                             </View>
-                        <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
+                        <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation, this)}/>
                         <TouchableOpacity
                             style={styles.addListButton}
                             onPress={() =>this.setListNameModalVisible(true)}>

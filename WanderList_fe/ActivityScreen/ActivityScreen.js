@@ -81,12 +81,13 @@ class ActivityScreen extends Component {
     }
 
     loadActivityData(obj) {
-        
+        console.log("OBJECT: ")
+        console.log(obj);
         var activityDetails = {};
-        activityDetails['name'] = obj[0]['title'];
-        activityDetails['description'] = obj[0]['description'];
-        activityDetails['points'] = obj[0]['points'];
-        activityDetails['website'] = obj[0]['website'];
+        activityDetails['name'] = obj['title'];
+        activityDetails['description'] = obj['description'];
+        activityDetails['points'] = obj['points'];
+        activityDetails['website'] = obj['website'];
         console.log(activityDetails);
         this.setState({loading: false, activityDetails: activityDetails});
          
@@ -106,9 +107,10 @@ class ActivityScreen extends Component {
 
     //loads in the activity data from the backend
     componentDidMount() {
+        console.log("Loading activity: " + this.props.route.params.activityID)
         //previous route gives and activity id, retrieve from server
-        let url = "https://deco3801-oblong.uqcloud.net/wanderlist/get_activity/" + this.props.route.params.activityID
-        fetch(url)
+        let url = "https://deco3801-oblong.uqcloud.net/wanderlist/activity/" + this.props.route.params.activityID
+        fetch(url, {method: "GET"})
         .then(response => response.json())
         .then(object => {this.loadActivityData(object)});
     }

@@ -54,18 +54,21 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderItem = ({item}, navigation) => (
+const renderItem = ({item}, navigation, parentComp) => (
   <ListItem
     title={item.title}
     subtitle={item.subtitle}
     activityID={item.activityID}
     navigation={navigation}
+    parentComp={parentComp}
   />
 );
 class ListsView extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      movedFromRoot: false
+    };
   }
 
   loadLists(obj) {
@@ -87,8 +90,13 @@ class ListsView extends Component {
   }
 
   componentDidMount() {
-    
-    fetch('https://deco3801-oblong.uqcloud.net/wanderlist/get_activity')
+    const unsub = this.props.parentNav.addListener('focus', () => {
+      if(this.state.movedFromRoot) {
+          this.props.navigation.popToTop();
+          this.props.navigation.navigate("AppContents", {screen: 'Location Screen', initial: false});
+      }
+  });
+    fetch('https://deco3801-oblong.uqcloud.net/wanderlist/activity')
       .then((response) => response.json())
       .then((obj) => this.loadLists(obj));
   }
@@ -128,7 +136,7 @@ class ListsView extends Component {
         <FlatList
           style={styles.list}
           data={this.state.listData}
-          renderItem={(item) => renderItem(item, this.props.navigation)}
+          renderItem={(item) => renderItem(item, this.props.navigation, this)}
         />
       </View>
     );

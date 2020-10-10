@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, forwardRef} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import ListItem from './ListItem';
@@ -47,26 +47,19 @@ class WanderLists extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listData: [
-                {title: 'First List'},
-                {title: 'Second List'},
-                {title: 'Also an Activity'},
-            ]
         }
     }
-
-    addList(){
-        this.setState({listData: this.state.listData.concat({title: 'New List'})});
-    }
-
     render() {
+      //const thisNav = this.props.navigation;
         return (
-                <ListStack.Navigator headerMode="none">
-                    <ListStack.Screen name="listView" component={ListsView}/>
-                    <ListStack.Screen name="specificListView" component={SpecificListView}/>
-                    <ListStack.Screen name="activityView" component={ActivityScreen}/>
-                    <ListStack.Screen name="qrScanner" component={QRScanner}/>
-                </ListStack.Navigator>
+              <ListStack.Navigator headerMode="none" initialRouteName="listsView">
+                <ListStack.Screen name="listsView">
+                  {props => <ListsView {...props} parentNav={this.props.navigation} />}
+                </ListStack.Screen>
+                <ListStack.Screen name="specificListView" component={SpecificListView}/>
+                <ListStack.Screen name="activityView" component={ActivityScreen}/>
+                <ListStack.Screen name="qrScanner" component={QRScanner}/>
+              </ListStack.Navigator>
         );
     }
 }

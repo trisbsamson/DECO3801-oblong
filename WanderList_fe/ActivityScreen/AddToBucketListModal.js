@@ -70,7 +70,7 @@ class AddToBucketListModal extends Component {
     }
 
     queryLists() {
-        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlists/1")
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/bucketlist")
         .then(response => response.json())
         .then(obj => this.loadLists(obj));
     }
