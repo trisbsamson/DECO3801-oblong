@@ -1,29 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
-
-const styles = StyleSheet.create({
-  listItem: {
-    backgroundColor: '#fff',
-    padding: 14,
-    paddingLeft: 20,
-    height: 75,
-    marginBottom: 10,
-    borderRadius: 3,
-  },
-  titleText: {
-    fontSize: 16,
-  },
-  subTitleText: {
-    color: '#494949',
-  },
-  menuIcon: {
-    width: 20,
-    height: 20,
-  },
-  menuIconButton: {
-    marginLeft: 'auto',
-  },
-});
+import styles from '../Styles/style.js'
 
 class ListItem extends Component {
   constructor(props) {
@@ -40,7 +17,7 @@ class ListItem extends Component {
   render() {
     return (
       <TouchableOpacity
-        style={styles.listItem}
+        style={styles.listItemLocation}
         onPress={() => this.changeScreen()}>
         <View style={{flexDirection: 'row'}}>
           <Text style={styles.titleText}>{this.props.title}</Text>

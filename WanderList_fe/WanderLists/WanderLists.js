@@ -7,9 +7,10 @@ import ListsView from './ListsView';
 import ActivityScreen from '../ActivityScreen/ActivityScreen';
 import QRScanner from '../QRScanner/QRScanner';
 import { createStackNavigator } from '@react-navigation/stack';
+import styles from '../Styles/style.js'
 
 const ListStack = createStackNavigator();
-
+/*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
       padding: 10,
       fontSize: 18
   }
-});
+});*/
 
 class WanderLists extends Component {
     constructor(props) {

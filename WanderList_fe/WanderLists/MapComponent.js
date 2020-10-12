@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text, Dimensions, ScrollView } from 'react-native';
 import MapView, { Marker, ProviderPropType } from 'react-native-maps';
+import styles from '../Styles/style.js'
 
 const { width, height } = Dimensions.get('window');
 
@@ -26,10 +27,10 @@ class MapComponent extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.mapContainer}>
           <MapView
             provider={this.props.provider}
-            style={styles.map}
+            style={styles.mapActivity}
             scrollEnabled={true}
             zoomEnabled={true}
             pitchEnabled={false}
@@ -60,7 +61,7 @@ class MapComponent extends Component {
 MapComponent.propTypes = {
   provider: ProviderPropType,
 };
-
+/*
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -73,6 +74,6 @@ const styles = StyleSheet.create({
     width: width,
     height: 300,
   },
-});
+});*/
 
 export default MapComponent;

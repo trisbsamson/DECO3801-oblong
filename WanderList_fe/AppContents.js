@@ -9,7 +9,6 @@ import {
 } from 'react-native'
 import LoginScreen from './LoginScreen/LoginScreen'
 import HomeScreen from './HomeScreen/HomeScreen';
-import NearbyActivities from './NearbyActivities/NearbyActivities';
 import WanderLists from './WanderLists/WanderLists';
 import Profile from './Profile/Profile';
 import QRScanner from './QRScanner/QRScanner';

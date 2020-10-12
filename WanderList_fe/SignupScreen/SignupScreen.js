@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {AppRegistry, Button, StyleSheet, View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-
+import styles from '../Styles/style.js'
+/*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
   signupButton:{
   fontWeight:'500',
   },
-})
+})*/
 
 
 class SignupScreen extends Component {
@@ -71,7 +72,7 @@ class SignupScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.containerSignUp}>
                 <View style={styles.titlePane}>
                     <Text style={styles.textField}>
                     Sign Up!
@@ -96,7 +97,7 @@ class SignupScreen extends Component {
                 <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} onChangeText={text => this.setState({passwordVal: text})}/>
 
                 <TouchableOpacity
-                    style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.button)}
+                    style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.buttonSignUp)}
                     disabled = {(this.state.usernameVal == "" || this.state.passwordVal == "")}
                     onPress={() =>
                     this.props.navigation.navigate('AppContents', {name: 'User'})

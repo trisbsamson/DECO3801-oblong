@@ -5,8 +5,8 @@ import {NavigationActions} from 'react-navigation';
 import ListItem from './ListItem';
 import SpecificListView from './SpecificListView'
 import AddListModal from './AddListModal'
-
-
+import styles from '../Styles/style.js'
+/*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
       padding: 10,
       marginTop: 10
   }
-});
+});*/
 
 const renderItem = ({ item}, navigation, parentComp) => (
     <ListItem title={item.title} id={item.key} subtitle={item.subtitle} navigation={navigation} parentComp={parentComp}/>

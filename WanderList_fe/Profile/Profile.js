@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import ListItem from './ListItem'
-
+import styles from '../Styles/style.js'
+/*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
         flexWrap:'wrap'
 
     },
-})
+})*/
 
 const renderItem = ({ item}, navigation) => (
     <ListItem title={item.title} navigation={navigation} redeemCode={item.redeemCode}/>

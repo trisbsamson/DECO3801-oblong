@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native'
-
+import styles from '../Styles/style.js'
+/*
 const styles = StyleSheet.create({
     listItem: {
         backgroundColor: '#fff',
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         marginLeft: 'auto',
 
     }
-});
+});*/
 
 class ListItem extends Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class ListItem extends Component {
     render() {
         return (
             <TouchableOpacity
-            style={styles.listItem}
+            style={styles.listItemWanderlist}
             onPress={() => this.changeScreen()}>
                 <View style={{flexDirection: 'row'}}>
                     <Text style={styles.titleText}>{this.props.title}</Text>

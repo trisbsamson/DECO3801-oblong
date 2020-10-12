@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
-
+import styles from '../Styles/style.js'
+/*
 const styles = StyleSheet.create({
     textField: {
         fontSize: 15,
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
-});
+});*/
 
 class ActivityListItem extends Component {
     constructor(props) {
@@ -46,9 +47,9 @@ class ActivityListItem extends Component {
     render() {
         return (
             <TouchableOpacity
-            style={styles.listItem}
+            style={styles.listItemActivity}
             onPress={() => this.changeScreen()}>
-                <Text style={styles.textField}>{this.props.title}</Text>
+                <Text style={styles.textFieldActivity}>{this.props.title}</Text>
                 {!this.props.completed && <TouchableOpacity
                 style={styles.copyButton}
                 onPress={() => this.activateActivity()}

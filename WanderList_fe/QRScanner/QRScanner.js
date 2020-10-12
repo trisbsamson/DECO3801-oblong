@@ -11,6 +11,7 @@ import {
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
+import styles from '../Styles/style.js'
 
 class QRScanner extends Component {
     constructor(props) {
@@ -47,7 +48,7 @@ class QRScanner extends Component {
     );
   }
 }
-
+/*
 const styles = StyleSheet.create({
   centerText: {
     flex: 1,
@@ -83,6 +84,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start'
     }
-});
+});*/
 
 export default QRScanner;

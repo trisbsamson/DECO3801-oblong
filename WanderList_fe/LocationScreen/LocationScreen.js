@@ -17,49 +17,9 @@ import ActivityScreenAdd from '../ActivityScreen/ActivityScreenAdd';
 import AddToList from '../ActivityScreen/addToList';
 import Header from './Header';
 import { CommonActions, useNavigation } from '@react-navigation/native'
+//import styles from '../Styles/style.js'
 
 const ListStack = createStackNavigator();
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginLeft: 20,
-    marginRight: 20,
-    flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
-  container2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bgContainer: {
-    aspectRatio: 1,
-    alignItems: 'center', // imageHeight & imageWidth are from your image pixel dimensions
-  },
-  headerImage: {
-    height: 200,
-    aspectRatio: 1,
-  },
-  textInput: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 10,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginBottom: 10,
-    marginTop: 10,
-  },
-  textField: {
-    marginBottom: 20,
-    fontSize: 20,
-  },
-});
 
 class LocationScreen extends Component {
   constructor(props) {

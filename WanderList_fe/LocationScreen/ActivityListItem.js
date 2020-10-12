@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+//import styles from '../Styles/style.js'
 
 const styles = StyleSheet.create({
   textField: {

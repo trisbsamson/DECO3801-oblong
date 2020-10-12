@@ -4,8 +4,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import ActivityListItem from './ActivityListItem';
 import Icon from 'react-native-vector-icons/Feather';
 import MapComponent from './MapComponent';
-
-
+import styles from '../Styles/style.js'
+/*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center'
   }
-});
+});*/
 
 const renderItem = ({ item }, navigation) => (
     <ActivityListItem title={item.title} activityID={item.id} navigation={navigation} completed={item.completed}/>

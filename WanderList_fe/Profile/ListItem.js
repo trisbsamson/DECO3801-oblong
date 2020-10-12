@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
-
+import styles from '../Styles/style.js'
+/*
 const styles = StyleSheet.create({
     textField: {
         color: '#fff'
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
         paddingBottom: 12,
         paddingTop: 12,
     }
-});
+});*/
 
 class ListItem extends Component {
     constructor(props) {
@@ -78,15 +79,15 @@ class ListItem extends Component {
 
     render() {
         return (
-            <View style={styles.listItem}>
-                <Text style={this.state.showingRedeem ? styles.codeField : styles.listText}>
+            <View style={styles.listItemProfile}>
+                <Text style={this.state.showingRedeem ? styles.codeField : styles.listTextProfile}>
                     {this.state.textValue}
                 </Text>
                 <TouchableOpacity
                 style={this.state.showingRedeem ? styles.copyButton : styles.redeemButton}
                 onPress={() => this.redeemItem()}
                 activeOpacity={0}>
-                    <Text style={this.state.showingRedeem ? styles.copyTextField : styles.textField}>{this.state.buttonText}</Text>
+                    <Text style={this.state.showingRedeem ? styles.copyTextField : styles.textFieldProfile}>{this.state.buttonText}</Text>
                 </TouchableOpacity>
             </View>
         );

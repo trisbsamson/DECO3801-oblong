@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import ListItem from '../WanderLists/ListItem';
 import SpecificListView from '../WanderLists/SpecificListView'
 import AddListModal from '../WanderLists/AddListModal'
-
+//import styles from '../Styles/style.js'
 
 const styles = StyleSheet.create({
   container: {

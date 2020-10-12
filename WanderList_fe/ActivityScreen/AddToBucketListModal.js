@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Modal, Text, TextInput, View, TouchableOpacity, StyleSheet, FlatList} from 'react-native'
+//import styles from '../Styles/style.js'
 
 const styles = StyleSheet.create({
   cancelButton: {

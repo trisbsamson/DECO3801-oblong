@@ -13,46 +13,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import ListItem from './ListItem';
 import SpecificListView from './SpecificListView';
 import Header from './Header';
+import styles from '../Styles/style.js'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginLeft: 15,
-    marginRight: 15,
-    flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
-  bgContainer: {
-    // aspectRatio: 1,
-    alignItems: 'center',
-  },
-  headerImage: {
-    height: 220,
-    marginTop: 10,
-    marginBottom: 5,
-    // width: 200,
-    // aspectRatio: 1,
-  },
-  textInput: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 10,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginBottom: 10,
-    marginTop: 10,
-  },
-  textField: {
-    marginBottom: 20,
-    fontSize: 20,
-  },
-});
 
 const renderItem = ({item}, navigation, parentComp) => (
   <ListItem
@@ -129,7 +91,7 @@ class ListsView extends Component {
           UQ
         </Text>
         <TextInput
-          style={styles.textInput}
+          style={styles.textInputListView}
           placeholder="Search"
           onChangeText={(text) => this.setState({usernameVal: text})}
         />

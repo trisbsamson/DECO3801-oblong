@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Modal, Text, TextInput, View, TouchableOpacity, StyleSheet} from 'react-native'
-
+import styles from '../Styles/style.js'
+/*
 const styles = StyleSheet.create({
   addButton: {
     alignItems: 'center',
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
       padding: 10,
       marginTop: 10
   }
-});
+});*/
 
 class AddListModal extends Component {
     constructor(props) {
@@ -72,8 +73,8 @@ class AddListModal extends Component {
         return (<Modal
             transparent={true}
             visible={this.props.listNameModalVisible}>
-            <View style={styles.addListModalContainer}>
-                <View style={styles.addListModal}>
+            <View style={styles.addListModalContainerWanderlist}>
+                <View style={styles.addListModalWanderlist}>
                     <Text> New list name </Text>
                     <TextInput style={styles.modalTextField} onChangeText={text => this.setState({textInputVal: text})}/>
                     <View style={{flex: 1, flexDirection: 'row'}}>
