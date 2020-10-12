@@ -31,13 +31,17 @@ class ActivityScreen extends Component {
         activityDetails['description'] = obj['description'];
         activityDetails['points'] = obj['points'];
         activityDetails['website'] = obj['website'];
+        activityDetails['imageurl'] = obj['imageurl'];
         console.log(activityDetails);
         this.setState({loading: false, activityDetails: activityDetails});
          
     }
 
     openQRScanner() {
-        this.props.navigation.navigate("qrScanner");
+        this.props.navigation.navigate("qrScanner",
+        {
+            activityID: this.props.route.params.activityID
+        });
     }
 
     hideModal() {
@@ -61,7 +65,6 @@ class ActivityScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <AddToBucketListModal listNameModalVisible={this.state.listNameModalVisible} hideModalFunc={this.hideModal.bind(this)}/>
                 <View style={styles.titlePanel}>
                     <Text style={styles.activityTitle}>{this.state.activityDetails.name}</Text>
                     <View style={styles.subtitle}>
@@ -69,7 +72,7 @@ class ActivityScreen extends Component {
                     </View>
                 </View>
                 <Image
-                    source={require('../Images/uq_centre_temp.jpg')}
+                    source={{uri:this.state.activityDetails.imageurl}}
                     style={styles.mainImage}
                 />
                 <View style={styles.descriptionPane}>
@@ -77,9 +80,8 @@ class ActivityScreen extends Component {
                 </View>
                 <View style={styles.buttonPane}>
                     <TouchableOpacity
-                        style={styles.addToWL}
-                        onPress={() =>this.setListNameModalVisible(true)}>
-                        <Text style={{color: '#000'}}>Add to WanderList</Text>
+                        style={styles.addToWL}>
+                        <Text style={{color: '#000'}}>Go To Website</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.addListButton}

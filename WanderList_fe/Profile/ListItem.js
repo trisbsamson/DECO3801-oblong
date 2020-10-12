@@ -1,54 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 import styles from '../Styles/style.js'
-/*
-const styles = StyleSheet.create({
-    textField: {
-        color: '#fff'
-    },
-    listItem: {
-        paddingLeft: 20,
-        paddingRight: 12,
-        padding: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    redeemButton: {
-        backgroundColor: '#196DFF',
-        marginLeft: 'auto',
-        padding: 5,
-        color: '#fff',
-        borderRadius: 3,
-        width: 80,
-        alignItems: 'center'
-    },
-    copyButton: {
-        backgroundColor: '#fff',
-        marginLeft: 'auto',
-        padding: 5,
-        borderColor: '#000',
-        borderWidth: 1,
-        borderRadius: 3,
-        width: 80,
-        alignItems: 'center'
-    },
-    copyTextField: {
-        color: '#000'
-    },
-    codeField: {
-        borderColor: '#000',
-        borderWidth: 1,
-        borderRadius: 3,
-        padding: 10,
-        alignItems: 'center',
-        fontSize: 16,
-        marginLeft: 'auto'
-    },
-    listText: {
-        paddingBottom: 12,
-        paddingTop: 12,
-    }
-});*/
 
 class ListItem extends Component {
     constructor(props) {

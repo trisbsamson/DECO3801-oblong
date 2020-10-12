@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const renderItem = ({ item}, navigation) => (
-    <TouchableOpacity style={styles.listItem}><Text>{item.title}</Text></TouchableOpacity>
+const renderItem = ({ item}, navigation, addToListFunc) => (
+    <TouchableOpacity style={styles.listItem} onPress={() => addToListFunc(item.key)}><Text>{item.title}</Text></TouchableOpacity>
 );
 
 class AddToBucketListModal extends Component {
@@ -57,6 +57,19 @@ class AddToBucketListModal extends Component {
 
     addToList(listID) {
         // TODO: send request to add to the specified list
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/bucketlist_activity/", {
+            method: 'POST',
+            body: JSON.stringify({
+                "bucketlist_id": listID,
+                "activity_id": this.props.activityID,
+                "completed": false
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => console.log("Response: " + response.status));
+        this.props.hideModalFunc();
     }
 
     loadLists(obj) {
@@ -83,11 +96,11 @@ class AddToBucketListModal extends Component {
     render() {
         return (<Modal
             transparent={true}
-            visible={this.props.listNameModalVisible}>
+            visible={this.props.addToListModalVisible}>
             <View style={styles.addListModalContainer}>
                 <View style={styles.addListModal}>
                     <Text style={{marginBottom: 10}}> Add To WanderList... </Text>
-                    <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
+                    <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation, this.addToList.bind(this))}/>
                     <TouchableOpacity
                         style={styles.cancelButton}
                         onPress={() => this.props.hideModalFunc()}>

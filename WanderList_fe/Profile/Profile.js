@@ -2,49 +2,6 @@ import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import ListItem from './ListItem'
 import styles from '../Styles/style.js'
-/*
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  nameBlock: {
-    marginTop: 30,
-    alignItems: 'center',
-    marginBottom: 30
-  },
-  listTitle: {
-    fontSize: 18,
-    margin: 10,
-    fontWeight: "700"
-  },
-  rankBlock:{
-      marginBottom: 30,
-      alignItems: 'center'
-  },
-  profileImage: {
-      width: 120,
-      height: 120,
-      borderRadius: 120/ 2,
-      marginBottom: 15,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-  },
-  nameText: {
-      fontSize: 30,
-  },
-  nameSubText: {
-      fontSize: 15
-  },
-    header:{
-        padding: 10,
-        flexDirection:'row',
-        flexWrap:'wrap'
-
-    },
-})*/
 
 const renderItem = ({ item}, navigation) => (
     <ListItem title={item.title} navigation={navigation} redeemCode={item.redeemCode}/>

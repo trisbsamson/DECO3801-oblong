@@ -61,19 +61,5 @@ class MapComponent extends Component {
 MapComponent.propTypes = {
   provider: ProviderPropType,
 };
-/*
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-  },
-  scrollview: {
-    alignItems: 'center',
-    paddingVertical: 40,
-  },
-  map: {
-    width: width,
-    height: 300,
-  },
-});*/
 
 export default MapComponent;

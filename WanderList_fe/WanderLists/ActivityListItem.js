@@ -1,31 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 import styles from '../Styles/style.js'
-/*
-const styles = StyleSheet.create({
-    textField: {
-        fontSize: 15,
-        margin: 5
-    },
-    copyButton: {
-        backgroundColor: '#fff',
-        marginLeft: 'auto',
-        padding: 5,
-        borderColor: '#000',
-        borderWidth: 1,
-        borderRadius: 3,
-        width: 80,
-        alignItems: 'center'
-    },
-    listItem: {
-        backgroundColor: '#fff',
-        paddingRight: 12,
-        padding: 6,
-        paddingLeft: 20,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-});*/
 
 class ActivityListItem extends Component {
     constructor(props) {
@@ -41,7 +16,10 @@ class ActivityListItem extends Component {
     }
 
     activateActivity() {
-        this.props.navigation.navigate("qrScanner");
+        this.props.navigation.navigate("qrScanner",
+        {
+            activityID: this.props.activityID,
+        });
     }
 
     render() {

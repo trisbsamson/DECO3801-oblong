@@ -1,31 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native'
 import styles from '../Styles/style.js'
-/*
-const styles = StyleSheet.create({
-    listItem: {
-        backgroundColor: '#fff',
-        padding: 14,
-        paddingLeft: 20,
-        height: 75,
-        marginBottom: 10,
-        borderRadius: 3,
-    },
-    titleText: {
-        fontSize: 16
-    },
-    subTitleText: {
-        color: '#494949'
-    },
-    menuIcon: {
-        width: 20,
-        height: 20
-    },
-    menuIconButton: {
-        marginLeft: 'auto',
-
-    }
-});*/
 
 class ListItem extends Component {
     constructor(props) {
