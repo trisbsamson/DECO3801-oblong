@@ -76,25 +76,20 @@ class ListsView extends Component {
     return (
       <View style={styles.container}>
         <Header title="Location" style={styles.headerContainer} navigation={this.props.navigation} />
+        <View style={styles.titlePanel_LocationScreen}>
+          <Text
+            style={styles.activityTitle_LocationScreen}>
+            University of Queensland
+          </Text>
+        </View>
+        
         <View style={styles.bgContainer}>
           <Image
             style={styles.headerImage}
-            resizeMode="contain"
             source={require('../Images/UQ.jpg')}
           />
         </View>
-        <Text
-          style={{
-            alignSelf: 'center',
-            fontSize: 20,
-          }}>
-          UQ
-        </Text>
-        <TextInput
-          style={styles.textInputListView}
-          placeholder="Search"
-          onChangeText={(text) => this.setState({usernameVal: text})}
-        />
+        
         <FlatList
           style={styles.list}
           data={this.state.listData}

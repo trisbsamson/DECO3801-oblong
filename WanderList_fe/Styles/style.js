@@ -34,10 +34,18 @@ export default StyleSheet.create({
       bgContainer: {
         alignItems: 'center',
       },
+      titlePanel_LocationScreen: {
+        margin: 10
+      },
+      activityTitle_LocationScreen: {
+          fontSize: 30,
+          fontWeight: "700",
+          marginBottom: 5
+      },
       headerImage: {
-        height: 220,
+        width: width,
+        height: 230,
         marginTop: 10,
-        marginBottom: 5,
     
       },
       textInputListView: {
@@ -243,11 +251,6 @@ export default StyleSheet.create({
         paddingBottom: 12,
         paddingTop: 12,
     },
-
-
-
-
-
 
     // HomeScreen style
     containerHome: {

@@ -12,11 +12,11 @@ const Header = ({ title,navigation }) => {
         style={{ width: 30, height: 30 }}
       />
     </TouchableOpacity>
-      <Text style={styles.Headertext}>{title}</Text>
+      
     </View>
   );
 };
-
+/*<Text style={styles.Headertext}>{title}</Text>*/
 Header.defaultProps = {
   title: "Shopping List",
 };

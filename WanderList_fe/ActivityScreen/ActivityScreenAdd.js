@@ -32,6 +32,7 @@ class ActivityScreen extends Component {
         activityDetails['description'] = obj['description'];
         activityDetails['points'] = obj['points'];
         activityDetails['website'] = obj['website'];
+        activityDetails['imageurl'] = obj['imageurl'];
         console.log(activityDetails);
         this.setState({loading: false, activityDetails: activityDetails});
          
@@ -74,7 +75,7 @@ class ActivityScreen extends Component {
                     </View>
                 </View>
                 <Image
-                    source={require('../Images/uq_centre_temp.jpg')}
+                    source={{uri:this.state.activityDetails.imageurl}}
                     style={styles.mainImage}
                 />
                 <View style={styles.descriptionPane}>
