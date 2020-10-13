@@ -296,7 +296,7 @@ export default StyleSheet.create({
         },
       topContainerBackgroundImage: {
         width: width,
-        height: 250,
+        height: 200,
         padding: 15
       },
       image1: {
@@ -318,6 +318,26 @@ export default StyleSheet.create({
         margin: 5,
         backgroundColor: 'white'
         },
+      cardItemContainer: {
+        width: width - 40,
+        height: width - 20,
+        alignItems: "center",
+        borderRadius: 10,
+        backgroundColor: "white",
+        marginBottom: 30,
+        alignSelf: "center"
+      },
+      cardItemImage: {
+        width: width - 40,
+        height: width - 80,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        marginBottom: 10
+      },
+      cardItemLabel: {
+        fontSize: 20,
+        fontWeight: "700"
+      },
 
 
     //might not be neccessary
@@ -685,7 +705,7 @@ export default StyleSheet.create({
               height: 300,
               marginBottom: 20,
           },
-          listTitle: {
+          listTitle_WanderLists: {
               fontSize: 18,
               fontWeight: "700",
               paddingLeft:10,

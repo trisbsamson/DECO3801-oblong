@@ -32,10 +32,11 @@ class ActivityListItem extends Component {
   }
 
   changeScreen() {
-    /*this.props.navigation.navigate("specificListView",
+    console.log(this.props.navigation);
+    this.props.navigation.navigate("activityView",
         {
-            listTitle: this.props.title
-        });*/
+            activityID: this.props.activityID
+        });
   }
 
   activateActivity() {}
@@ -48,9 +49,9 @@ class ActivityListItem extends Component {
         <Text style={styles.textField}>{this.props.title}</Text>
         <TouchableOpacity
           style={styles.copyButton}
-          onPress={() => this.activateActivity()}
+          onPress={() => this.props.activateModalFunc(true)}
           activeOpacity={0}>
-          <Text style={styles.copyTextField}>Complete</Text>
+          <Text style={styles.copyTextField}>+ List</Text>
         </TouchableOpacity>
       </TouchableOpacity>
     );

@@ -43,8 +43,6 @@ class ActivityScreen extends Component {
         this.props.navigation.navigate('addToList', {
             activityID: this.state.activityDetails["id"]
         });
-
-        
     }
 
     hideModal() {

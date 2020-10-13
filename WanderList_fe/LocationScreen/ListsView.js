@@ -18,9 +18,9 @@ import styles from '../Styles/style.js'
 
 const renderItem = ({item}, navigation, parentComp) => (
   <ListItem
-    title={item.title}
+    name={item.name}
     subtitle={item.subtitle}
-    activityID={item.activityID}
+    locationID={item.key}
     navigation={navigation}
     parentComp={parentComp}
   />
@@ -51,6 +51,29 @@ class ListsView extends Component {
     this.setState({listData: listData});
   }
 
+  processLocationData(obj) {
+    var listData = [];
+    var i;
+    for(i = 0; i < obj.length; i++) {
+        listData.push({
+            key: obj[i]["id"],
+            name: obj[i]["name"],
+            subtitle: "5 km away"
+        });
+    }
+    this.setState({
+        locationsList: listData
+    });
+  }
+
+  loadLocationData() {
+    fetch("https://deco3801-oblong.uqcloud.net/wanderlist/location/", {
+        method: "GET"
+    })
+    .then(response => response.json())
+    .then(obj => this.processLocationData(obj));
+  }
+
   componentDidMount() {
     const unsub = this.props.parentNav.addListener('focus', () => {
       if(this.state.movedFromRoot) {
@@ -58,9 +81,7 @@ class ListsView extends Component {
           this.props.navigation.navigate("AppContents", {screen: 'Location Screen', initial: false});
       }
   });
-    fetch('https://deco3801-oblong.uqcloud.net/wanderlist/activity')
-      .then((response) => response.json())
-      .then((obj) => this.loadLists(obj));
+    this.loadLocationData();
   }
 
   addList() {
@@ -75,24 +96,19 @@ class ListsView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header title="Location" style={styles.headerContainer} navigation={this.props.navigation} />
-        <View style={styles.titlePanel_LocationScreen}>
-          <Text
-            style={styles.activityTitle_LocationScreen}>
-            University of Queensland
-          </Text>
+        {/*<Header title="Location" style={styles.headerContainer} navigation={this.props.navigation} />*/}
+        <View style={styles.header}>
+            <TouchableOpacity onPress={this.props.navigation.openDrawer}>
+              <Image
+                source={{uri:'https://cdn.iconscout.com/icon/free/png-256/hamburger-menu-462145.png'}}
+                style={{ width: 30, height: 30 }}
+              />
+            </TouchableOpacity>
+            <Text style={styles.listTitle_WanderLists}>Browse Locations</Text>
         </View>
-        
-        <View style={styles.bgContainer}>
-          <Image
-            style={styles.headerImage}
-            source={require('../Images/UQ.jpg')}
-          />
-        </View>
-        
         <FlatList
           style={styles.list}
-          data={this.state.listData}
+          data={this.state.locationsList}
           renderItem={(item) => renderItem(item, this.props.navigation, this)}
         />
       </View>
