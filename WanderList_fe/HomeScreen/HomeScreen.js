@@ -12,77 +12,11 @@ import {
   Dimensions
 } from 'react-native';
 import Category from './Category';
+import styles from '../Styles/style.js'
 const image = { uri: "https://www.eait.uq.edu.au/filething/get-styled/landscape_image_600x400/47399/20190804-open-day-web-87.jpg?itok=ymQSMZ6U" };
 const imageUQ = { uri:'https://upload.wikimedia.org/wikipedia/commons/6/67/Richards_Building_5%2C_St_Lucia_Campus%2C_UQ%2C_Brisbane_03.jpg'};
 const burgicon = { uri:'https://cdn.iconscout.com/icon/free/png-256/hamburger-menu-462145.png'};
 const { height, width } = Dimensions.get('window')
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor: '#ffffff'
-  },
-  topContainer: {
-    flex: 1,
-    backgroundColor: '#999999'
-  },
-  bodyContainer: {
-    flex: 1,
-    backgroundColor: 'white',
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
-    alignSelf: 'stretch',
-  },
-  bottomContainer: {
-    flex: 1,
-    backgroundColor: '#555555'
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginBottom: 10
-},
-  title: {
-      marginBottom: 5,
-      fontSize: 30,
-      textAlign: 'left',
-      fontWeight: '700'
-  },
-  subtitle: {
-        marginBottom: 20,
-        fontSize: 20,
-        textAlign: 'left',
-        color: '#000'
-    },
-  topContainerBackgroundImage: {
-    width: width,
-    height: 250,
-    padding: 15
-  },
-  image1: {
-    resizeMode: "cover",
-    flex: 1,
-    padding: 15
-  },
-  textInput: {
-    backgroundColor: 'white',
-    borderStyle: 'solid',
-    fontSize:15,
-    borderRadius: 5,
-    paddingLeft: 20
-  },
-  populars:{
-    flex: 0.5,
-    width: 1,
-    height: 200,
-    margin: 5,
-    backgroundColor: 'white'}
-
-})
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -102,11 +36,11 @@ class HomeScreen extends Component {
                                 style={{ width: 30, height: 30, marginBottom: 10 }}
                               />
                           </TouchableOpacity>
-                              <Text style={styles.title}>Hi User</Text>
-                              <Text style={styles.subtitle}>
+                              <Text style={styles.titleHome}>Hi User</Text>
+                              <Text style={styles.subtitleHome}>
                                   Where would you like to travel?
                               </Text>
-                              <TextInput style={styles.textInput} placeholder="Search" onChangeText={text => this.setState({seachVal: text})}/>
+                              <TextInput style={styles.textInputHome} placeholder="Search" onChangeText={text => this.setState({seachVal: text})}/>
                           </ImageBackground>
                       </View>
 

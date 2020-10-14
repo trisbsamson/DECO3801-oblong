@@ -9,33 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import ActivityListItem from './ActivityListItem';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginTop: 'auto',
-  },
-  textField: {
-    marginBottom: 20,
-    fontSize: 20,
-  },
-  map: {
-    width: 390,
-    height: 300,
-    marginBottom: 20,
-  },
-  listItem: {},
-  listTitle: {
-    padding: 10,
-    fontSize: 18,
-    fontWeight: '700',
-  },
-});
+import styles from '../Styles/style.js'
 
 const renderItem = ({item}) => <ActivityListItem title={item.title} />;
 class SpecificListView extends Component {

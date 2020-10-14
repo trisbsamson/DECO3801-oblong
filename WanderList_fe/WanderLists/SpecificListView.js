@@ -4,57 +4,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import ActivityListItem from './ActivityListItem';
 import Icon from 'react-native-vector-icons/Feather';
 import MapComponent from './MapComponent';
+import styles from '../Styles/style.js'
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginTop: 'auto',
-  },
-  textField: {
-      marginBottom: 20,
-      fontSize: 20,
-  },
-  map: {
-      width: 390,
-      height: 300,
-      marginBottom: 20,
-  },
-  listItem: {
-
-  },
-  listTitle: {
-      padding: 10,
-      fontSize: 18,
-      fontWeight: "700"
-  },
-  completeStatusText: {
-      fontSize: 16,
-      marginTop: 10,
-      padding: 10,
-      fontStyle: "italic"
-  },
-  topPanel: {
-      flexDirection: 'row',
-      alignItems: 'center'
-  },
-  tagsDropdownButton: {
-      padding: 5,
-      width: 150,
-      marginLeft: 'auto',
-      marginRight: 10,
-      flexDirection: 'row',
-      alignItems: 'center'
-  }
-});
-
-const renderItem = ({ item }, navigation) => (
-    <ActivityListItem title={item.title} activityID={item.id} navigation={navigation} completed={item.completed}/>
+const renderItem = ({ item }, navigation, reloadListsFunc) => (
+    <ActivityListItem title={item.title} activityID={item.id} navigation={navigation} completed={item.completed} reloadListsFunc={reloadListsFunc}/>
 );
 class SpecificListView extends Component {
     constructor(props) {
@@ -178,11 +131,15 @@ class SpecificListView extends Component {
         console.log(response);
     }
 
-    componentDidMount() {
+    loadListData() {
         // do the fetch here once api works
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlist_activities/" + this.state.listID.toString())
         .then(response => response.json())
         .then(object => {this.loadLists(object)});
+    }
+
+    componentDidMount() {
+        this.loadListData();
     }
 
     render() {
@@ -212,9 +169,9 @@ class SpecificListView extends Component {
                         />
                     </View>
                     
-                    <FlatList data={this.state.filteredIncompleteListData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
+                    <FlatList data={this.state.filteredIncompleteListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this))}/>
                     <Text style={styles.completeStatusText}> Completed</Text>
-                    <FlatList data={this.state.filteredCompletedListData} renderItem={(item) => renderItem(item, this.props.navigation)}/>
+                    <FlatList data={this.state.filteredCompletedListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this))}/>
                 </View>
             </View>
         );
