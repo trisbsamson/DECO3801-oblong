@@ -50,21 +50,13 @@ const styles = StyleSheet.create({
       marginBottom: 5,
       fontSize: 30,
       textAlign: 'left',
-      fontWeight: '700',
-      color: 'white',
-      textShadowColor: 'rgba(0, 0, 0, 0.75)',
-      textShadowOffset: {width: 1, height: 1},
-      textShadowRadius: 10
+      fontWeight: '700'
   },
   subtitle: {
         marginBottom: 20,
         fontSize: 20,
         textAlign: 'left',
-        color: 'white',
-        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: {width: 1, height: 1},
-        textShadowRadius: 10
-
+        color: '#000'
     },
   topContainerBackgroundImage: {
     width: width,
