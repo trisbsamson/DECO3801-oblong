@@ -15,6 +15,10 @@ class LoginScreen extends Component {
         return (
             <View style={styles.loginContainer}>
                 <View style={styles.logintitlePane}>
+                    <Image
+                        style = {styles.loginLeafLogo}
+                        source={require('../Images/leaf_icon.png')}
+                    />
                     <Text style={styles.logintextField}>
                     WanderLists
                     </Text>

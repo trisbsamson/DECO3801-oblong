@@ -6,8 +6,8 @@ import Icon from 'react-native-vector-icons/Feather';
 import MapComponent from './MapComponent';
 import styles from '../Styles/style.js'
 
-const renderItem = ({ item }, navigation, reloadListsFunc) => (
-    <ActivityListItem title={item.title} activityID={item.id} navigation={navigation} completed={item.completed} reloadListsFunc={reloadListsFunc}/>
+const renderItem = ({ item }, navigation, reloadListsFunc, listID) => (
+    <ActivityListItem title={item.title} activityID={item.id} navigation={navigation} completed={item.completed} reloadListsFunc={reloadListsFunc} listID={listID} funRating={item.funRating} susRating={item.susRating}/>
 );
 class SpecificListView extends Component {
     constructor(props) {
@@ -56,6 +56,8 @@ class SpecificListView extends Component {
                     id: obj[i]['activity_id'],
                     lat: parseFloat(obj[i]['latitude']),
                     long: parseFloat(obj[i]['longitude']),
+                    funRating: parseFloat(obj[i]['fun_rating']),
+                    susRating: parseFloat(obj[i]['sustainability_rating']),
                     completed: false,
                     tags: tags
                 });
@@ -67,6 +69,8 @@ class SpecificListView extends Component {
                     id: obj[i]['activity_id'],
                     lat: parseFloat(obj[i]['latitude']),
                     long: parseFloat(obj[i]['longitude']),
+                    funRating: parseFloat(obj[i]['fun_rating']),
+                    susRating: parseFloat(obj[i]['sustainability_rating']),
                     completed: true,
                     tags: tags
                 });
@@ -169,9 +173,9 @@ class SpecificListView extends Component {
                         />
                     </View>
                     
-                    <FlatList data={this.state.filteredIncompleteListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this))}/>
+                    <FlatList data={this.state.filteredIncompleteListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this), this.state.listID)}/>
                     <Text style={styles.completeStatusText}> Completed</Text>
-                    <FlatList data={this.state.filteredCompletedListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this))}/>
+                    <FlatList data={this.state.filteredCompletedListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this), this.state.listID)}/>
                 </View>
             </View>
         );

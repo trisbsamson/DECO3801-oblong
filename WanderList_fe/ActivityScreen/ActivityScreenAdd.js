@@ -33,6 +33,8 @@ class ActivityScreen extends Component {
         activityDetails['points'] = obj['points'];
         activityDetails['website'] = obj['website'];
         activityDetails['imageurl'] = obj['imageurl'];
+        activityDetails['susRating'] = obj['sustainability_rating'];
+        activityDetails['funRating'] = obj['fun_rating'];
         console.log(activityDetails);
         this.setState({loading: false, activityDetails: activityDetails});
          
@@ -69,7 +71,20 @@ class ActivityScreen extends Component {
                 <View style={styles.titlePanel}>
                     <Text style={styles.activityTitle}>{this.state.activityDetails.name}</Text>
                     <View style={styles.subtitle}>
-                        <Text style={{fontSize: 16}}> {this.state.activityDetails.points} Points </Text>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginRight: 15}}>
+                            <Image
+                                style = {styles.leafIcon}
+                                source={require('../Images/leaf_icon.png')}
+                            />
+                            <Text style={{fontSize: 16}}>  {this.activityDetails.susRating}</Text>
+                        </View>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Image
+                                style = {styles.leafIcon}
+                                source={require('../Images/star_icon.png')}
+                            />
+                            <Text style={{fontSize: 16}}>  {this.activityDetails.funRating}</Text>
+                        </View>
                     </View>
                 </View>
                 <Image

@@ -56,6 +56,7 @@ class AddToBucketListModal extends Component {
     }
 
     addToList(listID) {
+        console.log("Requesting, listID: " + listID + ", activity_id: " + this.props.activityID + ", completed: " + false);
         // TODO: send request to add to the specified list
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/bucketlist_activity/", {
             method: 'POST',

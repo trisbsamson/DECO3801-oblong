@@ -29,7 +29,8 @@ class SpecificListView extends Component {
       ],
       filters: [],
       tagFilters: [],
-      addToListModalVisible: false
+      addToListModalVisible: false,
+      addToListModalActivity: null
     };
   }
   printresp(response) {
@@ -117,15 +118,24 @@ class SpecificListView extends Component {
     this.setAddToListModalVisible(false);
   }
 
-  setAddToListModalVisible = (visible) => {
-    this.setState({addToListModalVisible: visible});
+  setAddToListModalVisible = (visible, activityID) => {
+    this.setState({
+      addToListModalVisible: visible,
+      addToListModalActivity: activityID
+    });
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <AddToBucketListModal addToListModalVisible={this.state.addToListModalVisible} activityID={this.props.route.params.activityID} hideModalFunc={this.hideModal.bind(this)}/>
+        <AddToBucketListModal addToListModalVisible={this.state.addToListModalVisible} activityID={this.state.addToListModalActivity} hideModalFunc={this.hideModal.bind(this)}/>
         <View style={styles.topPanel}>
+            <TouchableOpacity onPress={this.props.navigation.openDrawer}>
+              <Image
+                source={{uri:'https://cdn.iconscout.com/icon/free/png-256/hamburger-menu-462145.png'}}
+                style={{ width: 30, height: 30 }}
+              />
+            </TouchableOpacity>
             <Text style={styles.listTitle}> {this.state.listTitle} </Text>
             <DropDownPicker
                 items={this.state.tagFilters}

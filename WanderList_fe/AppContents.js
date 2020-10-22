@@ -23,7 +23,7 @@ class AppContents extends Component {
     }
     render() {
         return (
-                <Drawer.Navigator initialRouteName="Home">
+                <Drawer.Navigator initialRouteName="Home" >
                     <Drawer.Screen name="Home" component={HomeScreen} />
                     <Drawer.Screen name="Browse Locations" component={LocationScreen} />
                     <Drawer.Screen name="WanderLists" component={WanderLists} />

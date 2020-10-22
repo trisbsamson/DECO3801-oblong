@@ -58,7 +58,6 @@ class ListsView extends Component {
         const {listNameModalVisible} = this.state;
         return (
                 <View style={styles.container}>
-                    <View>
                         <AddListModal queryLists={this.queryLists.bind(this)} listNameModalVisible={this.state.listNameModalVisible} hideModalFunc={this.hideModal.bind(this)}/>
                             <View style={styles.header}>
                                 <TouchableOpacity onPress={this.props.navigation.openDrawer}>
@@ -75,7 +74,6 @@ class ListsView extends Component {
                             onPress={() =>this.setListNameModalVisible(true)}>
                             <Text style={{color: '#fff'}}>New List</Text>
                         </TouchableOpacity>
-                    </View>
                 </View>
         );
     }
