@@ -21,7 +21,6 @@ class ListsView extends Component {
     }
 
     loadLists(obj) {
-        console.log(obj);
         var listData = [];
         var i;
         for(i = 0; i < obj.length; i++) {

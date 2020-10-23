@@ -8,7 +8,6 @@ class ActivityListItem extends Component {
   }
 
   changeScreen() {
-    console.log(this.props.navigation);
     this.props.navigation.navigate("activityView",
         {
             activityID: this.props.activityID
@@ -29,14 +28,14 @@ class ActivityListItem extends Component {
                   style = {styles.leafIcon}
                   source={require('../Images/leaf_icon.png')}
               />
-              <Text style={{fontSize: 16}}> 4.6</Text>
+              <Text style={{fontSize: 16}}> {this.props.item.susRating}</Text>
           </View>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                   style = {styles.leafIcon}
                   source={require('../Images/star_icon.png')}
               />
-              <Text style={{fontSize: 16}}> 3.3</Text>
+              <Text style={{fontSize: 16}}> {this.props.item.funRating}</Text>
           </View>
       </View>
         <TouchableOpacity

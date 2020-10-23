@@ -13,7 +13,7 @@ import styles from '../Styles/style.js'
 import DropDownPicker from 'react-native-dropdown-picker';
 import AddToBucketListModal from '../ActivityScreen/AddToBucketListModal';
 
-const renderItem = ({item}, navigation, activateModalFunc) => <ActivityListItem title={item.title} navigation={navigation} activityID={item.id} activateModalFunc={activateModalFunc}/>;
+const renderItem = ({item}, navigation, activateModalFunc) => <ActivityListItem title={item.title} navigation={navigation} activityID={item.id} item={item} activateModalFunc={activateModalFunc}/>;
 
 
 class SpecificListView extends Component {
@@ -32,9 +32,6 @@ class SpecificListView extends Component {
       addToListModalVisible: false,
       addToListModalActivity: null
     };
-  }
-  printresp(response) {
-    console.log(response);
   }
 
   processActivityData(obj) {
@@ -59,7 +56,9 @@ class SpecificListView extends Component {
         key: obj[i]['id'].toString(),
         id: obj[i]['id'],
         completed: false,
-        tags: tags
+        tags: tags,
+        funRating: parseFloat(obj[i]['fun_rating']).toFixed(1),
+        susRating: parseFloat(obj[i]['sustainability_rating']).toFixed(1),
       });
     }
     var tagFilters = [];
@@ -74,7 +73,6 @@ class SpecificListView extends Component {
   }
 
   loadActivityData() {
-    console.log("Loading from: " + this.props.route.params.locationID);
     fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_activity_by_location/" + this.props.route.params.locationID, {
         method: "GET"
     })
@@ -136,7 +134,7 @@ class SpecificListView extends Component {
                 style={{ width: 30, height: 30 }}
               />
             </TouchableOpacity>
-            <Text style={styles.listTitle}> {this.state.listTitle} </Text>
+            <Text numberOfLines={1} style={styles.listTitle}> {this.state.listTitle} </Text>
             <DropDownPicker
                 items={this.state.tagFilters}
             

@@ -142,7 +142,7 @@ class ActivityCompleteModal extends Component {
                                         onPress={() => this.props.hideModalFunc()}>
                                         <Text> Cancel </Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.addButton}>
+                                    <TouchableOpacity style={styles.addButton} onPress={() => this.props.hideModalFunc()}>
                                         <Text style={{color: '#fff'}}> Finish </Text>
                                     </TouchableOpacity>
                                 </View>

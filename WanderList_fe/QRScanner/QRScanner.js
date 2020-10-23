@@ -42,7 +42,6 @@ class QRScanner extends Component {
           this.setState({completeMode: 4});
         }
       })
-      console.log("Complete mode: " + this.state.completeMode);
     }
   }
 

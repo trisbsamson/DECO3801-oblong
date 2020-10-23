@@ -11,6 +11,10 @@ class SignupScreen extends Component {
                       passwordVal: ""}
     }
 
+    validateUserName() {
+        
+    }
+
     render() {
         return (
             <View style={styles.containerSignUp}>

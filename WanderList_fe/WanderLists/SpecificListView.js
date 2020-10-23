@@ -7,7 +7,7 @@ import MapComponent from './MapComponent';
 import styles from '../Styles/style.js'
 
 const renderItem = ({ item }, navigation, reloadListsFunc, listID) => (
-    <ActivityListItem title={item.title} activityID={item.id} navigation={navigation} completed={item.completed} reloadListsFunc={reloadListsFunc} listID={listID} funRating={item.funRating} susRating={item.susRating}/>
+    <ActivityListItem title={item.title} activityID={item.activityId} navigation={navigation} completed={item.completed} reloadListsFunc={reloadListsFunc} listID={listID} funRating={item.funRating} susRating={item.susRating}/>
 );
 class SpecificListView extends Component {
     constructor(props) {
@@ -33,7 +33,6 @@ class SpecificListView extends Component {
 
         // list used to generate filters dropdown
         var uniqueTags = [];
-        
         var i;
         for(i = 0; i < obj.length; i++) {
             // load and process tags for this activity
@@ -47,17 +46,18 @@ class SpecificListView extends Component {
                     uniqueTags.push(tag);
                 }
             }
+            
             // add activity to correspoinding list
             if(!obj[i]['completed']) {
                 incompleteListData.push({
                     title: obj[i]['title'],
                     subtitle: "subtitle goes here",
-                    key: obj[i]['activity_id'].toString(),
-                    id: obj[i]['activity_id'],
+                    key: i.toString(),
+                    activityId: obj[i]['activity_id'],
                     lat: parseFloat(obj[i]['latitude']),
                     long: parseFloat(obj[i]['longitude']),
-                    funRating: parseFloat(obj[i]['fun_rating']),
-                    susRating: parseFloat(obj[i]['sustainability_rating']),
+                    funRating: parseFloat(obj[i]['avg_fun_rating']).toFixed(1),
+                    susRating: parseFloat(obj[i]['avg_sustainability_rating']).toFixed(1),
                     completed: false,
                     tags: tags
                 });
@@ -65,12 +65,12 @@ class SpecificListView extends Component {
                 completedListData.push({
                     title: obj[i]['title'],
                     subtitle: "subtitle goes here",
-                    key: obj[i]['activity_id'].toString(),
-                    id: obj[i]['activity_id'],
+                    key: i.toString(),
+                    activityId: obj[i]['activity_id'],
                     lat: parseFloat(obj[i]['latitude']),
                     long: parseFloat(obj[i]['longitude']),
-                    funRating: parseFloat(obj[i]['fun_rating']),
-                    susRating: parseFloat(obj[i]['sustainability_rating']),
+                    funRating: parseFloat(obj[i]['avg_fun_rating']).toFixed(1),
+                    susRating: parseFloat(obj[i]['avg_sustainability_rating']).toFixed(1),
                     completed: true,
                     tags: tags
                 });
@@ -81,7 +81,6 @@ class SpecificListView extends Component {
         for(i = 0; i < uniqueTags.length; i++) {
             tagFilters.push({label: uniqueTags[i], value: uniqueTags[i]});
         }
-
         this.setState({incompleteListData: incompleteListData,
                         completedListData: completedListData,
                         tagFilters: tagFilters},
@@ -129,10 +128,6 @@ class SpecificListView extends Component {
                 filteredCompletedListData: f_compListData});
         }
         
-    }
-
-    printresp(response) {
-        console.log(response);
     }
 
     loadListData() {

@@ -30,7 +30,7 @@ class Profile extends Component {
         for(i = 0; i < obj.length; i++) {
             listData.push({
                 title: obj[i]['name'], 
-                key: obj[i]['reward_id_id'], 
+                key: obj[i]['reward_id_id'].toString(), 
                 redeemCode: "12345", 
                 redeemed: obj[i]['redeemed']});
         }

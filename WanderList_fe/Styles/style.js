@@ -889,7 +889,8 @@ export default StyleSheet.create({
         textFieldActivity: {
             fontSize: 15,
             margin: 5,
-            marginRight: 10
+            marginRight: 10,
+            width: 160,
         },
         listCompleteActivityButton: {
             backgroundColor: '#fff',

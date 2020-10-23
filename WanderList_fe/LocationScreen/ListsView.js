@@ -33,9 +33,7 @@ class ListsView extends Component {
     };
   }
 
-  loadLists(obj) {
-    console.log(obj);
-    
+  loadLists(obj) {    
     var listData = [];
 
     var i;
@@ -56,7 +54,7 @@ class ListsView extends Component {
     var i;
     for(i = 0; i < obj.length; i++) {
         listData.push({
-            key: obj[i]["id"],
+            key: obj[i]["id"].toString(),
             name: obj[i]["name"],
             subtitle: "5 km away"
         });
