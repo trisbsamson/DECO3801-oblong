@@ -10,9 +10,28 @@ class SignupScreen extends Component {
                       emailVal: "",
                       passwordVal: ""}
     }
-
-    validateUserName() {
-        
+     registerUser() {
+            if(this.state.textInputVal != "") {
+                var queryString = "https://deco3801-oblong.uqcloud.net/wanderlist/user/";
+                    fetch(queryString, {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            "name": this.state.usernameVal,
+                            "password": this.state.passwordVal
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                .then(response => console.log("Response: " + response.status))
+//                .then(this.props.queryLists()) //
+                .catch((error) => {console.error(error);});
+//                this.props.hideModalFunc();
+            }
+     }
+     registerAndNavigate(){
+        this.registerUser();
+        this.props.navigation.navigate('AppContents', {name: 'User'});
     }
 
     render() {
@@ -45,14 +64,16 @@ class SignupScreen extends Component {
                     style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.buttonSignUp)}
                     disabled = {(this.state.usernameVal == "" || this.state.passwordVal == "")}
                     onPress={() =>
-                    this.props.navigation.navigate('AppContents', {name: 'User'})
-                    }
-                >
+                    this.registerAndNavigate()
+                    }>
                     <Text style={{color: "#fff"}}>Sign Up</Text>
                 </TouchableOpacity>
                 <View style ={styles.signupTextCont}>
                     <Text style = {styles.signupText}>Already have an account? </Text>
-                    <TouchableOpacity onPress ={() =>this.props.navigation.navigate('Login')}>
+                    <TouchableOpacity onPress ={() =>{
+                            this.props.navigation.navigate('Login')
+
+                        }}>
                     <Text style = {styles.signupButton}>Login</Text>
                     </TouchableOpacity>
                 </View>
