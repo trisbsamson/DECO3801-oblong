@@ -23,9 +23,9 @@ class AppContents extends Component {
     }
     render() {
         return (
-                <Drawer.Navigator initialRouteName="Home">
+                <Drawer.Navigator initialRouteName="Home" >
                     <Drawer.Screen name="Home" component={HomeScreen} />
-                    <Drawer.Screen name="Location Screen" component={LocationScreen} />
+                    <Drawer.Screen name="Browse Locations" component={LocationScreen} />
                     <Drawer.Screen name="WanderLists" component={WanderLists} />
                     <Drawer.Screen name="Profile" component={Profile} />
                 </Drawer.Navigator>

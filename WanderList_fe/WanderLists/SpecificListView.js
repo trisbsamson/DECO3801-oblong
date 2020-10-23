@@ -6,8 +6,8 @@ import Icon from 'react-native-vector-icons/Feather';
 import MapComponent from './MapComponent';
 import styles from '../Styles/style.js'
 
-const renderItem = ({ item }, navigation, reloadListsFunc) => (
-    <ActivityListItem title={item.title} activityID={item.id} navigation={navigation} completed={item.completed} reloadListsFunc={reloadListsFunc}/>
+const renderItem = ({ item }, navigation, reloadListsFunc, listID) => (
+    <ActivityListItem title={item.title} activityID={item.activityId} navigation={navigation} completed={item.completed} reloadListsFunc={reloadListsFunc} listID={listID} funRating={item.funRating} susRating={item.susRating}/>
 );
 class SpecificListView extends Component {
     constructor(props) {
@@ -33,7 +33,6 @@ class SpecificListView extends Component {
 
         // list used to generate filters dropdown
         var uniqueTags = [];
-        
         var i;
         for(i = 0; i < obj.length; i++) {
             // load and process tags for this activity
@@ -47,15 +46,18 @@ class SpecificListView extends Component {
                     uniqueTags.push(tag);
                 }
             }
+            
             // add activity to correspoinding list
             if(!obj[i]['completed']) {
                 incompleteListData.push({
                     title: obj[i]['title'],
                     subtitle: "subtitle goes here",
-                    key: obj[i]['activity_id'].toString(),
-                    id: obj[i]['activity_id'],
+                    key: i.toString(),
+                    activityId: obj[i]['activity_id'],
                     lat: parseFloat(obj[i]['latitude']),
                     long: parseFloat(obj[i]['longitude']),
+                    funRating: parseFloat(obj[i]['avg_fun_rating']).toFixed(1),
+                    susRating: parseFloat(obj[i]['avg_sustainability_rating']).toFixed(1),
                     completed: false,
                     tags: tags
                 });
@@ -63,10 +65,12 @@ class SpecificListView extends Component {
                 completedListData.push({
                     title: obj[i]['title'],
                     subtitle: "subtitle goes here",
-                    key: obj[i]['activity_id'].toString(),
-                    id: obj[i]['activity_id'],
+                    key: i.toString(),
+                    activityId: obj[i]['activity_id'],
                     lat: parseFloat(obj[i]['latitude']),
                     long: parseFloat(obj[i]['longitude']),
+                    funRating: parseFloat(obj[i]['avg_fun_rating']).toFixed(1),
+                    susRating: parseFloat(obj[i]['avg_sustainability_rating']).toFixed(1),
                     completed: true,
                     tags: tags
                 });
@@ -77,7 +81,6 @@ class SpecificListView extends Component {
         for(i = 0; i < uniqueTags.length; i++) {
             tagFilters.push({label: uniqueTags[i], value: uniqueTags[i]});
         }
-
         this.setState({incompleteListData: incompleteListData,
                         completedListData: completedListData,
                         tagFilters: tagFilters},
@@ -127,10 +130,6 @@ class SpecificListView extends Component {
         
     }
 
-    printresp(response) {
-        console.log(response);
-    }
-
     loadListData() {
         // do the fetch here once api works
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlist_activities/" + this.state.listID.toString())
@@ -169,9 +168,9 @@ class SpecificListView extends Component {
                         />
                     </View>
                     
-                    <FlatList data={this.state.filteredIncompleteListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this))}/>
+                    <FlatList data={this.state.filteredIncompleteListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this), this.state.listID)}/>
                     <Text style={styles.completeStatusText}> Completed</Text>
-                    <FlatList data={this.state.filteredCompletedListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this))}/>
+                    <FlatList data={this.state.filteredCompletedListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this), this.state.listID)}/>
                 </View>
             </View>
         );

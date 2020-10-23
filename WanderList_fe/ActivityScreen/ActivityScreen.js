@@ -24,15 +24,14 @@ class ActivityScreen extends Component {
     }
 
     loadActivityData(obj) {
-        console.log("OBJECT: ")
-        console.log(obj);
         var activityDetails = {};
-        activityDetails['name'] = obj['title'];
-        activityDetails['description'] = obj['description'];
-        activityDetails['points'] = obj['points'];
-        activityDetails['website'] = obj['website'];
-        activityDetails['imageurl'] = obj['imageurl'];
-        console.log(activityDetails);
+        activityDetails['name'] = obj[0]['title'];
+        activityDetails['description'] = obj[0]['description'];
+        activityDetails['points'] = obj[0]['points'];
+        activityDetails['website'] = obj[0]['website'];
+        activityDetails['imageurl'] = obj[0]['imageurl'];
+        activityDetails['funRating'] = obj[0]['fun_rating'].toFixed(1);
+        activityDetails['susRating'] = obj[0]['sustainability_rating'].toFixed(1);
         this.setState({loading: false, activityDetails: activityDetails});
          
     }
@@ -40,7 +39,8 @@ class ActivityScreen extends Component {
     openQRScanner() {
         this.props.navigation.navigate("qrScanner",
         {
-            activityID: this.props.route.params.activityID
+            activityID: this.props.route.params.activityID,
+            bucketListID: this.props.route.params.bucketListID
         });
     }
 
@@ -54,7 +54,6 @@ class ActivityScreen extends Component {
 
     //loads in the activity data from the backend
     componentDidMount() {
-        console.log("Loading activity: " + this.props.route.params.activityID)
         //previous route gives and activity id, retrieve from server
         let url = "https://deco3801-oblong.uqcloud.net/wanderlist/activity/" + this.props.route.params.activityID
         fetch(url, {method: "GET"})
@@ -68,7 +67,20 @@ class ActivityScreen extends Component {
                 <View style={styles.titlePanel}>
                     <Text style={styles.activityTitle}>{this.state.activityDetails.name}</Text>
                     <View style={styles.subtitle}>
-                        <Text style={{fontSize: 16}}> {this.state.activityDetails.points} Points </Text>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginRight: 15}}>
+                            <Image
+                                style = {styles.leafIcon}
+                                source={require('../Images/leaf_icon.png')}
+                            />
+                            <Text style={{fontSize: 16}}>  {this.state.activityDetails.susRating}</Text>
+                        </View>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Image
+                                style = {styles.leafIcon}
+                                source={require('../Images/star_icon.png')}
+                            />
+                            <Text style={{fontSize: 16}}>  {this.state.activityDetails.funRating}</Text>
+                        </View>
                     </View>
                 </View>
                 <Image
@@ -83,11 +95,14 @@ class ActivityScreen extends Component {
                         style={styles.addToWL}>
                         <Text style={{color: '#000'}}>Go To Website</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.addListButton}
-                        onPress={() =>this.openQRScanner()}>
-                        <Text style={{color: '#fff'}}>Complete</Text>
-                    </TouchableOpacity>
+                    {(!this.props.route.params.completed) && (
+                        <TouchableOpacity
+                            style={styles.addListButton}
+                            onPress={() =>this.openQRScanner()}>
+                            <Text style={{color: '#fff'}}>Complete</Text>
+                        </TouchableOpacity>
+                    )}
+                    
                 </View>
             </View>
         );

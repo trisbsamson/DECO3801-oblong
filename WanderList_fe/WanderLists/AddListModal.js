@@ -22,7 +22,6 @@ class AddListModal extends Component {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => console.log("Response: " + response.status))
             .then(this.props.queryLists())
             .catch((error) => {console.error(error);});
             this.props.hideModalFunc();

@@ -25,26 +25,23 @@ class ActivityScreen extends Component {
     }
 
     loadActivityData(obj) {
-        
         var activityDetails = {};
-        activityDetails['id'] = obj['id'];
-        activityDetails['name'] = obj['title'];
-        activityDetails['description'] = obj['description'];
-        activityDetails['points'] = obj['points'];
-        activityDetails['website'] = obj['website'];
-        activityDetails['imageurl'] = obj['imageurl'];
-        console.log(activityDetails);
+        activityDetails['id'] = obj[0]['id'];
+        activityDetails['name'] = obj[0]['title'];
+        activityDetails['description'] = obj[0]['description'];
+        activityDetails['points'] = obj[0]['points'];
+        activityDetails['website'] = obj[0]['website'];
+        activityDetails['imageurl'] = obj[0]['imageurl'];
+        activityDetails['susRating'] = obj[0]['sustainability_rating'].toFixed(1);
+        activityDetails['funRating'] = obj[0]['fun_rating'].toFixed(1);
         this.setState({loading: false, activityDetails: activityDetails});
          
     }
 
     changeScreen() {
-        console.log(this.state.activityDetails)
         this.props.navigation.navigate('addToList', {
             activityID: this.state.activityDetails["id"]
         });
-
-        
     }
 
     hideModal() {
@@ -71,7 +68,20 @@ class ActivityScreen extends Component {
                 <View style={styles.titlePanel}>
                     <Text style={styles.activityTitle}>{this.state.activityDetails.name}</Text>
                     <View style={styles.subtitle}>
-                        <Text style={{fontSize: 16}}> {this.state.activityDetails.points} Points </Text>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginRight: 15}}>
+                            <Image
+                                style = {styles.leafIcon}
+                                source={require('../Images/leaf_icon.png')}
+                            />
+                            <Text style={{fontSize: 16}}>  {this.state.activityDetails.susRating}</Text>
+                        </View>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Image
+                                style = {styles.leafIcon}
+                                source={require('../Images/star_icon.png')}
+                            />
+                            <Text style={{fontSize: 16}}>  {this.state.activityDetails.funRating}</Text>
+                        </View>
                     </View>
                 </View>
                 <Image

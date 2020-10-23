@@ -21,11 +21,10 @@ class ListsView extends Component {
     }
 
     loadLists(obj) {
-        console.log(obj);
         var listData = [];
         var i;
         for(i = 0; i < obj.length; i++) {
-            listData.push({title: obj[i]['name'], subtitle: "subtitle goes here", key: obj[i]['id'].toString()})
+            listData.push({title: obj[i]['name'], subtitle: "5 activities", key: obj[i]['id'].toString()})
         }
         this.setState({listData: listData});
     }
@@ -45,8 +44,6 @@ class ListsView extends Component {
         this.queryLists()
     }
 
-    
-
     hideModal() {
         this.setListNameModalVisible(false);
     }
@@ -60,7 +57,6 @@ class ListsView extends Component {
         const {listNameModalVisible} = this.state;
         return (
                 <View style={styles.container}>
-                    <View>
                         <AddListModal queryLists={this.queryLists.bind(this)} listNameModalVisible={this.state.listNameModalVisible} hideModalFunc={this.hideModal.bind(this)}/>
                             <View style={styles.header}>
                                 <TouchableOpacity onPress={this.props.navigation.openDrawer}>
@@ -69,7 +65,7 @@ class ListsView extends Component {
                                     style={{ width: 30, height: 30 }}
                                   />
                                 </TouchableOpacity>
-                                <Text style={styles.listTitle}>Your Lists</Text>
+                                <Text style={styles.listTitle_WanderLists}>Your Lists</Text>
                             </View>
                         <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation, this)}/>
                         <TouchableOpacity
@@ -77,7 +73,6 @@ class ListsView extends Component {
                             onPress={() =>this.setListNameModalVisible(true)}>
                             <Text style={{color: '#fff'}}>New List</Text>
                         </TouchableOpacity>
-                    </View>
                 </View>
         );
     }

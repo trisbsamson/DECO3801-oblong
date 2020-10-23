@@ -67,13 +67,11 @@ class AddToBucketListModal extends Component {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
-        .then(response => console.log("Response: " + response.status));
+        });
         this.props.hideModalFunc();
     }
 
     loadLists(obj) {
-        //console.log(obj);
         var listData = [];
         var i;
         for(i = 0; i < obj.length; i++) {

@@ -9,8 +9,9 @@ class ListItem extends Component {
 
   changeScreen() {
     this.props.parentComp.setState({movedFromRoot: true});
-    this.props.navigation.navigate('activityView', {
-      activityID: this.props.activityID,
+    this.props.navigation.navigate('specificLocationView', {
+      locationName: this.props.name,
+      locationID: this.props.locationID,
     });
   }
 
@@ -20,7 +21,7 @@ class ListItem extends Component {
         style={styles.listItemLocation}
         onPress={() => this.changeScreen()}>
         <View style={{flexDirection: 'row'}}>
-          <Text style={styles.titleText}>{this.props.title}</Text>
+          <Text style={styles.titleText}>{this.props.name}</Text>
           <TouchableOpacity style={styles.menuIconButton}>
             <Image
               source={require('../Images/menu_icon.png')}

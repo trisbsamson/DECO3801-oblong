@@ -39,14 +39,14 @@ class MapComponent extends Component {
           >
             {this.props.incompleteListData.map((item, i) => {
                 return (<Marker
-                        key={item['id']}
+                        key={item['key']}
                         title={item['title']}
                         description={item['subtitle']}
                         coordinate={{latitude: item['lat'], longitude: item['long']}}/>)
             })}
             {this.props.completedListData.map((item, i) => {
                 return (<Marker
-                        key={item['id']}
+                        key={item['key']}
                         title={item['title']}
                         description={item['subtitle']}
                         coordinate={{latitude: item['lat'], longitude: item['long']}}

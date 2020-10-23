@@ -43,6 +43,7 @@ class LocationScreen extends Component {
           <ListStack.Screen name="listsView">
                   {props => <ListsView {...props} parentNav={this.props.navigation} />}
           </ListStack.Screen>
+          <ListStack.Screen name="specificLocationView" component={SpecificListView}/>
           <ListStack.Screen name="activityView" component={ActivityScreenAdd}/>
           <ListStack.Screen name="addToList" component={AddToList}/>
         </ListStack.Navigator>

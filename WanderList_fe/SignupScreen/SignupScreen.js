@@ -10,7 +10,6 @@ class SignupScreen extends Component {
                       emailVal: "",
                       passwordVal: ""}
     }
-
      registerUser() {
             if(this.state.textInputVal != "") {
                 var queryString = "https://deco3801-oblong.uqcloud.net/wanderlist/user/";

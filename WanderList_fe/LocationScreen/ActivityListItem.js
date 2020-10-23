@@ -1,30 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-//import styles from '../Styles/style.js'
-
-const styles = StyleSheet.create({
-  textField: {
-    fontSize: 15,
-  },
-  copyButton: {
-    backgroundColor: '#fff',
-    marginLeft: 'auto',
-    padding: 5,
-    borderColor: '#000',
-    borderWidth: 1,
-    borderRadius: 3,
-    width: 80,
-    alignItems: 'center',
-  },
-  listItem: {
-    backgroundColor: '#fff',
-    paddingRight: 12,
-    padding: 6,
-    paddingLeft: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-});
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import styles from '../Styles/style';
 
 class ActivityListItem extends Component {
   constructor(props) {
@@ -32,10 +8,10 @@ class ActivityListItem extends Component {
   }
 
   changeScreen() {
-    /*this.props.navigation.navigate("specificListView",
+    this.props.navigation.navigate("activityView",
         {
-            listTitle: this.props.title
-        });*/
+            activityID: this.props.activityID
+        });
   }
 
   activateActivity() {}
@@ -43,14 +19,30 @@ class ActivityListItem extends Component {
   render() {
     return (
       <TouchableOpacity
-        style={styles.listItem}
+        style={styles.listItemActivity}
         onPress={() => this.changeScreen()}>
-        <Text style={styles.textField}>{this.props.title}</Text>
+        <Text style={styles.textFieldActivity}>{this.props.title}</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 'auto', marginRight: 10}}>
+          <View style={{flexDirection: 'row', alignItems: 'center', marginRight: 5}}>
+              <Image
+                  style = {styles.leafIcon}
+                  source={require('../Images/leaf_icon.png')}
+              />
+              <Text style={{fontSize: 16}}> {this.props.item.susRating}</Text>
+          </View>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Image
+                  style = {styles.leafIcon}
+                  source={require('../Images/star_icon.png')}
+              />
+              <Text style={{fontSize: 16}}> {this.props.item.funRating}</Text>
+          </View>
+      </View>
         <TouchableOpacity
-          style={styles.copyButton}
-          onPress={() => this.activateActivity()}
+          style={styles.listCompleteActivityButton}
+          onPress={() => this.props.activateModalFunc(true, this.props.activityID)}
           activeOpacity={0}>
-          <Text style={styles.copyTextField}>Complete</Text>
+          <Text style={styles.copyTextField}>+ List</Text>
         </TouchableOpacity>
       </TouchableOpacity>
     );

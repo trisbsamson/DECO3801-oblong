@@ -10,7 +10,6 @@ export default StyleSheet.create({
       header:{
         padding: 10,
         flexDirection:'row',
-        flexWrap:'wrap'
     },
       
       Headertext: {
@@ -200,7 +199,7 @@ export default StyleSheet.create({
       header:{
         padding: 10,
         flexDirection:'row',
-        flexWrap:'wrap'
+        alignItems: 'center'
     },
 
 
@@ -303,7 +302,7 @@ export default StyleSheet.create({
         },
       topContainerBackgroundImage: {
         width: width,
-        height: 250,
+        height: 200,
         padding: 15
       },
       image1: {
@@ -325,6 +324,26 @@ export default StyleSheet.create({
         margin: 5,
         backgroundColor: 'white'
         },
+      cardItemContainer: {
+        width: width - 40,
+        height: width - 20,
+        alignItems: "center",
+        borderRadius: 10,
+        backgroundColor: "white",
+        marginBottom: 30,
+        alignSelf: "center"
+      },
+      cardItemImage: {
+        width: width - 40,
+        height: width - 80,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        marginBottom: 10
+      },
+      cardItemLabel: {
+        fontSize: 20,
+        fontWeight: "700"
+      },
 
 
     //might not be neccessary
@@ -379,6 +398,11 @@ export default StyleSheet.create({
       loginLogo: {
         width: 154,
         height: 45,
+      },
+      loginLeafLogo: {
+        width: 48,
+        height: 48,
+        marginBottom: 10
       },
       signupTextCont: {
         alignItems: 'center',
@@ -463,34 +487,95 @@ export default StyleSheet.create({
         fontSize: 18,
         padding: 32,
         color: '#777'
-      },
-      textBold: {
-        fontWeight: '500',
-        color: '#000'
-      },
-      buttonText: {
-        fontSize: 21,
-        marginTop: 30
-      },
+    },
+    textBold: {
+      fontWeight: '500',
+      color: '#000'
+    },
+    buttonText: {
+      fontSize: 21,
+      marginTop: 30
+    },
       buttonTouchable: {
         padding: 16,
         alignItems: 'center'
-        },
-        goBackButton: {
-            alignItems: 'center',
-            padding: 12,
-            width: 120,
-            backgroundColor: '#fff',
-            borderColor: '#000',
-            borderWidth: 1,
-            borderRadius: 3,
-            marginTop: 'auto',
-            marginBottom: 10,
-            marginLeft: 10,
-        },
-        bottomContainer: {
+      },
+      goBackButton_QR: {
+          alignItems: 'center',
+          padding: 12,
+          width: 120,
+          backgroundColor: '#fff',
+          borderColor: '#000',
+          borderWidth: 1,
+          borderRadius: 3,
+          marginTop: 'auto',
+          marginBottom: 10,
+          marginLeft: 10,
+      },
+        bottomContainer_QR: {
             flexDirection: 'column',
             alignItems: 'flex-start'
+        },
+        activityCompleteModalContainer: {
+          alignItems: 'center',
+          justifyContent: 'center',
+          flex: 1,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        },
+        activityCompleteModal_1: {
+          backgroundColor: '#fff',
+          borderWidth: 1,
+          borderColor: 'gray',
+          borderRadius: 3,
+          padding: 10,
+          height: 150,
+          width: 250
+        },
+        activityCompleteModal: {
+          backgroundColor: '#fff',
+          borderWidth: 1,
+          borderColor: 'gray',
+          borderRadius: 3,
+          padding: 10,
+          height: 300,
+          width: 350
+        },
+        activityCompleteModalButton_1: {
+          alignItems: 'center',
+          backgroundColor: '#fff',
+          borderWidth: 1,
+          borderColor: 'gray',
+          borderRadius: 3,
+          padding: 10,
+          marginTop: 'auto',
+          width: 228
+        },
+        activityCompleteModalButton_2: {
+
+        },
+        ratingGrid: {
+          flexDirection: 'row',
+          marginBottom: 10
+        },
+        ratingsArea: {
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginTop: 20
+        }, 
+        ratingImage_notSelected: {
+          width: 40,
+          height: 40,
+          opacity: 0.5
+        },
+        ratingImage_selected: {
+          width: 40,
+          height: 40,
+          opacity: 1.0
+        },
+        ratingButton: {
+          marginLeft: 2,
+          marginRight: 2,
+          backgroundColor: '#fff'
         },
 
         // ActivityScreen leading to activity screen from lists page to complete task
@@ -692,7 +777,7 @@ export default StyleSheet.create({
               height: 300,
               marginBottom: 20,
           },
-          listTitle: {
+          listTitle_WanderLists: {
               fontSize: 18,
               fontWeight: "700",
               paddingLeft:10,
@@ -810,11 +895,12 @@ export default StyleSheet.create({
         // ActivityListItem display the list in the page with the map 
         textFieldActivity: {
             fontSize: 15,
-            margin: 5
+            margin: 5,
+            marginRight: 10,
+            width: 160,
         },
-        copyButton: {
+        listCompleteActivityButton: {
             backgroundColor: '#fff',
-            marginLeft: 'auto',
             padding: 5,
             borderColor: '#000',
             borderWidth: 1,
@@ -885,7 +971,8 @@ export default StyleSheet.create({
           },
           topPanel: {
               flexDirection: 'row',
-              alignItems: 'center'
+              alignItems: 'center',
+              paddingLeft: 10
           },
           tagsDropdownButton: {
               padding: 5,
@@ -956,5 +1043,9 @@ export default StyleSheet.create({
               marginBottom: 10,
               flexDirection: 'row'
           },
+          leafIcon: {
+            width: 16,
+            height: 16
+          }
   });
 
