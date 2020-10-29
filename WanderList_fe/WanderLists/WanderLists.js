@@ -22,7 +22,7 @@ class WanderLists extends Component {
         return (
               <ListStack.Navigator headerMode="none" initialRouteName="listsView">
                 <ListStack.Screen name="listsView">
-                  {props => <ListsView {...props} parentNav={this.props.navigation} />}
+                  {props => <ListsView {...props} parentNav={this.props.navigation}/>}
                 </ListStack.Screen>
                 <ListStack.Screen name="specificListView" component={SpecificListView}/>
                 <ListStack.Screen name="activityView" component={ActivityScreen}/>

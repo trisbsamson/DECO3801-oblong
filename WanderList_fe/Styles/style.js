@@ -96,6 +96,7 @@ export default StyleSheet.create({
       //ActivityScreenAdd from the location screen
       container: {
         flex: 1,
+        backgroundColor: "#fff"
       },
       addListButton: {
         alignItems: 'center',
@@ -635,6 +636,14 @@ export default StyleSheet.create({
               marginTop: 'auto',
               marginBottom: 10,
               flexDirection: 'row'
+          },
+          activityDescriptionHeadings: {
+              fontSize: 18,
+              fontWeight: "700"
+          },
+          activityDescriptionBody: {
+              fontSize: 16,
+              marginBottom: 20
           },
 
 

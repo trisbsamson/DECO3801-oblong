@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {AppRegistry, Button, StyleSheet, View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import UserDataStore from '../UserDataStore/UserDataStore';
 import CheckBox from '@react-native-community/checkbox';
 import styles from '../Styles/style.js'
 
@@ -9,6 +10,22 @@ class LoginScreen extends Component {
         this.state = {usernameVal: "",
                       passwordVal: "",
                       rememberMeCheck: false}
+    }
+
+    attemptLogin() {
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/login/" + this.state.usernameVal + "/" + this.state.passwordVal)
+        .then(response => response.json())
+        .then(obj => this.processLogin(obj));
+    }
+
+    processLogin(obj) {
+        if(obj == "401") {
+            console.log("invalid username / password")
+        } else {
+            UserDataStore.setUserData(obj[0]);
+            this.props.navigation.navigate('AppContents');
+        }
+        //this.props.navigation.navigate('AppContents', {name: 'User'})
     }
 
     render() {
@@ -50,9 +67,7 @@ class LoginScreen extends Component {
                 <TouchableOpacity
                     style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.loginbutton)}
                     disabled = {(this.state.usernameVal == "" || this.state.passwordVal == "")}
-                    onPress={() =>
-                    this.props.navigation.navigate('AppContents', {name: 'User'})
-                    }
+                    onPress={() => this.attemptLogin()}
                 >
                     <Text style={{color: "#fff"}}>Log In</Text>
                 </TouchableOpacity>

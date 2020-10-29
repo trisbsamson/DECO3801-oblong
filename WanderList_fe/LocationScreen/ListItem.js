@@ -29,7 +29,7 @@ class ListItem extends Component {
             />
           </TouchableOpacity>
         </View>
-        <Text style={styles.subTitleText}>{this.props.subtitle}</Text>
+        <Text style={styles.subTitleText}>{this.props.distFromUser} km away</Text>
       </TouchableOpacity>
     );
   }

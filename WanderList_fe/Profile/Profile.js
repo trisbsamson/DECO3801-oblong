@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import ListItem from './ListItem'
 import styles from '../Styles/style.js'
+import UserDataStore from '../UserDataStore/UserDataStore';
 
 const renderItem = ({ item}, navigation) => (
     <ListItem title={item.title} navigation={navigation} redeemCode={item.redeemCode}/>
@@ -14,14 +15,22 @@ class Profile extends Component {
             listData: [],
             userName: "",
             userLocation: "",
-            userLevel: ""
+            userLevel: "",
+            userData: {
+                name: "",
+                id: -1,
+                imageurl: " "
+            }
         };
     }
 
     loadUserInfo(obj) {
-        this.setState({userName: obj['name'],
-                        userLocation: obj['location'],
-                        userLevel: obj['rank']});
+        this.setState({
+            userName: obj['name'],
+            userLocation: obj['location'],
+            userLevel: obj['rank'],
+            profilePicURL: obj['imageurl']
+        });
     }
 
     loadRewards(obj) {
@@ -32,27 +41,28 @@ class Profile extends Component {
                 title: obj[i]['name'], 
                 key: obj[i]['reward_id_id'].toString(), 
                 redeemCode: "12345", 
-                redeemed: obj[i]['redeemed']});
+                redeemed: obj[i]['redeemed']
+            });
         }
         this.setState({listData: listData});
     }
 
     getUserDetails() {
         // need to update this to use an actual user_id
-        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/user/1")
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/user/2")
         .then(response => response.json())
         .then(obj => this.loadUserInfo(obj));
     }
 
     getRewards() {
-        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_all_user_rewards/1")
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_all_user_rewards/" + this.state.userData.id)
         .then(response => response.json())
         .then(obj => this.loadRewards(obj));
     }
 
     componentDidMount() {
+        this.setState({userData: UserDataStore.getUserData()}, () => this.getRewards());
         this.getUserDetails();
-        this.getRewards();
     }
 
     render() {
@@ -68,11 +78,11 @@ class Profile extends Component {
              </View>
                 <View style={styles.nameBlock}>
                     <Image
-                        source={require('../Images/profile_placeholder.jpg')}
+                        source={{uri:this.state.userData.imageurl}}
                         style={styles.profileImage}
                     />
                     <Text style={styles.nameText}>
-                        {this.state.userName}
+                        {this.state.userData.name}
                     </Text>
                     <Text style={styles.nameSubText}>
                         {this.state.userLocation}

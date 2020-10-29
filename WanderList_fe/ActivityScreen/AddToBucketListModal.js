@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {Modal, Text, TextInput, View, TouchableOpacity, StyleSheet, FlatList} from 'react-native'
+import {Modal, Text, TextInput, View, TouchableOpacity, StyleSheet, FlatList} from 'react-native';
+import UserDataStore from '../UserDataStore/UserDataStore';
 //import styles from '../Styles/style.js'
 
 const styles = StyleSheet.create({
@@ -82,13 +83,13 @@ class AddToBucketListModal extends Component {
     }
 
     queryLists() {
-        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/bucketlist")
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlist_belonging_to_user/" + this.state.userData.id)
         .then(response => response.json())
         .then(obj => this.loadLists(obj));
     }
 
     componentDidMount() {
-        this.queryLists();
+        this.setState({userData: UserDataStore.getUserData()}, () => this.queryLists());
     }
 
     render() {
