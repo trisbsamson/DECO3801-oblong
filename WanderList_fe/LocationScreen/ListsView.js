@@ -13,13 +13,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import ListItem from './ListItem';
 import SpecificListView from './SpecificListView';
 import Header from './Header';
-import styles from '../Styles/style.js'
+import styles from '../Styles/style.js';
+import UserDataStore from '../UserDataStore/UserDataStore';
 
 
 const renderItem = ({item}, navigation, parentComp) => (
   <ListItem
     name={item.name}
-    subtitle={item.subtitle}
+    distFromUser={item.distFromUser}
     locationID={item.key}
     navigation={navigation}
     parentComp={parentComp}
@@ -56,12 +57,28 @@ class ListsView extends Component {
         listData.push({
             key: obj[i]["id"].toString(),
             name: obj[i]["name"],
-            subtitle: "5 km away"
+            distFromUser: this.computeDistanceFromUser(obj[i]['latitude'], obj[i]['longitude']).toFixed(0)
         });
     }
     this.setState({
         locationsList: listData
     });
+  }
+
+  computeDistanceFromUser(lat, long) {
+    var latUser = this.state.userData.latitude;
+    var longUser = this.state.userData.longitude;
+    const R = 6371;
+    const phi_1 = lat * Math.PI / 180;
+    const phi_2 = latUser * Math.PI / 180;
+    const delPhi = (latUser - lat) * Math.PI / 180;
+    const delLambda = (longUser - long) * Math.PI / 180;
+
+    const a = Math.sin(delPhi / 2) * Math.sin(delPhi / 2) + Math.cos(phi_1) * Math.cos(phi_2) * Math.sin(delLambda / 2) * Math.sin(delLambda / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const d = R * c;
+
+    return d;
   }
 
   loadLocationData() {
@@ -79,7 +96,7 @@ class ListsView extends Component {
           this.props.navigation.navigate("AppContents", {screen: 'Location Screen', initial: false});
       }
   });
-    this.loadLocationData();
+    this.setState({userData: UserDataStore.getUserData()}, () => this.loadLocationData());
   }
 
   addList() {

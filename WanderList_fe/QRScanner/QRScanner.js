@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UserDataStore from '../UserDataStore/UserDataStore';
 
 import {
   AppRegistry,
@@ -24,11 +25,15 @@ class QRScanner extends Component {
         };
     }
   onSuccess = e => {
-    this.checkActivityComplete(e.data);
+    if(!this.state.activityCompleteModalVisible) {
+      this.checkActivityComplete(e.data);
+    }
+    
     //this.props.navigation.goBack();
   };
 
   setCompleteMode(response) {
+    console.log(response.status);
     if(response.status == 500) { // invalid QR code
       this.setState({completeMode: 1});
     } else if(response.status == 200) {
@@ -38,20 +43,22 @@ class QRScanner extends Component {
           this.setState({completeMode: 2});
         } else if(data == "already completed") { // Activity already completed
           this.setState({completeMode: 3});
-        } else { // Activity successfully completed
-          this.setState({completeMode: 4});
         }
       })
+    } else if(response.status == 201) { // succesful completion
+      this.setState({completeMode: 4});
     }
   }
 
   checkActivityComplete(qrCode) {
+    var userData = UserDataStore.getUserData();
     var bdy = JSON.stringify({
-      "user_id": 1,
+      "user_id": userData.id,
       "activity_id": this.props.route.params.activityID,
       "qr_code": qrCode,
       "bucketlist_id": this.props.route.params.bucketListID
   });
+  console.log(bdy);
     var queryString = "https://deco3801-oblong.uqcloud.net/wanderlist/complete_activity/";
     fetch(queryString, {
         method: 'POST',
@@ -89,6 +96,8 @@ class QRScanner extends Component {
         <ActivityCompleteModal activityCompleteModalVisible={this.state.activityCompleteModalVisible} completeMode={this.state.completeMode} hideModalFunc={this.hideModal.bind(this)}/>
         <QRCodeScanner
           onRead={this.onSuccess}
+          reactivate={true}
+          reactivateTimeout={5000}
           flashMode={RNCamera.Constants.FlashMode.off}
           topContent={
             <Text style={styles.centerText}>

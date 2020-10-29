@@ -29,6 +29,8 @@ class ActivityScreen extends Component {
         activityDetails['id'] = obj[0]['id'];
         activityDetails['name'] = obj[0]['title'];
         activityDetails['description'] = obj[0]['description'];
+        activityDetails['guidanceDescription'] = obj[0]['guidance_description'];
+        activityDetails['susDescription'] = obj[0]['sustainability_description'];
         activityDetails['points'] = obj[0]['points'];
         activityDetails['website'] = obj[0]['website'];
         activityDetails['imageurl'] = obj[0]['imageurl'];
@@ -89,7 +91,12 @@ class ActivityScreen extends Component {
                     style={styles.mainImage}
                 />
                 <View style={styles.descriptionPane}>
-                    <Text style={{fontSize: 16}}>{this.state.activityDetails.description}</Text>
+                <Text style={styles.activityDescriptionHeadings}>Activity description</Text>
+                    <Text style={styles.activityDescriptionBody}>{this.state.activityDetails.description}</Text>
+                    <Text style={styles.activityDescriptionHeadings}>Activity guidance</Text>
+                    <Text style={styles.activityDescriptionBody}>{this.state.activityDetails.guidanceDescription}</Text>
+                    <Text style={styles.activityDescriptionHeadings}>Sustainability</Text>
+                    <Text style={styles.activityDescriptionBody}>{this.state.activityDetails.susDescription}</Text>
                 </View>
                 <View style={styles.buttonPane}>
                     <TouchableOpacity

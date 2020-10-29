@@ -13,7 +13,8 @@ import {
   FlatList
 } from 'react-native';
 import Category from './Category';
-import CardListItem from './CardListItem'
+import CardListItem from './CardListItem';
+import UserDataStore from '../UserDataStore/UserDataStore';
 import styles from '../Styles/style.js'
 const image = { uri: "https://www.eait.uq.edu.au/filething/get-styled/landscape_image_600x400/47399/20190804-open-day-web-87.jpg?itok=ymQSMZ6U" };
 const imageUQ = { uri:'https://upload.wikimedia.org/wikipedia/commons/6/67/Richards_Building_5%2C_St_Lucia_Campus%2C_UQ%2C_Brisbane_03.jpg'};
@@ -27,7 +28,9 @@ const renderCardListItem = ({item}, navigation) => (
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+        userData: {}
+    };
   }
 
   processLocationData(obj) {
@@ -54,6 +57,7 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
+      this.setState({userData: UserDataStore.getUserData()});
       this.loadLocationData();
   }
 
@@ -62,13 +66,13 @@ class HomeScreen extends Component {
                 <View style={styles.container}>
                     <View stlye = {styles.topContainer}>
                         <ImageBackground source={image} style={styles.topContainerBackgroundImage}>
-                        <TouchableOpacity onPress={this.props.navigation.openDrawer}>
+                        <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                             <Image
                             source={{uri:'https://cdn.iconscout.com/icon/free/png-256/hamburger-menu-462145.png'}}
                             style={{ width: 30, height: 30, marginBottom: 10 }}
                             />
                         </TouchableOpacity>
-                            <Text style={styles.titleHome}>Hi User</Text>
+                            <Text style={styles.titleHome}>Hi {this.state.userData.name}</Text>
                             <Text style={styles.subtitleHome}>
                                 Where would you like to travel?
                             </Text>
