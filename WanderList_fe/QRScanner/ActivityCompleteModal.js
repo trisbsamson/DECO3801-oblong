@@ -13,6 +13,33 @@ class ActivityCompleteModal extends Component {
         }
     }
 
+    sendRatingFunc() {
+        var bdy = JSON.stringify({
+            "activity_id": this.props.activityID,
+            "bucketlist_id": this.props.bucketListID,
+            "sustainability_rating": this.state.susRating,
+            "fun_rating": this.state.funRating
+        });
+        console.log(bdy);
+        var queryString = "https://deco3801-oblong.uqcloud.net/wanderlist/rate_activity";
+        fetch(queryString, {
+            method: 'POST',
+            body: bdy,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {console.log(response.status); response.json().then(data => console.log(data))});
+          
+        this.finishFunc();
+    }
+
+    finishFunc() {
+        this.props.hideModalFunc();
+        this.props.reloadListDataFunc();
+        this.props.navigation.goBack();
+    }
+
     render() {
         return (<Modal
             transparent={true}
@@ -47,15 +74,15 @@ class ActivityCompleteModal extends Component {
                     )}
                     {(this.props.completeMode == 3) && (
                         <View style={styles.activityCompleteModalContainer}>
-                            <View style={styles.activityCompleteModal}>
-                                <Text style={{fontSize: 16}}>You've already completed this activity</Text>
+                            <View style={styles.activityCompleteModal_1}>
+                                <Text style={{fontSize: 16}}>You've already completed this activity in another WanderList</Text>
                                 <View style={{flex: 1, flexDirection: 'row'}}>
                                     <TouchableOpacity
                                         style={styles.cancelButton}
                                         onPress={() => this.props.hideModalFunc()}>
                                         <Text> Cancel </Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.addButton}>
+                                    <TouchableOpacity style={styles.addButton} onPress={() => this.finishFunc()}>
                                         <Text style={{color: '#fff'}}> Finish </Text>
                                     </TouchableOpacity>
                                 </View>
@@ -65,7 +92,15 @@ class ActivityCompleteModal extends Component {
                     {(this.props.completeMode == 4) && (
                         <View style={styles.activityCompleteModalContainer}>
                             <View style={styles.activityCompleteModal}>
-                                <Text style={{fontSize: 16}}>Thanks for completing this activity! What did you think?</Text>
+                                <Text style={{fontSize: 16}}>Thanks for completing this activity!</Text>
+                                {this.props.reward != "" && 
+                                <View>
+                                    <Text style={{fontSize: 16, marginBottom: 10}}>You earned the reward: </Text>
+                                    <View style={{alignItems: 'center', marginBottom: 10}}>
+                                    <Text style={{fontSize: 16, fontWeight: '700'}}>{this.props.reward}</Text>
+                                    </View>
+                                </View>}
+                                <Text style={{fontSize: 16}}>What did you think?</Text>
                                 <View style={styles.ratingsArea}>
                                     <Text style={{fontSize: 16, paddingBottom: 5}}>Sustainability</Text>
                                     <View style={styles.ratingGrid}>
@@ -142,7 +177,7 @@ class ActivityCompleteModal extends Component {
                                         onPress={() => this.props.hideModalFunc()}>
                                         <Text> Cancel </Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.addButton} onPress={() => this.props.hideModalFunc()}>
+                                    <TouchableOpacity style={styles.addButton} onPress={() => this.sendRatingFunc()}>
                                         <Text style={{color: '#fff'}}> Finish </Text>
                                     </TouchableOpacity>
                                 </View>

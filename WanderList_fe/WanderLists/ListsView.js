@@ -25,8 +25,9 @@ class ListsView extends Component {
     loadLists(obj) {
         var listData = [];
         var i;
+        console.log(obj)
         for(i = 0; i < obj.length; i++) {
-            listData.push({title: obj[i]['name'], activityCount: 0, key: obj[i]['id'].toString()})
+            listData.push({title: obj[i]['name'], activityCount: obj[i]['activity_count'], key: obj[i]['id'].toString()})
         }
         
         this.setState({listData: listData});
@@ -60,7 +61,7 @@ class ListsView extends Component {
         const {listNameModalVisible} = this.state;
         return (
                 <View style={styles.container}>
-                        <AddListModal queryLists={this.queryLists.bind(this)} listNameModalVisible={this.state.listNameModalVisible} hideModalFunc={this.hideModal.bind(this)}/>
+                        <AddListModal queryLists={this.queryLists.bind(this)} listNameModalVisible={this.state.listNameModalVisible} hideModalFunc={this.hideModal.bind(this)} userID={this.state.userData.id}/>
                             <View style={styles.header}>
                                 <TouchableOpacity onPress={this.props.navigation.openDrawer}>
                                   <Image
@@ -68,7 +69,7 @@ class ListsView extends Component {
                                     style={{ width: 30, height: 30 }}
                                   />
                                 </TouchableOpacity>
-                                <Text style={styles.listTitle_WanderLists}>Your Lists {this.state.userData.name}</Text>
+                                <Text style={styles.listTitle_WanderLists}>Your Lists</Text>
                             </View>
                         <FlatList style={styles.list} data={this.state.listData} renderItem={(item) => renderItem(item, this.props.navigation, this)}/>
                         <TouchableOpacity

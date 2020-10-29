@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Dimensions} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList, Dimensions, ScrollView} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import ActivityListItem from './ActivityListItem';
 import Icon from 'react-native-vector-icons/Feather';
@@ -167,10 +167,10 @@ class SpecificListView extends Component {
                             }, () => this.filterActivities()))}
                         />
                     </View>
-                    
-                    <FlatList data={this.state.filteredIncompleteListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this), this.state.listID)}/>
+                    <FlatList style={{maxHeight: 200}} data={this.state.filteredIncompleteListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this), this.state.listID)}/>
                     <Text style={styles.completeStatusText}> Completed</Text>
-                    <FlatList data={this.state.filteredCompletedListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this), this.state.listID)}/>
+                    <FlatList style={{maxHeight: 180}} data={this.state.filteredCompletedListData} renderItem={(item) => renderItem(item, this.props.navigation, this.loadListData.bind(this), this.state.listID)}/>
+                    
                 </View>
             </View>
         );

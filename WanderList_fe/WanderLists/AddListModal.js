@@ -16,7 +16,7 @@ class AddListModal extends Component {
                 method: 'POST',
                 body: JSON.stringify({
                     "name": this.state.textInputVal,
-                    "user_id": 1
+                    "user_id": this.props.userID
                 }),
                 headers: {
                     'Content-Type': 'application/json'

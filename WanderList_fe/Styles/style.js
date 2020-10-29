@@ -515,7 +515,8 @@ export default StyleSheet.create({
       },
         bottomContainer_QR: {
             flexDirection: 'column',
-            alignItems: 'flex-start'
+            alignItems: 'flex-start',
+            paddingTop: 85
         },
         activityCompleteModalContainer: {
           alignItems: 'center',
@@ -538,7 +539,7 @@ export default StyleSheet.create({
           borderColor: 'gray',
           borderRadius: 3,
           padding: 10,
-          height: 300,
+          height: 350,
           width: 350
         },
         activityCompleteModalButton_1: {

@@ -42,7 +42,8 @@ class ActivityScreen extends Component {
         this.props.navigation.navigate("qrScanner",
         {
             activityID: this.props.route.params.activityID,
-            bucketListID: this.props.route.params.bucketListID
+            bucketListID: this.props.route.params.bucketListID,
+            reloadListsFunc: this.props.route.params.reloadListsFunc
         });
     }
 

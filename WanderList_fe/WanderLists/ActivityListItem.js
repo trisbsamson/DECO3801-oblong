@@ -13,7 +13,8 @@ class ActivityListItem extends Component {
         {
             activityID: this.props.activityID,
             bucketListID: this.props.listID,
-            completed: this.props.completed
+            completed: this.props.completed,
+            reloadListsFunc: this.props.reloadListsFunc
         });
     }
 
@@ -21,7 +22,8 @@ class ActivityListItem extends Component {
         this.props.navigation.navigate("qrScanner",
         {
             activityID: this.props.activityID,
-            bucketListID: this.props.listID
+            bucketListID: this.props.listID,
+            reloadListsFunc: this.props.reloadListsFunc
         });
     }
 

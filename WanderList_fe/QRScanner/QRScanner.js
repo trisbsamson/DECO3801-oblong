@@ -21,7 +21,8 @@ class QRScanner extends Component {
         this.state = {
           topText: "Scan Activity QR Code",
           activityCompleteModalVisible: false,
-          completeMode: 0
+          completeMode: 0,
+          reward: ""
         };
     }
   onSuccess = e => {
@@ -46,7 +47,15 @@ class QRScanner extends Component {
         }
       })
     } else if(response.status == 201) { // succesful completion
-      this.setState({completeMode: 4});
+      response.json()
+      .then((data) => {
+        if(data != "-1") {
+          this.setState({completeMode: 4, reward: data});
+        } else {
+          this.setState({completeMode: 4, reward: ""});
+        }
+      })
+      
     }
   }
 
@@ -58,7 +67,6 @@ class QRScanner extends Component {
       "qr_code": qrCode,
       "bucketlist_id": this.props.route.params.bucketListID
   });
-  console.log(bdy);
     var queryString = "https://deco3801-oblong.uqcloud.net/wanderlist/complete_activity/";
     fetch(queryString, {
         method: 'POST',
@@ -93,7 +101,16 @@ class QRScanner extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <ActivityCompleteModal activityCompleteModalVisible={this.state.activityCompleteModalVisible} completeMode={this.state.completeMode} hideModalFunc={this.hideModal.bind(this)}/>
+        <ActivityCompleteModal 
+            activityCompleteModalVisible={this.state.activityCompleteModalVisible} 
+            completeMode={this.state.completeMode} 
+            hideModalFunc={this.hideModal.bind(this)}
+            navigation={this.props.navigation}
+            reloadListDataFunc={this.props.route.params.reloadListsFunc}
+            reward={this.state.reward}
+            bucketListID={this.props.route.params.bucketListID}
+            activityID={this.props.route.params.activityID}
+        />
         <QRCodeScanner
           onRead={this.onSuccess}
           reactivate={true}
@@ -106,11 +123,6 @@ class QRScanner extends Component {
           }
           bottomContent={
             <View>
-              <TouchableOpacity
-                  style={styles.goBackButton_QR}
-                  onPress={() =>this.testingOpenRatingScreen()}>
-                  <Text style={{color: '#000'}}>Back</Text>
-              </TouchableOpacity>
               <TouchableOpacity
               style={styles.goBackButton_QR}
               onPress={() =>this.back()}>
