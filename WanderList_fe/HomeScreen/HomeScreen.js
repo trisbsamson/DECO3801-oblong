@@ -39,20 +39,22 @@ class HomeScreen extends Component {
         };
     }
 
-  /**
-  * Loads locations onto home screen from database
-  */
-  processLocationData(obj) {
-    var listData = [];
-    var i;
-    for(i = 0; i < obj.length; i++) {
-        listData.push({
-            key: obj[i]["id"].toString(),
-            name: obj[i]["name"],
-            imageURL: obj[i]["imageurl"]
+    // processes the API response to generate a list of locations to be rendered
+    processLocationData(obj) {
+        var listData = [];
+        var i;
+        for(i = 0; i < obj.length; i++) {
+            listData.push({
+                key: obj[i]["id"].toString(),
+                name: obj[i]["name"],
+                imageURL: obj[i]["imageurl"]
+            });
+        }
+        this.setState({
+            locationsList: listData
         });
     }
-  }
+
   /**
   * Gets data of locations and processes data to be set on home screen
   */
