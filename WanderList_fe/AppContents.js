@@ -17,12 +17,13 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
+/**
+ * Root component of the contents of the app. Stores the drawer navigator available from all pages and all of the main pages in the app.
+ * 
+ */
 class AppContents extends Component {
     constructor(props) {
         super(props);
-    }
-    componentDidMount() {
-        //console.log(this.props.route.params.userData);
     }
 
     render() {

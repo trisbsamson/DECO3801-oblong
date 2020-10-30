@@ -25,6 +25,11 @@ const renderCardListItem = ({item}, navigation) => (
     <CardListItem locID={item.key} name={item.name} imageURL={item.imageURL} navigation={navigation}/>
 );
 
+/**
+ * This is the component for the main homescreen of the app. The screen features a user-specific greeting,
+ * and a list of nearby location cards to view.
+ * 
+ */
 class HomeScreen extends Component {
   constructor(props) {
     super(props);

@@ -15,6 +15,10 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import styles from '../Styles/style.js'
 
+/**
+ * Component containing the QR code scanner. Handles scanning, validating the QR code with the server and setting the correct values to display the right modal.
+ * 
+ */
 class QRScanner extends Component {
     constructor(props) {
         super(props);

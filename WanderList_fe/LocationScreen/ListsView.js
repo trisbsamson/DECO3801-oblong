@@ -26,6 +26,10 @@ const renderItem = ({item}, navigation, parentComp) => (
     parentComp={parentComp}
   />
 );
+/**
+ * Main list viewed at the root of this navigation path. Shows a list of available locations and filters.
+ * 
+ */
 class ListsView extends Component {
   constructor(props) {
     super(props);

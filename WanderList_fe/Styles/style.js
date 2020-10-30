@@ -3,9 +3,14 @@ import {StyleSheet, Dimensions} from "react-native"
 
 const { width, height } = Dimensions.get('window');
 
+/**
+ * Main style library for the whole app. Style types are roughly divided into the screen/component they are used on.
+ * In some cases, the same type of component with similar styles is used on two pages, but additional special
+ * layout styles are required for each component. In this case the style is split into two different types.
+ */
 export default StyleSheet.create({
 
-    // location screen - Header
+    // location screen - Header (DEPRECATED)
 
       header:{
         padding: 10,
@@ -23,7 +28,7 @@ export default StyleSheet.create({
       },
 
 
-    //listsView class which is basically in charge of the whole location screen
+    // Location Screen - ListsView
     containerListView: {
         flex: 1,
         marginLeft: 15,
@@ -68,7 +73,7 @@ export default StyleSheet.create({
       },
 
 
-    // ListItem (Location Screen)    contents of the list in location screen
+    // Location Screen - ListItem
     listItemLocation: {
         backgroundColor: '#fff',
         padding: 14,
@@ -93,7 +98,7 @@ export default StyleSheet.create({
 
 
 
-      //ActivityScreenAdd from the location screen
+      // Activity - ActivityScreenAdd
       container: {
         flex: 1,
         backgroundColor: "#fff"
@@ -121,9 +126,6 @@ export default StyleSheet.create({
           borderWidth: 1,
           borderRadius: 3,
       },
-      // textField: {
-      //     fontSize: 20,
-      // },
       titlePanel: {
           marginBottom: 30,
           marginTop: 15,
@@ -151,18 +153,7 @@ export default StyleSheet.create({
           flexDirection: 'row'
       },
     
-
-
-
-
-
-
-
-
-
-
-
-      //Profile Page
+      // Profile - Profile
       containerProfile: {
         flex: 1,
       },
@@ -203,9 +194,7 @@ export default StyleSheet.create({
         alignItems: 'center'
     },
 
-
-      //profile ListItem
-
+    // Profile - ListItem
     textFieldProfile: {
         color: '#fff'
     },
@@ -252,7 +241,7 @@ export default StyleSheet.create({
         paddingTop: 12,
     },
 
-    // HomeScreen style
+    // HomeScreen - HomeScreen
     containerHome: {
         flex: 1,
         justifyContent: 'flex-start',
@@ -345,8 +334,6 @@ export default StyleSheet.create({
         fontSize: 20,
         fontWeight: "700"
       },
-
-
     //might not be neccessary
     CategoryContainer: {
         flex: 1,
@@ -354,10 +341,7 @@ export default StyleSheet.create({
         justifyContent: 'center'
     },
 
-
-
-    //login page style
-
+    // LoginScreen - LoginScreen
     loginContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -420,10 +404,7 @@ export default StyleSheet.create({
         fontWeight:'500',
       },
 
-
-
-      //Sign Up page
-
+      // SignupScreen - SignupScreen
       containerSignUp: {
         flex: 1,
         justifyContent: 'center',
@@ -481,8 +462,7 @@ export default StyleSheet.create({
       },
 
 
-    //QR Code
-
+    // QRScanner - QRScanner
     centerText: {
         flex: 1,
         fontSize: 18,

@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 import styles from '../Styles/style.js'
 
+/**
+ * Component used to display reward items in the list available on the profile page.
+ * 
+ */
 class ListItem extends Component {
     constructor(props) {
         super(props);

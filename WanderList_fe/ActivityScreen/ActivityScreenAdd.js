@@ -5,6 +5,11 @@ import styles from '../Styles/style.js'
 
 const { width, height } = Dimensions.get('window');
 
+/**
+ * This is the component for the activity screen coming from the 'Locations' route.
+ * This screen displays all information about the activity and supports functionality to add the activity to a WanderList.
+ * 
+ */
 class ActivityScreen extends Component {
     constructor(props) {
         super(props);

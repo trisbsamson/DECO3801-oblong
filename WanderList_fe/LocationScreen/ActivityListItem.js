@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import styles from '../Styles/style';
 
+/**
+ * This is the list item in the activity list for each location. 
+ * It handles navigation upon selecting an activity to view or add to list.
+ * 
+ */
 class ActivityListItem extends Component {
   constructor(props) {
     super(props);

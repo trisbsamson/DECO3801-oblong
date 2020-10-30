@@ -115,6 +115,13 @@ function addToList(bucketListID, activityID){
     
     
 }
+
+/**
+ * Deprecated component for a modal which allows users to add activities to bucketlists.
+ * 
+ * DEPRECATED.
+ * 
+ */
 class ListsView extends Component {
     constructor(props) {
         super(props);

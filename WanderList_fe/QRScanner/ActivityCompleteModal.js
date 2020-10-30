@@ -3,6 +3,15 @@ import {Modal, Text, TextInput, View, TouchableOpacity, StyleSheet, Image} from 
 import style from '../Styles/style.js'
 import styles from '../Styles/style.js'
 
+/**
+ * Component for the modal that pops up when you scan a QR code.
+ * Has 4 states:
+ *  1. An invalid QR code was scanned (Try again)
+ *  2. The QR code is valid but didn't match the activity you're trying to complete (Try again)
+ *  3. The QR code is valid and is correct for this activity, but you've already completed it so you can't get any rewards or rate it.
+ *  4. QR code is valid, correct for this activity, and you haven't completed it yet. Now you can see the reward you unlocked and supply a rating.
+ * 
+ */
 class ActivityCompleteModal extends Component {
     constructor(props) {
         super(props)

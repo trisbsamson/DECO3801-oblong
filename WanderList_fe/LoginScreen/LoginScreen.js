@@ -4,6 +4,11 @@ import UserDataStore from '../UserDataStore/UserDataStore';
 import CheckBox from '@react-native-community/checkbox';
 import styles from '../Styles/style.js'
 
+/**
+ * Main login component. This will be the first screen seen upon opening the app. 
+ * Gives fields for login and button to register a user.
+ * 
+ */
 class LoginScreen extends Component {
     constructor(props) {
         super(props);

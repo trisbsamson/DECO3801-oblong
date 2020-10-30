@@ -21,6 +21,10 @@ import { CommonActions, useNavigation } from '@react-navigation/native'
 
 const ListStack = createStackNavigator();
 
+/**
+ * Root component of the 'Browse Locations' route. Consists of a stack navigator for each level of this navigation path.
+ * 
+ */
 class LocationScreen extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +33,7 @@ class LocationScreen extends Component {
         {title: 'First List'},
         {title: 'Second List'},
         {title: 'Also an Activity'},
-      ],
+      ]
     };
   }
 
@@ -41,9 +45,11 @@ class LocationScreen extends Component {
     return (
         <ListStack.Navigator headerMode="none">
           <ListStack.Screen name="listsView">
-                  {props => <ListsView {...props} parentNav={this.props.navigation} />}
+                  {props => <ListsView {...props} parentNav={this.props.navigation} parentComp={this}/>}
           </ListStack.Screen>
-          <ListStack.Screen name="specificLocationView" component={SpecificListView}/>
+          <ListStack.Screen name="specificLocationView">
+                {props => <SpecificListView {...props} parentNav={this.props.navigation} parentComp={this}/>}
+            </ListStack.Screen>
           <ListStack.Screen name="activityView" component={ActivityScreenAdd}/>
           <ListStack.Screen name="addToList" component={AddToList}/>
         </ListStack.Navigator>

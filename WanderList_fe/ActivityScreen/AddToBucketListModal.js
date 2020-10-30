@@ -3,6 +3,9 @@ import {Modal, Text, TextInput, View, TouchableOpacity, StyleSheet, FlatList} fr
 import UserDataStore from '../UserDataStore/UserDataStore';
 //import styles from '../Styles/style.js'
 
+/**
+ * Specific custom styles for this component only.
+ */
 const styles = StyleSheet.create({
   cancelButton: {
     alignItems: 'center',
@@ -46,10 +49,15 @@ const styles = StyleSheet.create({
   }
 });
 
+
 const renderItem = ({ item}, navigation, addToListFunc) => (
     <TouchableOpacity style={styles.listItem} onPress={() => addToListFunc(item.key)}><Text>{item.title}</Text></TouchableOpacity>
 );
 
+/**
+ * This is the component for the modal box which allows the user to add activities to their bucketlists.
+ * 
+ */
 class AddToBucketListModal extends Component {
     constructor(props) {
         super(props)

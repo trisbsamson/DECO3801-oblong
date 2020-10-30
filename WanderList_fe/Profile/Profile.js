@@ -8,6 +8,10 @@ const renderItem = ({ item}, navigation) => (
     <ListItem title={item.title} navigation={navigation} redeemCode={item.redeemCode}/>
 );
 
+/**
+ * Profile screen which displays basic user details and redeemable rewards list.
+ * 
+ */
 class Profile extends Component {
     constructor(props) {
         super(props);

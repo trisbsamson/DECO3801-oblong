@@ -3,6 +3,10 @@ import {AppRegistry, Button, StyleSheet, View, Text, TextInput, TouchableOpacity
 import CheckBox from '@react-native-community/checkbox';
 import styles from '../Styles/style.js'
 
+/**
+ * Component for registering new users to the database. Features a few fields for user details.
+ * 
+ */
 class SignupScreen extends Component {
     constructor(props) {
         super(props);

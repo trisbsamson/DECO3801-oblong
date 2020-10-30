@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import styles from '../Styles/style.js'
 
+/**
+ * List item component for elements in the Locations list
+ * 
+ */
 class ListItem extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +16,7 @@ class ListItem extends Component {
     this.props.navigation.navigate('specificLocationView', {
       locationName: this.props.name,
       locationID: this.props.locationID,
+      fromHomeScreen: false
     });
   }
 

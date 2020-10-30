@@ -5,10 +5,16 @@ import LoginScreen from './LoginScreen/LoginScreen';
 import AppContents from './AppContents'
 import SignupScreen from './SignupScreen/SignupScreen';
 import { createStackNavigator } from '@react-navigation/stack';
+import { LogBox } from 'react-native';
 
+LogBox.ignoreAllLogs();
 
 const Stack = createStackNavigator();
 
+/**
+ * Root component of the app - stores the login, register, and app contents screen.
+ * 
+ */
 class App extends Component {
 
     constructor(props) {

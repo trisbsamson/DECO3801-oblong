@@ -7,7 +7,10 @@ import {
     TouchableOpacity
 } from "react-native";
 
-
+/**
+ * Deprecated component for location cards on main screen.
+ * 
+ */
 class Category extends Component {
     constructor(props) {
         super(props);

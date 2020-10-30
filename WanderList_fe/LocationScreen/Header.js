@@ -3,6 +3,10 @@ import { View, Text, StyleSheet,Image,TouchableOpacity} from "react-native";
 import { CommonActions, useNavigation } from '@react-navigation/native'
 import styles from '../Styles/style.js'
 
+/**
+ * Deprecated component for panel on top of screen on LocationsListView page.
+ * 
+ */
 const Header = ({ title,navigation }) => {
   return (
     <View style={styles.header}>
