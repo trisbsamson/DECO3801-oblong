@@ -38,6 +38,9 @@ class HomeScreen extends Component {
     };
   }
 
+  /**
+  * Loads locations onto home screen from database
+  */
   processLocationData(obj) {
     var listData = [];
     var i;
@@ -53,6 +56,9 @@ class HomeScreen extends Component {
     });
   }
 
+  /**
+  * Gets data of locations and processes data to be set on home screen
+  */
   loadLocationData() {
     fetch("https://deco3801-oblong.uqcloud.net/wanderlist/location/", {
         method: "GET"
@@ -61,6 +67,9 @@ class HomeScreen extends Component {
     .then(obj => this.processLocationData(obj));
   }
 
+  /**
+  * Main function to call to set state and load the location data onto the home screen
+  */
   componentDidMount() {
       this.setState({userData: UserDataStore.getUserData()});
       this.loadLocationData();

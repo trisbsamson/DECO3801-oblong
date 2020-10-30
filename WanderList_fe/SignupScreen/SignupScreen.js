@@ -14,6 +14,9 @@ class SignupScreen extends Component {
                       emailVal: "",
                       passwordVal: ""}
     }
+    /**
+    * Function to register the user to database
+    */
      registerUser() {
             if(this.state.textInputVal != "") {
                 var queryString = "https://deco3801-oblong.uqcloud.net/wanderlist/user/";
@@ -28,11 +31,12 @@ class SignupScreen extends Component {
                         }
                     })
                 .then(response => console.log("Response: " + response.status))
-//                .then(this.props.queryLists()) //
                 .catch((error) => {console.error(error);});
-//                this.props.hideModalFunc();
             }
      }
+     /**
+     * Function calling register and navigating to home page
+     */
      registerAndNavigate(){
         this.registerUser();
         this.props.navigation.navigate('AppContents', {name: 'User'});
