@@ -59,11 +59,13 @@ const renderItem = ({ item}, navigation, addToListFunc) => (
  * 
  */
 class AddToBucketListModal extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props)
         this.state = {textInputVal: ""}
     }
 
+    // function sends a POST request to the API to add an activity to a list
     addToList(listID) {
         // TODO: send request to add to the specified list
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/bucketlist_activity/", {
@@ -80,6 +82,7 @@ class AddToBucketListModal extends Component {
         this.props.hideModalFunc();
     }
 
+    // route processes the API response of WanderLists to generate a list of WanderLists we can add activities to.
     loadLists(obj) {
         var listData = [];
         var i;
@@ -90,16 +93,19 @@ class AddToBucketListModal extends Component {
         this.setState({listData: listData});
     }
 
+    // requests a list of available WanderLists then calls a function to process the response
     queryLists() {
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlist_belonging_to_user/" + this.state.userData.id)
         .then(response => response.json())
         .then(obj => this.loadLists(obj));
     }
 
+    // when loading the component, query the lists so they can be rendered
     componentDidMount() {
         this.setState({userData: UserDataStore.getUserData()}, () => this.queryLists());
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (<Modal
             transparent={true}

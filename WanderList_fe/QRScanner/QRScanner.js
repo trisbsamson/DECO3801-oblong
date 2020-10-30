@@ -20,6 +20,7 @@ import styles from '../Styles/style.js'
  * 
  */
 class QRScanner extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {
@@ -29,14 +30,15 @@ class QRScanner extends Component {
           reward: ""
         };
     }
+  
+  // function is called when a QR code is successfully scanned. Calls the check function to make an API call and check the QR code.
   onSuccess = e => {
     if(!this.state.activityCompleteModalVisible) {
       this.checkActivityComplete(e.data);
     }
-    
-    //this.props.navigation.goBack();
   };
 
+  // processes the API response to checking the QR code. Based on status codes and response text we can determine if the activity is completed successfully.
   setCompleteMode(response) {
     console.log(response.status);
     if(response.status == 500) { // invalid QR code
@@ -63,6 +65,7 @@ class QRScanner extends Component {
     }
   }
 
+  // Calls the API to determine if a QR code is valid; if it is, completes the activity and returns the unlocked reward (if  any)
   checkActivityComplete(qrCode) {
     var userData = UserDataStore.getUserData();
     var bdy = JSON.stringify({
@@ -83,14 +86,17 @@ class QRScanner extends Component {
     .then(this.setModalVisible(true));
   }
 
+  // navigates back one page
   back() {
       this.props.navigation.goBack();
   }
 
+  // hides the acitivtyComplete modal
   hideModal() {
     this.setState({activityCompleteModalVisible: false});
   }
 
+  // function used for testing - not used in release build
   testingOpenRatingScreen() {
     this.setState({
       completeMode: 4,
@@ -98,10 +104,12 @@ class QRScanner extends Component {
     })
   }
 
+  // sets the visibility of the acitivtyCompleteModal
   setModalVisible = (visible) => {
     this.setState({activityCompleteModalVisible: visible});
-}
+  }
 
+  // render method - returns JSX components to render to DOM
   render() {
     return (
       <View style={{flex: 1}}>

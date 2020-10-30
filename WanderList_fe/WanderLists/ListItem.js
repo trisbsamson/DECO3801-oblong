@@ -2,11 +2,17 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native'
 import styles from '../Styles/style.js'
 
+/**
+ * Component which renders the 'List' list items in the ListsView screen.
+ * 
+ */
 class ListItem extends Component {
+    // main component constructor function - boilerplate
     constructor(props) {
         super(props);
     }
 
+    // navigates to a specific WanderList upon clicking on this list item
     changeScreen() {
         this.props.parentComp.setState({
             movedFromRoot: true
@@ -18,6 +24,7 @@ class ListItem extends Component {
         });
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <TouchableOpacity

@@ -9,7 +9,14 @@ import styles from '../Styles/style.js'
 const renderItem = ({ item }, navigation, reloadListsFunc, listID) => (
     <ActivityListItem title={item.title} activityID={item.activityId} navigation={navigation} completed={item.completed} reloadListsFunc={reloadListsFunc} listID={listID} funRating={item.funRating} susRating={item.susRating}/>
 );
+
+/**
+ * Component which shows the contents of a specific WanderList. Shows their position on a Google map using the MapComponent, 
+ * and displays a filterable list of activities to be completed and already completed.
+ * 
+ */
 class SpecificListView extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {
@@ -26,6 +33,7 @@ class SpecificListView extends Component {
         }
     }
 
+    // processes the API response containing lists belonging to a specific WanderList
     loadLists(obj) {
         // two separate lists for incomplete and complete activities
         var incompleteListData = [];
@@ -87,6 +95,7 @@ class SpecificListView extends Component {
                         () => this.filterActivities());
     }
 
+    // depending on the currently selected filter options, filters the completed and incomplete activity lists for rendering.
     filterActivities() {
         if(this.state.filters.length == 0) {
             this.setState({
@@ -130,6 +139,7 @@ class SpecificListView extends Component {
         
     }
 
+    // sends an API request to get the actiivties belonging to the current WanderList
     loadListData() {
         // do the fetch here once api works
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlist_activities/" + this.state.listID.toString())
@@ -137,10 +147,12 @@ class SpecificListView extends Component {
         .then(object => {this.loadLists(object)});
     }
 
+    // on component initialisation, send the API request to load list data.
     componentDidMount() {
         this.loadListData();
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <View style={styles.container}>

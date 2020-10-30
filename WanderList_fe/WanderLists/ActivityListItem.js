@@ -2,11 +2,17 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native'
 import styles from '../Styles/style.js'
 
+/**
+ * Component which renders an item in the list of activities visible from each WanderList.
+ * 
+ */
 class ActivityListItem extends Component {
+    // main component constructor function - boilerplate
     constructor(props) {
         super(props);
     }
 
+    // navigates to a specific activity screen upon clicking on this list item
     changeScreen() {
         console.log(this.props)
         this.props.navigation.navigate("activityView",
@@ -18,6 +24,7 @@ class ActivityListItem extends Component {
         });
     }
 
+    // called when the user presses the 'Complete' button in this list item - goes to the QR code scanner to complete the activity.
     activateActivity() {
         this.props.navigation.navigate("qrScanner",
         {
@@ -27,6 +34,7 @@ class ActivityListItem extends Component {
         });
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <TouchableOpacity

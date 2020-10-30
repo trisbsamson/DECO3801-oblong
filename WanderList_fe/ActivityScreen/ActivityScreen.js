@@ -11,6 +11,7 @@ const { width, height } = Dimensions.get('window');
  * 
  */
 class ActivityScreen extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {
@@ -28,6 +29,7 @@ class ActivityScreen extends Component {
         }
     }
 
+    // parses activity data returned from the API call and puts into a state variable
     loadActivityData(obj) {
         var activityDetails = {};
         activityDetails['name'] = obj[0]['title'];
@@ -43,6 +45,7 @@ class ActivityScreen extends Component {
          
     }
 
+    // navigates to the QR code scanner screen with the required props to validate QR codes
     openQRScanner() {
         this.props.navigation.navigate("qrScanner",
         {
@@ -52,15 +55,17 @@ class ActivityScreen extends Component {
         });
     }
 
+    // deprecated - used for previous AddToList modal
     hideModal() {
         this.setListNameModalVisible(false);
     }
 
+    // deprecated - used for previous AddToList modal
     setListNameModalVisible = (visible) => {
         this.setState({listNameModalVisible: visible});
     }
 
-    //loads in the activity data from the backend
+    // loads in the activity data from the API
     componentDidMount() {
         //previous route gives and activity id, retrieve from server
         let url = "https://deco3801-oblong.uqcloud.net/wanderlist/activity/" + this.props.route.params.activityID
@@ -69,6 +74,7 @@ class ActivityScreen extends Component {
         .then(object => {this.loadActivityData(object)});
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <View style={styles.container}>

@@ -123,6 +123,7 @@ function addToList(bucketListID, activityID){
  * 
  */
 class ListsView extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {
@@ -173,6 +174,7 @@ class ListsView extends Component {
         this.setState({listNameModalVisible: visible});
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         const {listNameModalVisible} = this.state;
         return (

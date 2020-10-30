@@ -8,12 +8,15 @@ import styles from '../Styles/style.js'
  * 
  */
 class SignupScreen extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {usernameVal: "",
                       emailVal: "",
                       passwordVal: ""}
     }
+
+    // function to register user to the database
      registerUser() {
             if(this.state.textInputVal != "") {
                 var queryString = "https://deco3801-oblong.uqcloud.net/wanderlist/user/";
@@ -33,11 +36,14 @@ class SignupScreen extends Component {
 //                this.props.hideModalFunc();
             }
      }
+
+     // calls the register function then navigates to the homepage
      registerAndNavigate(){
         this.registerUser();
         this.props.navigation.navigate('AppContents', {name: 'User'});
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <View style={styles.containerSignUp}>

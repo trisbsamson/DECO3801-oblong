@@ -5,13 +5,19 @@ import styles from '../Styles/style.js'
 
 const { width, height } = Dimensions.get('window');
 
+// constant values to place the map in the screen and figure out extents.
 const ASPECT_RATIO = width / height;
 const LATITUDE = -27.497284;
 const LONGITUDE = 153.011932;
 const LATITUDE_DELTA = 0.01567;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
+/**
+ * Component which renders the Map visible on each WanderList view page. Shows the location of each activity on the map.
+ * Uses the Google Maps API and react-native-maps library
+ */
 class MapComponent extends Component {
+  // main component constructor function - instantiates state variables
   constructor(props) {
     super(props);
 
@@ -25,6 +31,7 @@ class MapComponent extends Component {
     };
   }
 
+  // render method - returns JSX components to render to DOM
   render() {
     return (
       <View style={styles.mapContainer}>

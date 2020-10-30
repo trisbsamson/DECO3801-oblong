@@ -31,6 +31,7 @@ const renderItem = ({item}, navigation, parentComp) => (
  * 
  */
 class ListsView extends Component {
+  // main component constructor function - instantiates state variables
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +39,7 @@ class ListsView extends Component {
     };
   }
 
+  // DEPRECATED - was used to load location data. Replaced 
   loadLists(obj) {    
     var listData = [];
 
@@ -54,6 +56,7 @@ class ListsView extends Component {
     this.setState({listData: listData});
   }
 
+  // processes location data from the API call to get a list of locations. Stores locations list in a state variable
   processLocationData(obj) {
     var listData = [];
     var i;
@@ -69,6 +72,7 @@ class ListsView extends Component {
     });
   }
 
+  // computes the distance between the user and the coordinates (lat,long) - used to compute location-user distances
   computeDistanceFromUser(lat, long) {
     var latUser = this.state.userData.latitude;
     var longUser = this.state.userData.longitude;
@@ -85,6 +89,7 @@ class ListsView extends Component {
     return d;
   }
 
+  // calls the API to get a list of locations
   loadLocationData() {
     fetch("https://deco3801-oblong.uqcloud.net/wanderlist/location/", {
         method: "GET"
@@ -93,6 +98,8 @@ class ListsView extends Component {
     .then(obj => this.processLocationData(obj));
   }
 
+  // on mount - we need to listen for navigations to the parent of this component to reset this navigator stack to its root. 
+  // Also load the user data from the store.
   componentDidMount() {
     const unsub = this.props.parentNav.addListener('focus', () => {
       if(this.state.movedFromRoot) {
@@ -102,7 +109,8 @@ class ListsView extends Component {
   });
     this.setState({userData: UserDataStore.getUserData()}, () => this.loadLocationData());
   }
-
+  
+  // DEPRECATED - utilised in the WanderLists/ListsView class
   addList() {
     this.setState({
       listData: this.state.listData.concat({
@@ -112,6 +120,7 @@ class ListsView extends Component {
     });
   }
 
+  // render method - returns JSX components to render to DOM
   render() {
     return (
       <View style={styles.container}>

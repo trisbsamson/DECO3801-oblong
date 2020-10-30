@@ -2,12 +2,18 @@ import React, {Component} from 'react'
 import {Modal, Text, TextInput, View, TouchableOpacity, StyleSheet} from 'react-native'
 import styles from '../Styles/style.js'
 
+/**
+ * Modal which allows users to enter the name of a new list and add it.
+ * 
+ */
 class AddListModal extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props)
         this.state = {textInputVal: ""}
     }
 
+    // sends a POST request to the API to add a new WanderList for this user
     addList() {
         if(this.state.textInputVal != "") {
 
@@ -28,6 +34,7 @@ class AddListModal extends Component {
         }
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (<Modal
             transparent={true}

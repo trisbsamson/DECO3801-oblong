@@ -16,10 +16,12 @@ const Stack = createStackNavigator();
  * 
  */
 class App extends Component {
-
+    // main component constructor function - boilerplate
     constructor(props) {
         super(props);
     }
+
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <NavigationContainer>

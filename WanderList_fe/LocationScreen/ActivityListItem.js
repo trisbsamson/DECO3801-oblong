@@ -8,10 +8,12 @@ import styles from '../Styles/style';
  * 
  */
 class ActivityListItem extends Component {
+  // main component constructor function - boilerplate
   constructor(props) {
     super(props);
   }
 
+  // after touching this activity, navigates to the ActivityScreenAdd component with this activity ID as an argument
   changeScreen() {
     this.props.navigation.navigate("activityView",
         {
@@ -19,8 +21,7 @@ class ActivityListItem extends Component {
         });
   }
 
-  activateActivity() {}
-
+  // render method - returns JSX components to render to DOM
   render() {
     return (
       <TouchableOpacity

@@ -12,9 +12,12 @@ import {
  * 
  */
 class Category extends Component {
+    // main component constructor function - boilerplate
     constructor(props) {
         super(props);
     }
+
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <TouchableOpacity onPress={this.props.onPress} style={{ height: 200, width: 130, marginLeft: 20, borderWidth: 0.5, borderColor: '#dddddd' }}>

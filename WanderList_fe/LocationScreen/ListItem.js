@@ -7,10 +7,12 @@ import styles from '../Styles/style.js'
  * 
  */
 class ListItem extends Component {
+  // main component constructor function - boilerplate
   constructor(props) {
     super(props);
   }
 
+  // on touching this list item, navigate to the SpecificListView component with this location as the arguments.
   changeScreen() {
     this.props.parentComp.setState({movedFromRoot: true});
     this.props.navigation.navigate('specificLocationView', {
@@ -20,6 +22,7 @@ class ListItem extends Component {
     });
   }
 
+  // render method - returns JSX components to render to DOM
   render() {
     return (
       <TouchableOpacity

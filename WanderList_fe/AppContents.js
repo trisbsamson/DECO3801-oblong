@@ -22,10 +22,12 @@ const Drawer = createDrawerNavigator();
  * 
  */
 class AppContents extends Component {
+    // main component constructor function - boilerplate
     constructor(props) {
         super(props);
     }
-
+    
+    // render method - returns JSX components to render to DOM
     render() {
         return (
                 <Drawer.Navigator initialRouteName="Home" >

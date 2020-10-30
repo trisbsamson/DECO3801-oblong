@@ -11,7 +11,13 @@ import UserDataStore from '../UserDataStore/UserDataStore';
 const renderItem = ({ item}, navigation, parentComp) => (
     <ListItem title={item.title} id={item.key} activityCount={item.activityCount} navigation={navigation} parentComp={parentComp}/>
 );
+
+/**
+ * Main component for this navigation path. Shows a list of WanderLists belonging to this user. Also allows users to add a list with the AddListModal.
+ * 
+ */
 class ListsView extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {
@@ -22,6 +28,7 @@ class ListsView extends Component {
         }
     }
 
+    // processes the API response of the list of WanderLists for this user and puts the items into a state variable to be rendered.
     loadLists(obj) {
         var listData = [];
         var i;
@@ -33,11 +40,15 @@ class ListsView extends Component {
         this.setState({listData: listData});
     }
 
+    // calls the API to get a list of WanderLists belonging to this user
     queryLists() {
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_bucketlist_belonging_to_user/" + this.state.userData.id)
         .then(response => response.json())
         .then(obj => this.loadLists(obj));
     }
+
+    // on instantiation of the component, adds an event listener to the parent of this component. 
+    // This ensures that whenever we navigate to this branch of the drawer navigator we go to the root.
     componentDidMount() {
         const unsub = this.props.parentNav.addListener('focus', () => {
             if(this.state.movedFromRoot) {
@@ -48,15 +59,18 @@ class ListsView extends Component {
         this.setState({userData: UserDataStore.getUserData()}, () => this.queryLists());
     }
 
+    // hides the AddListModa
     hideModal() {
         this.setListNameModalVisible(false);
     }
 
+    // sets the visibility of the AddListModal
     setListNameModalVisible = (visible) => {
         
         this.setState({listNameModalVisible: visible});
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         const {listNameModalVisible} = this.state;
         return (

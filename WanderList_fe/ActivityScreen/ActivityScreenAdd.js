@@ -11,6 +11,7 @@ const { width, height } = Dimensions.get('window');
  * 
  */
 class ActivityScreen extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {
@@ -29,6 +30,7 @@ class ActivityScreen extends Component {
         }
     }
 
+    // parses activity data returned from the API call and puts into a state variable
     loadActivityData(obj) {
         var activityDetails = {};
         activityDetails['id'] = obj[0]['id'];
@@ -45,16 +47,19 @@ class ActivityScreen extends Component {
          
     }
 
+    // deprecated - used for the old addToList modal screen
     changeScreen() {
         this.props.navigation.navigate('addToList', {
             activityID: this.state.activityDetails["id"]
         });
     }
 
+    // hides the AddToBucketList modal
     hideModal() {
         this.setAddToListModalVisible(false);
     }
 
+    // sets the visibility of the AddToBucketList modal
     setAddToListModalVisible = (visible) => {
         this.setState({addToListModalVisible: visible});
     }
@@ -68,6 +73,7 @@ class ActivityScreen extends Component {
         .then(object => {this.loadActivityData(object)});
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <View style={styles.container}>

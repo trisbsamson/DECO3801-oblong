@@ -21,6 +21,7 @@ const renderItem = ({item}, navigation, activateModalFunc) => <ActivityListItem 
  * 
  */
 class SpecificListView extends Component {
+  // main component constructor function - instantiates state variables
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +39,8 @@ class SpecificListView extends Component {
     };
   }
 
+  // processes the data from the API call to get all activities in a location. 
+  // Splits activities into two lists - completed and not completed. Also loads activity filters.
   processActivityData(obj) {
     var activityListData = [];
     var uniqueTags = [];
@@ -77,6 +80,7 @@ class SpecificListView extends Component {
                     () => this.filterActivities());
   }
 
+  // requests all activities in this location with an API call
   loadActivityData() {
     fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_activity_by_location/" + this.props.route.params.locationID, {
         method: "GET"
@@ -85,6 +89,7 @@ class SpecificListView extends Component {
     .then(obj => this.processActivityData(obj));
   }
 
+  // processes the currently selected filters and sets the filteredActivityListData lists to only contain activities with these tags.
   filterActivities() {
     if(this.state.filters.length == 0) {
         this.setState({
@@ -112,16 +117,17 @@ class SpecificListView extends Component {
     }
     
 }
-
+  // on first loading this component, query the API to load activity data
   componentDidMount() {
-    
     this.loadActivityData();
   }
 
+  // hides the AddToList modal
   hideModal() {
     this.setAddToListModalVisible(false);
   }
-
+  
+  //sets the visibility of the AddToList modal. Also passes through the current activity ID so it can make the correct API call.
   setAddToListModalVisible = (visible, activityID) => {
     this.setState({
       addToListModalVisible: visible,
@@ -129,6 +135,7 @@ class SpecificListView extends Component {
     });
   }
 
+  // render method - returns JSX components to render to DOM
   render() {
     return (
       <View style={styles.container}>

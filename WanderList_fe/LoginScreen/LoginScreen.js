@@ -10,6 +10,7 @@ import styles from '../Styles/style.js'
  * 
  */
 class LoginScreen extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {usernameVal: "",
@@ -17,12 +18,14 @@ class LoginScreen extends Component {
                       rememberMeCheck: false}
     }
 
+    // Attempts login and processes if the username and password are valid on the database
     attemptLogin() {
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/login/" + this.state.usernameVal + "/" + this.state.passwordVal)
         .then(response => response.json())
         .then(obj => this.processLogin(obj));
     }
 
+    // Processes login. Checks if the username and password are valid
     processLogin(obj) {
         if(obj == "401") {
             console.log("invalid username / password")
@@ -33,6 +36,7 @@ class LoginScreen extends Component {
         //this.props.navigation.navigate('AppContents', {name: 'User'})
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <View style={styles.loginContainer}>

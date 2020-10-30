@@ -13,6 +13,7 @@ import styles from '../Styles/style.js'
  * 
  */
 class ActivityCompleteModal extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props)
         this.state = {
@@ -22,6 +23,8 @@ class ActivityCompleteModal extends Component {
         }
     }
 
+    // sends a POST request to the server to submit a user rating for this activity. 
+    // Only occurs if the user has properly completed the activity.
     sendRatingFunc() {
         var bdy = JSON.stringify({
             "activity_id": this.props.activityID,
@@ -43,12 +46,14 @@ class ActivityCompleteModal extends Component {
         this.finishFunc();
     }
 
+    // upon rating the actvity, close the modal and navigate back to the previous screen
     finishFunc() {
         this.props.hideModalFunc();
         this.props.reloadListDataFunc();
         this.props.navigation.goBack();
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (<Modal
             transparent={true}

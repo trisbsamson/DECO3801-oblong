@@ -7,14 +7,17 @@ import styles from '../Styles/style';
  * 
  */
 class CardListItem extends Component {
+    // main component constructor function - boilerplate
     constructor(props) {
         super(props);
     }
 
+    // navigates to the Locations page - needs fixed to go to a specific location
     navToLocation() {
         this.props.navigation.navigate("Browse Locations")
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <TouchableOpacity style={styles.cardItemContainer} onPress={() => this.navToLocation()}>

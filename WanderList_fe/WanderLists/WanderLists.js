@@ -11,12 +11,19 @@ import styles from '../Styles/style.js'
 
 const ListStack = createStackNavigator();
 
+/**
+ * Root component for the WanderLists path. Stores a stack navigator which provides navigation to all sub-components.
+ * 
+ */
 class WanderLists extends Component {
+    // main component constructor function - boilerplate
     constructor(props) {
         super(props);
         this.state = {
         }
     }
+
+    // render method - returns JSX components to render to DOM
     render() {
       //const thisNav = this.props.navigation;
         return (

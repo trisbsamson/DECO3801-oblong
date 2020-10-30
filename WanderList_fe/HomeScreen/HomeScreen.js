@@ -31,41 +31,46 @@ const renderCardListItem = ({item}, navigation) => (
  * 
  */
 class HomeScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        userData: {}
-    };
-  }
+    // main component constructor function - instantiates state variables
+    constructor(props) {
+        super(props);
+        this.state = {
+            userData: {}
+        };
+    }
 
-  processLocationData(obj) {
-    var listData = [];
-    var i;
-    for(i = 0; i < obj.length; i++) {
-        listData.push({
-            key: obj[i]["id"].toString(),
-            name: obj[i]["name"],
-            imageURL: obj[i]["imageurl"]
+    // processes the API response to generate a list of locations to be rendered
+    processLocationData(obj) {
+        var listData = [];
+        var i;
+        for(i = 0; i < obj.length; i++) {
+            listData.push({
+                key: obj[i]["id"].toString(),
+                name: obj[i]["name"],
+                imageURL: obj[i]["imageurl"]
+            });
+        }
+        this.setState({
+            locationsList: listData
         });
     }
-    this.setState({
-        locationsList: listData
-    });
-  }
 
-  loadLocationData() {
-    fetch("https://deco3801-oblong.uqcloud.net/wanderlist/location/", {
-        method: "GET"
-    })
-    .then(response => response.json())
-    .then(obj => this.processLocationData(obj));
-  }
+    // calls the API to get a list of locations, then calls the processing function
+    loadLocationData() {
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/location/", {
+            method: "GET"
+        })
+        .then(response => response.json())
+        .then(obj => this.processLocationData(obj));
+    }
 
-  componentDidMount() {
-      this.setState({userData: UserDataStore.getUserData()});
-      this.loadLocationData();
-  }
+    // on component mount, set the user data from the store, the request the location data from the API
+    componentDidMount() {
+        this.setState({userData: UserDataStore.getUserData()});
+        this.loadLocationData();
+    }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
                 <View style={styles.container}>
@@ -89,7 +94,7 @@ class HomeScreen extends Component {
                         </Text>
                         <FlatList data={this.state.locationsList} renderItem={(item) => renderCardListItem(item, this.props.navigation)}/>
                     </View>
-              </View>
+                </View>
         )
     }
 }

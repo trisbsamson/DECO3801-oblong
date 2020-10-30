@@ -7,6 +7,7 @@ import styles from '../Styles/style.js'
  * 
  */
 class ListItem extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {
@@ -16,6 +17,7 @@ class ListItem extends Component {
         }
     }
 
+    // changes the state variables to toggle displaying the 'hidden' and 'visible' states of the redeem code.
     redeemItem() {
         if(!this.state.showingRedeem) {
             this.setState({
@@ -33,6 +35,7 @@ class ListItem extends Component {
 
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <View style={styles.listItemProfile}>

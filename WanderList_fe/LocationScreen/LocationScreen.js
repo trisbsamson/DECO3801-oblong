@@ -26,6 +26,7 @@ const ListStack = createStackNavigator();
  * 
  */
 class LocationScreen extends Component {
+  // main component constructor function - instantiates state variables
   constructor(props) {
     super(props);
     this.state = {
@@ -37,10 +38,12 @@ class LocationScreen extends Component {
     };
   }
 
+  // DEPRECATED - remnance from a previous implementation
   addList() {
     this.setState({listData: this.state.listData.concat({title: 'New List'})});
   }
 
+  // render method - returns JSX components to render to DOM
   render() {
     return (
         <ListStack.Navigator headerMode="none">

@@ -13,6 +13,7 @@ const renderItem = ({ item}, navigation) => (
  * 
  */
 class Profile extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {
@@ -28,6 +29,7 @@ class Profile extends Component {
         };
     }
 
+    // processes the response from the API call to get user information
     loadUserInfo(obj) {
         this.setState({
             userName: obj['name'],
@@ -37,6 +39,7 @@ class Profile extends Component {
         });
     }
 
+    // processes the response from the API call to get the rewards data
     loadRewards(obj) {
         var listData = [];
         var i;
@@ -51,24 +54,27 @@ class Profile extends Component {
         this.setState({listData: listData});
     }
 
+    // sends an API request to the server to get user details
     getUserDetails() {
-        // need to update this to use an actual user_id
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/user/2")
         .then(response => response.json())
         .then(obj => this.loadUserInfo(obj));
     }
 
+    // sends an API request to the server to get a list of rewards for this user
     getRewards() {
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_all_user_rewards/" + this.state.userData.id)
         .then(response => response.json())
         .then(obj => this.loadRewards(obj));
     }
 
+    // on component instantiation, get user details from the store
     componentDidMount() {
         this.setState({userData: UserDataStore.getUserData()}, () => this.getRewards());
         this.getUserDetails();
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <View style={styles.container}>
