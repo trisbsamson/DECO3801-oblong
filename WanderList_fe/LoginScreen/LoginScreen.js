@@ -18,14 +18,20 @@ class LoginScreen extends Component {
                       rememberMeCheck: false}
     }
 
-    // Attempts login and processes if the username and password are valid on the database
+    /**
+     * Attempts login and processes if the username and password are valid on database
+     *
+     */
     attemptLogin() {
         fetch("https://deco3801-oblong.uqcloud.net/wanderlist/login/" + this.state.usernameVal + "/" + this.state.passwordVal)
         .then(response => response.json())
         .then(obj => this.processLogin(obj));
     }
 
-    // Processes login. Checks if the username and password are valid
+    /**
+     * Processes login if there is an invalid username or password
+     *
+     */
     processLogin(obj) {
         if(obj == "401") {
             console.log("invalid username / password")

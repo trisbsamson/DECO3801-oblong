@@ -39,36 +39,38 @@ class HomeScreen extends Component {
         };
     }
 
-    // processes the API response to generate a list of locations to be rendered
-    processLocationData(obj) {
-        var listData = [];
-        var i;
-        for(i = 0; i < obj.length; i++) {
-            listData.push({
-                key: obj[i]["id"].toString(),
-                name: obj[i]["name"],
-                imageURL: obj[i]["imageurl"]
-            });
-        }
-        this.setState({
-            locationsList: listData
+  /**
+  * Loads locations onto home screen from database
+  */
+  processLocationData(obj) {
+    var listData = [];
+    var i;
+    for(i = 0; i < obj.length; i++) {
+        listData.push({
+            key: obj[i]["id"].toString(),
+            name: obj[i]["name"],
+            imageURL: obj[i]["imageurl"]
         });
     }
+  }
+  /**
+  * Gets data of locations and processes data to be set on home screen
+  */
+  loadLocationData() {
+    fetch("https://deco3801-oblong.uqcloud.net/wanderlist/location/", {
+        method: "GET"
+    })
+    .then(response => response.json())
+    .then(obj => this.processLocationData(obj));
+  }
 
-    // calls the API to get a list of locations, then calls the processing function
-    loadLocationData() {
-        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/location/", {
-            method: "GET"
-        })
-        .then(response => response.json())
-        .then(obj => this.processLocationData(obj));
-    }
-
-    // on component mount, set the user data from the store, the request the location data from the API
-    componentDidMount() {
-        this.setState({userData: UserDataStore.getUserData()});
-        this.loadLocationData();
-    }
+  /**
+  * Main function to call to set state and load the location data onto the home screen
+  */
+  componentDidMount() {
+      this.setState({userData: UserDataStore.getUserData()});
+      this.loadLocationData();
+  }
 
     // render method - returns JSX components to render to DOM
     render() {
