@@ -1,81 +1,101 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import ListItem from './ListItem'
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  nameBlock: {
-    marginTop: 30,
-    alignItems: 'center',
-    marginBottom: 30
-  },
-  listTitle: {
-    fontSize: 18,
-    margin: 10,
-    fontWeight: "700"
-  },
-  rankBlock:{
-      marginBottom: 30,
-      alignItems: 'center'
-  },
-  profileImage: {
-      width: 120,
-      height: 120,
-      borderRadius: 120/ 2,
-      marginBottom: 15,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-  },
-  nameText: {
-      fontSize: 30,
-  },
-  nameSubText: {
-      fontSize: 15
-  }
-})
+import styles from '../Styles/style.js'
+import UserDataStore from '../UserDataStore/UserDataStore';
 
 const renderItem = ({ item}, navigation) => (
     <ListItem title={item.title} navigation={navigation} redeemCode={item.redeemCode}/>
 );
 
+/**
+ * Profile screen which displays basic user details and redeemable rewards list.
+ * 
+ */
 class Profile extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {
-            listData: [
-                {title: "UQ Lakes Boat Ride", key: "a", redeemCode: "204195"},
-                {title: "Free Burger @ Burger Urge", key: "b", redeemCode: "105124"},
-                {title: "$10 Jug at Redroom", key: "c", redeemCode: "420385"},
-                {title: "Half-price Tickets at Schonell Theatre", key: "d", redeemCode: "350382"},
-                {title: "Free Burger @ Burger Urge", key: "e", redeemCode: "230495"},
-                {title: "A third activity", key: "f", redeemCode: "583739"}
-            ]
+            listData: [],
+            userName: "",
+            userLocation: "",
+            userLevel: "",
+            userData: {
+                name: "",
+                id: -1,
+                imageurl: " "
+            }
         };
     }
 
+    // processes the response from the API call to get user information
+    loadUserInfo(obj) {
+        this.setState({
+            userName: obj['name'],
+            userLocation: obj['location'],
+            userLevel: obj['rank'],
+            profilePicURL: obj['imageurl']
+        });
+    }
+
+    // processes the response from the API call to get the rewards data
+    loadRewards(obj) {
+        var listData = [];
+        var i;
+        for(i = 0; i < obj.length; i++) {
+            listData.push({
+                title: obj[i]['name'], 
+                key: i.toString(), 
+                redeemCode: "12345", 
+                redeemed: obj[i]['redeemed']
+            });
+        }
+        this.setState({listData: listData});
+    }
+
+    // sends an API request to the server to get user details
+    getUserDetails() {
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/user/2")
+        .then(response => response.json())
+        .then(obj => this.loadUserInfo(obj));
+    }
+
+    // sends an API request to the server to get a list of rewards for this user
+    getRewards() {
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/get_all_user_rewards/" + this.state.userData.id)
+        .then(response => response.json())
+        .then(obj => this.loadRewards(obj));
+    }
+
+    // on component instantiation, get user details from the store
+    componentDidMount() {
+        this.setState({userData: UserDataStore.getUserData()}, () => this.getRewards());
+        this.getUserDetails();
+    }
+
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <View style={styles.container}>
+             <View style={styles.header}>
+                <TouchableOpacity onPress={this.props.navigation.openDrawer}>
+                  <Image
+                    source={{uri:'https://cdn.iconscout.com/icon/free/png-256/hamburger-menu-462145.png'}}
+                    style={{ width: 30, height: 30 }}
+                  />
+                </TouchableOpacity>
+             </View>
                 <View style={styles.nameBlock}>
                     <Image
-                        source={require('../Images/profile_placeholder.jpg')}
+                        source={{uri:this.state.userData.imageurl}}
                         style={styles.profileImage}
                     />
                     <Text style={styles.nameText}>
-                        John Doe
+                        {this.state.userData.name}
                     </Text>
                     <Text style={styles.nameSubText}>
-                        St Lucia, QLD
-                    </Text>
-                </View>
-                <View style={styles.rankBlock}>
-                    <Text>
-                        Level 1
+                        {this.state.userLocation}
                     </Text>
                 </View>
                 <View style={{marginTop: 'auto'}}>

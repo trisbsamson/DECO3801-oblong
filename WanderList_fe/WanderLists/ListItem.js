@@ -1,47 +1,34 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native'
+import styles from '../Styles/style.js'
 
-const styles = StyleSheet.create({
-    listItem: {
-        backgroundColor: '#fff',
-        padding: 14,
-        paddingLeft: 20,
-        height: 75,
-        marginBottom: 10,
-        borderRadius: 3,
-    },
-    titleText: {
-        fontSize: 16
-    },
-    subTitleText: {
-        color: '#494949'
-    },
-    menuIcon: {
-        width: 20,
-        height: 20
-    },
-    menuIconButton: {
-        marginLeft: 'auto',
-
-    }
-});
-
+/**
+ * Component which renders the 'List' list items in the ListsView screen.
+ * 
+ */
 class ListItem extends Component {
+    // main component constructor function - boilerplate
     constructor(props) {
         super(props);
     }
 
+    // navigates to a specific WanderList upon clicking on this list item
     changeScreen() {
+        this.props.parentComp.setState({
+            movedFromRoot: true
+        });
         this.props.navigation.navigate("specificListView",
         {
-            listTitle: this.props.title
+            listTitle: this.props.title,
+            listID: this.props.id
         });
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <TouchableOpacity
-            style={styles.listItem}
+            style={styles.listItemWanderlist}
             onPress={() => this.changeScreen()}>
                 <View style={{flexDirection: 'row'}}>
                     <Text style={styles.titleText}>{this.props.title}</Text>
@@ -52,7 +39,7 @@ class ListItem extends Component {
                         />
                     </TouchableOpacity>
                 </View>
-                <Text style={styles.subTitleText}>{this.props.subtitle}</Text>
+                <Text style={styles.subTitleText}>{this.props.activityCount} activities</Text>
 
             </TouchableOpacity>
         );

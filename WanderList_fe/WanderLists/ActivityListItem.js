@@ -1,58 +1,70 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native'
+import styles from '../Styles/style.js'
 
-const styles = StyleSheet.create({
-    textField: {
-        fontSize: 15
-    },
-    copyButton: {
-        backgroundColor: '#fff',
-        marginLeft: 'auto',
-        padding: 5,
-        borderColor: '#000',
-        borderWidth: 1,
-        borderRadius: 3,
-        width: 80,
-        alignItems: 'center'
-    },
-    listItem: {
-        backgroundColor: '#fff',
-        paddingRight: 12,
-        padding: 6,
-        paddingLeft: 20,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-});
-
+/**
+ * Component which renders an item in the list of activities visible from each WanderList.
+ * 
+ */
 class ActivityListItem extends Component {
+    // main component constructor function - boilerplate
     constructor(props) {
         super(props);
     }
 
+    // navigates to a specific activity screen upon clicking on this list item
     changeScreen() {
-        /*this.props.navigation.navigate("specificListView",
+        console.log(this.props)
+        this.props.navigation.navigate("activityView",
         {
-            listTitle: this.props.title
-        });*/
+            activityID: this.props.activityID,
+            bucketListID: this.props.listID,
+            completed: this.props.completed,
+            reloadListsFunc: this.props.reloadListsFunc
+        });
     }
 
+    // called when the user presses the 'Complete' button in this list item - goes to the QR code scanner to complete the activity.
     activateActivity() {
-
+        this.props.navigation.navigate("qrScanner",
+        {
+            activityID: this.props.activityID,
+            bucketListID: this.props.listID,
+            reloadListsFunc: this.props.reloadListsFunc
+        });
     }
 
+    // render method - returns JSX components to render to DOM
     render() {
         return (
             <TouchableOpacity
-            style={styles.listItem}
+            style={styles.listItemActivity}
             onPress={() => this.changeScreen()}>
-                <Text style={styles.textField}>{this.props.title}</Text>
-                <TouchableOpacity
-                style={styles.copyButton}
+                <Text style={styles.textFieldActivity}>{this.props.title}</Text>
+                <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 'auto', marginRight: 10}}>
+                    <View style={{flexDirection: 'row', alignItems: 'center', marginRight: 5}}>
+                        <Image
+                            style = {styles.leafIcon}
+                            source={require('../Images/leaf_icon.png')}
+                        />
+                        <Text style={{fontSize: 16}}> {this.props.susRating}</Text>
+                    </View>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Image
+                            style = {styles.leafIcon}
+                            source={require('../Images/star_icon.png')}
+                        />
+                        <Text style={{fontSize: 16}}> {this.props.funRating}</Text>
+                    </View>
+                </View>
+                
+                {!this.props.completed && <TouchableOpacity
+                style={styles.listCompleteActivityButton}
                 onPress={() => this.activateActivity()}
                 activeOpacity={0}>
                     <Text style={styles.copyTextField}>Complete</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
+                
             </TouchableOpacity>
         );
     }

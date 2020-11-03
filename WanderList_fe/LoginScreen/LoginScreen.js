@@ -1,65 +1,57 @@
 import React, {Component} from 'react';
 import {AppRegistry, Button, StyleSheet, View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import UserDataStore from '../UserDataStore/UserDataStore';
 import CheckBox from '@react-native-community/checkbox';
+import styles from '../Styles/style.js'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    marginLeft: 20,
-    marginRight: 20,
-    flexDirection: 'column'
-  },
-  titlePane: {
-    alignItems: 'center',
-  },
-  textField: {
-      marginBottom: 40,
-      fontSize: 20,
-  },
-  textInput: {
-      borderColor: 'gray',
-      borderWidth: 1,
-      borderRadius: 4,
-      marginBottom: 10,
-      padding: 10,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#196DFF',
-    padding: 10,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 12,
-  },
-  disabledButton: {
-    alignItems: 'center',
-    backgroundColor: '#84C1FF',
-    padding: 10,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 12,
-  },
-  loginLogo: {
-    width: 154,
-    height: 45,
-  },
-})
-
-
+/**
+ * Main login component. This will be the first screen seen upon opening the app. 
+ * Gives fields for login and button to register a user.
+ * 
+ */
 class LoginScreen extends Component {
+    // main component constructor function - instantiates state variables
     constructor(props) {
         super(props);
         this.state = {usernameVal: "",
-                      passwordVal: ""}
+                      passwordVal: "",
+                      rememberMeCheck: false}
     }
 
+    /**
+     * Attempts login and processes if the username and password are valid on database
+     *
+     */
+    attemptLogin() {
+        fetch("https://deco3801-oblong.uqcloud.net/wanderlist/login/" + this.state.usernameVal + "/" + this.state.passwordVal)
+        .then(response => response.json())
+        .then(obj => this.processLogin(obj));
+    }
+
+    /**
+     * Processes login if there is an invalid username or password
+     *
+     */
+    processLogin(obj) {
+        if(obj == "401") {
+            console.log("invalid username / password")
+        } else {
+            UserDataStore.setUserData(obj[0]);
+            this.props.navigation.navigate('AppContents');
+        }
+        //this.props.navigation.navigate('AppContents', {name: 'User'})
+    }
+
+    // render method - returns JSX components to render to DOM
     render() {
         return (
-            <View style={styles.container}>
-                <View style={styles.titlePane}>
-                    <Text style={styles.textField}>
+            <View style={styles.loginContainer}>
+                <View style={styles.logintitlePane}>
+                    <Image
+                        style = {styles.loginLeafLogo}
+                        source={require('../Images/leaf_icon.png')}
+                    />
+                    <Text style={styles.logintextField}>
                     WanderLists
                     </Text>
                 </View>
@@ -77,22 +69,29 @@ class LoginScreen extends Component {
                     />
                     </TouchableOpacity>
                 </View>
-                <TextInput style={styles.textInput} placeholder="Username or email" onChangeText={text => this.setState({usernameVal: text})}/>
-                <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} onChangeText={text => this.setState({passwordVal: text})}/>
+                <TextInput style={styles.logintextInput} placeholder="Username or email" onChangeText={text => this.setState({usernameVal: text})}/>
+                <TextInput style={styles.logintextInput} placeholder="Password" secureTextEntry={true} onChangeText={text => this.setState({passwordVal: text})}/>
                 <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
-                    <CheckBox/>
+                    <CheckBox
+                        value={this.state.rememberMeCheck}
+                        onChange={() => this.setState({ rememberMeCheck: !this.state.rememberMeCheck})}
+                    />
                     <Text> Remember Me </Text>
                     <Text style={{marginLeft: 'auto'}}> Forgot Password </Text>
                 </View>
                 <TouchableOpacity
-                    style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.button)}
+                    style={(this.state.usernameVal == "" || this.state.passwordVal == "" ? styles.disabledButton : styles.loginbutton)}
                     disabled = {(this.state.usernameVal == "" || this.state.passwordVal == "")}
-                    onPress={() =>
-                    this.props.navigation.navigate('AppContents', {name: 'User'})
-                    }
+                    onPress={() => this.attemptLogin()}
                 >
                     <Text style={{color: "#fff"}}>Log In</Text>
                 </TouchableOpacity>
+                <View style ={styles.signupTextCont}>
+                    <Text style = {styles.signupText}>Don't have an account yet? </Text>
+                    <TouchableOpacity onPress ={() =>this.props.navigation.navigate('SignupScreen')}>
+                    <Text style = {styles.signupButton}>Sign up</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }

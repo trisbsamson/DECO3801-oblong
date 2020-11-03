@@ -1,71 +1,40 @@
-import React, {Component} from 'react';
+import React, {Component, forwardRef} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import ListItem from './ListItem';
 import SpecificListView from './SpecificListView'
-import ListsView from './ListsView'
+import ListsView from './ListsView';
+import ActivityScreen from '../ActivityScreen/ActivityScreen';
+import QRScanner from '../QRScanner/QRScanner';
 import { createStackNavigator } from '@react-navigation/stack';
+import styles from '../Styles/style.js'
 
 const ListStack = createStackNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  addListButton: {
-    alignItems: 'center',
-    backgroundColor: '#196DFF',
-    padding: 10,
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 12,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginTop: 'auto',
-  },
-  textField: {
-      marginBottom: 20,
-      fontSize: 20,
-  },
-  map: {
-      width: 390,
-      height: 300,
-      marginBottom: 20,
-  },
-  listItem: {
-
-  },
-  listTitle: {
-      padding: 10,
-      fontSize: 18
-  }
-});
-
+/**
+ * Root component for the WanderLists path. Stores a stack navigator which provides navigation to all sub-components.
+ * 
+ */
 class WanderLists extends Component {
+    // main component constructor function - boilerplate
     constructor(props) {
         super(props);
         this.state = {
-            listData: [
-                {title: 'First List'},
-                {title: 'Second List'},
-                {title: 'Also an Activity'},
-            ]
         }
     }
 
-    addList(){
-        this.setState({listData: this.state.listData.concat({title: 'New List'})});
-    }
-
+    // render method - returns JSX components to render to DOM
     render() {
+      //const thisNav = this.props.navigation;
         return (
-                <ListStack.Navigator headerMode="none">
-                    <ListStack.Screen name="listView" component={ListsView}/>
-                    <ListStack.Screen name="specificListView" component={SpecificListView}/>
-                </ListStack.Navigator>
+              <ListStack.Navigator headerMode="none" initialRouteName="listsView">
+                <ListStack.Screen name="listsView">
+                  {props => <ListsView {...props} parentNav={this.props.navigation}/>}
+                </ListStack.Screen>
+                <ListStack.Screen name="specificListView" component={SpecificListView}/>
+                <ListStack.Screen name="activityView" component={ActivityScreen}/>
+                <ListStack.Screen name="qrScanner" component={QRScanner}/>
+              </ListStack.Navigator>
         );
     }
 }
